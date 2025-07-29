@@ -1,0 +1,387 @@
+/* ========================================
+   VARIABLES CSS GLOBALES
+   ======================================== */
+:root {
+  --color-primario: #0a192f; /* Azul marino oscuro - color principal del sitio */
+  --color-texto: #ffffff; /* Blanco - color de todo el texto */
+  --color-hover: #e0e0e0; /* Gris claro - color para efectos cuando pasas el mouse */
+}
+
+/* ========================================
+   ESTRUCTURA BASE DE LA PÁGINA
+   ======================================== */
+html,
+body {
+  height: 100%; /* Necesario para footer sticky */
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+}
+
+/* ========================================
+   BARRA DE NAVEGACIÓN (NAVBAR)
+   ======================================== */
+
+/* Contenedor principal de la navbar */
+.navbar {
+  background-color: var(--color-primario); /* Aplica el color primario como fondo */
+}
+
+/* Botón de hamburguesa para colapsar en móvil */
+.navbar-toggle {
+  border-color: var(--color-texto); /* Define el color del borde del botón hamburguesa */
+}
+
+.navbar-toggle .icon-bar {
+  background-color: var(--color-texto); /* Cambia el color de las tres rayitas del botón hamburguesa a blanco */
+}
+
+/* Enlace del logo o marca */
+.navbar-brand {
+  color: var(--color-texto) !important; /* Hace que el texto del logo sea blanco */
+}
+
+/* Enlaces de navegación principales */
+.navbar-nav > li > a {
+  color: var(--color-texto) !important; /* Hace que todos los enlaces de navegación sean blancos */
+}
+
+.navbar-nav > li > a:hover {
+  color: var(--color-hover) !important; /* Cuando pasas el mouse: cambia a gris claro */
+  background-color: rgba(255, 255, 255, 0.1) !important; /* Agrega fondo translúcido */
+}
+
+/* Enlace activo (INICIO) */
+.navbar-nav > .active > a {
+  color: var(--color-texto) !important; /* Estilo para el enlace que está actualmente seleccionado */
+  background-color: rgba(255, 255, 255, 0.2) !important; /* Fondo más visible que los otros */
+}
+
+.navbar-nav > .active > a:hover {
+  color: var(--color-texto) !important; /* Mantiene el texto blanco en hover */
+  background-color: rgba(255, 255, 255, 0.3) !important; /* Oscurece más el fondo */
+}
+
+/* Enlace que despliega el dropdown */
+.dropdown-toggle {
+  color: var(--color-texto) !important; /* Hace que el enlace del dropdown sea blanco */
+}
+
+.dropdown-toggle:hover {
+  color: var(--color-hover) !important; /* Cuando pasas el mouse: cambia a gris claro */
+  background-color: rgba(255, 255, 255, 0.1) !important; /* Agrega fondo translúcido */
+}
+
+/* Menú desplegable */
+.dropdown-menu {
+  background-color: var(--color-primario); /* Mismo color de fondo que la navbar */
+  border: 1px solid rgba(255, 255, 255, 0.2); /* Borde blanco translúcido */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Sombra para darle profundidad */
+}
+
+.dropdown-menu > li > a {
+  color: var(--color-texto) !important; /* Hace que todos los enlaces dentro del dropdown sean blancos */
+}
+
+.dropdown-menu > li > a:hover {
+  color: var(--color-hover) !important; /* Cuando pasas el mouse: gris claro */
+  background-color: rgba(255, 255, 255, 0.1) !important; /* Fondo translúcido */
+}
+
+.dropdown-menu > li > a:focus {
+  color: var(--color-texto) !important; /* Cuando seleccionas con teclado: mismo estilo que hover */
+  background-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+/* Separador dentro del dropdown */
+.divider {
+  background-color: rgba(255, 255, 255, 0.3); /* Línea blanca translúcida */
+  height: 1px; /* Grosor de la línea */
+  margin: 9px 0; /* Espacio arriba y abajo de la línea */
+}
+
+/* Formulario de búsqueda en la navbar */
+.navbar-form .btn {
+  background-color: rgba(255, 255, 255, 0.2); /* Fondo blanco translúcido */
+  color: var(--color-texto); /* Texto blanco */
+  border: 1px solid var(--color-texto); /* Borde blanco */
+}
+
+.navbar-form .btn:hover {
+  background-color: var(--color-texto); /* Fondo se vuelve blanco sólido */
+  color: var(--color-primario); /* Texto se vuelve del color primario */
+}
+
+/* Enlaces del lado derecho de la navbar (ej: "Carrito") */
+.navbar-nav.navbar-right > li > a {
+  color: var(--color-texto) !important;
+}
+
+.navbar-nav.navbar-right > li > a:hover {
+  color: var(--color-hover) !important; /* Cuando pasas el mouse: gris claro */
+  background-color: rgba(255, 255, 255, 0.1) !important; /* Fondo translúcido */
+}
+
+/* ========================================
+   SECCIÓN DE PRODUCTOS
+   ======================================== */
+
+/* Contenedor principal de la sección de productos */
+.productos-seccion {
+  background-color: var(--color-texto); /* Fondo blanco */
+  color: var(--color-primario); /* Texto del color primario (azul marino) */
+  padding: 40px 0; /* Espaciado arriba y abajo */
+  min-height: 500px; /* Altura mínima para que se vea bien */
+  flex: 1; /* Toma todo el espacio disponible para footer sticky */
+}
+
+.productos-seccion h2 {
+  color: var(--color-primario); /* Color del texto principal */
+  margin-bottom: 30px; /* Espacio debajo del título */
+  font-weight: bold; /* Texto en negrita */
+}
+
+/* ========================================
+   CARDS DE PRODUCTOS
+   ======================================== */
+
+/* Contenedor principal de cada card */
+.producto-card {
+  background-color: #ffffff; /* Fondo blanco */
+  border: 1px solid #e0e0e0; /* Borde gris claro */
+  border-radius: 8px; /* Esquinas redondeadas */
+  overflow: hidden; /* Oculta contenido que se salga */
+  transition: all 0.3s ease; /* Transición suave para todos los cambios */
+  margin-bottom: 20px; /* Espacio entre cards */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+}
+
+/* Efecto hover en la card */
+.producto-card:hover {
+  transform: translateY(-5px); /* Eleva la card 5px hacia arriba */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15); /* Sombra más intensa */
+  border-color: var(--color-primario); /* Borde cambia al color primario */
+}
+
+/* Contenedor de la imagen */
+.producto-imagen {
+  position: relative;
+  overflow: hidden;
+  background-color: #f8f9fa; /* Fondo gris muy claro */
+}
+
+/* Imagen del producto */
+.producto-imagen img {
+  width: 100%; /* Ancho completo */
+  height: 200px; /* Altura fija */
+  object-fit: cover; /* Mantiene proporción y cubre todo el espacio */
+  transition: transform 0.3s ease; /* Transición suave para el zoom */
+}
+
+/* Efecto zoom en la imagen al hacer hover */
+.producto-card:hover .producto-imagen img {
+  transform: scale(1.05); /* Aumenta el tamaño 5% */
+}
+
+/* Contenedor de información del producto */
+.producto-info {
+  padding: 15px; /* Espaciado interno */
+}
+
+/* Nombre del producto */
+.producto-nombre {
+  color: var(--color-primario); /* Color del texto principal */
+  font-size: 16px;
+  font-weight: 600; /* Semi-negrita */
+  margin: 0 0 8px 0; /* Sin margen arriba, 8px abajo */
+  line-height: 1.3; /* Espaciado entre líneas */
+}
+
+/* Categoría del producto */
+.producto-categoria {
+  color: #6c757d; /* Gris medio */
+  font-size: 12px;
+  text-transform: uppercase; /* Texto en mayúsculas */
+  letter-spacing: 0.5px; /* Espaciado entre letras */
+  margin: 0 0 12px 0; /* Sin margen arriba, 12px abajo */
+  font-weight: 500; /* Peso medio */
+}
+
+/* Contenedor del precio */
+.producto-precio {
+  display: flex;
+  justify-content: space-between; /* Distribuye elementos */
+  align-items: center; /* Centra verticalmente */
+}
+
+/* Precio del producto */
+.precio {
+  color: var(--color-primario); /* Color del texto principal */
+  font-size: 18px;
+  font-weight: 700; /* Negrita */
+  font-family: 'Arial', sans-serif; /* Fuente específica */
+}
+
+/* ========================================
+   FOOTER
+   ======================================== */
+
+/* Contenedor principal del footer */
+.footer {
+  background-color: var(--color-primario); /* Fondo del color primario */
+  color: var(--color-texto); /* Texto blanco */
+  padding: 40px 0 20px 0; /* Espaciado interno */
+  margin-top: auto; /* Se empuja automáticamente hacia abajo */
+  position: relative; /* Posicionamiento relativo */
+}
+
+/* Títulos de secciones del footer */
+.footer h5 {
+  color: var(--color-texto);
+  font-weight: bold;
+  margin-bottom: 20px;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.2); /* Línea divisoria sutil */
+  padding-bottom: 10px;
+}
+
+/* Párrafos del footer */
+.footer p {
+  color: var(--color-hover); /* Gris claro */
+  line-height: 1.6; /* Espaciado entre líneas */
+  margin-bottom: 10px;
+}
+
+/* Contenedor de redes sociales */
+.redes-sociales {
+  margin-top: 15px;
+}
+
+/* Enlaces de redes sociales */
+.redes-sociales a {
+  color: var(--color-texto); /* Color blanco */
+  font-size: 20px; /* Tamaño de icono */
+  margin-right: 15px; /* Espacio entre iconos */
+  transition: all 0.3s ease; /* Transición suave */
+}
+
+/* Efecto hover en redes sociales */
+.redes-sociales a:hover {
+  color: var(--color-hover); /* Cambia a gris claro */
+  transform: scale(1.2); /* Aumenta tamaño 20% */
+}
+
+/* Colores específicos para cada red social al hacer hover */
+.redes-sociales a:hover .fa-facebook {
+  color: #1877f2; /* Facebook - azul característico */
+}
+
+.redes-sociales a:hover .fa-twitter {
+  color: #1da1f2; /* Twitter - azul claro */
+}
+
+.redes-sociales a:hover .fa-instagram {
+  color: #e4405f; /* Instagram - rosa/naranja */
+}
+
+.redes-sociales a:hover .fa-youtube {
+  color: #ff0000; /* YouTube - rojo característico */
+}
+
+/* Lista de enlaces del footer */
+.footer-links {
+  list-style: none; /* Sin viñetas */
+  padding: 0;
+  margin: 0;
+}
+
+.footer-links li {
+  margin-bottom: 8px; /* Espacio entre elementos */
+}
+
+/* Enlaces de navegación del footer */
+.footer-links a {
+  color: var(--color-hover); /* Gris claro */
+  text-decoration: none; /* Sin subrayado */
+  transition: all 0.3s ease; /* Transición suave */
+}
+
+/* Efecto hover en enlaces del footer */
+.footer-links a:hover {
+  color: var(--color-texto); /* Cambia a blanco */
+  padding-left: 5px; /* Se desplaza 5px a la derecha */
+}
+
+/* Información de contacto */
+.contacto-info p {
+  margin-bottom: 12px; /* Espacio entre elementos */
+}
+
+/* Iconos de contacto */
+.contacto-info i {
+  color: var(--color-texto); /* Color blanco */
+  width: 20px; /* Ancho fijo */
+  margin-right: 10px; /* Espacio a la derecha */
+}
+
+/* Línea divisoria del footer */
+.footer-divider {
+  border-color: rgba(255, 255, 255, 0.2); /* Línea blanca translúcida */
+  margin: 30px 0 20px 0; /* Espaciado arriba y abajo */
+}
+
+/* Copyright */
+.copyright {
+  color: var(--color-hover); /* Gris claro */
+  font-size: 14px;
+  margin: 0;
+}
+
+/* Corazón en el copyright */
+.copyright i {
+  color: #e74c3c; /* Corazón rojo */
+  animation: heartbeat 1.5s ease-in-out infinite; /* Animación continua */
+}
+
+/* ========================================
+   ANIMACIONES
+   ======================================== */
+
+/* Animación del corazón */
+@keyframes heartbeat {
+  0% {
+    transform: scale(1); /* Tamaño normal */
+  }
+  50% {
+    transform: scale(1.1); /* Aumenta 10% */
+  }
+  100% {
+    transform: scale(1); /* Vuelve al tamaño normal */
+  }
+}
+
+/* ========================================
+   RESPONSIVE DESIGN
+   ======================================== */
+
+/* Ajustes para dispositivos móviles */
+@media (max-width: 768px) {
+  /* Cards de productos en móvil */
+  .producto-card {
+    margin-bottom: 15px; /* Menos espacio entre cards */
+  }
+  
+  .producto-info {
+    padding: 12px; /* Menos padding interno */
+  }
+  
+  .producto-nombre {
+    font-size: 14px; /* Texto más pequeño */
+  }
+  
+  .precio {
+    font-size: 16px; /* Precio más pequeño */
+  }
+}
