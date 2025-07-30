@@ -1,6 +1,8 @@
 $(document).ready(function() {
-    // Cargar productos desde el JSON
+    // Variable global para almacenar todos los productos
+    var todosLosProductos = [];
     
+    // Cargar productos desde el JSON
     $.getJSON('json/diccionario.json', function(data) {
         var productosContainer = $('#productos-container');
         
@@ -10,17 +12,36 @@ $(document).ready(function() {
             return;
         }
         
-        // mostrar imagen poner encima de producto codigo
+        // Guardar todos los productos en la variable global
+        todosLosProductos = data.productos;
+        
+        // Mostrar todos los productos inicialmente
+        mostrarProductos(todosLosProductos);
+        
+    })
+    .fail(function(jqXHR, textStatus, errorThrown) {
+        console.error('Error al cargar productos:', textStatus, errorThrown);
+        $('#productos-container').html('<div class="col-md-12"><p class="text-center text-danger">Error al cargar los productos. Por favor, intente de nuevo más tarde.</p></div>');
+    });
+    
+    // Función para mostrar productos
+    function mostrarProductos(productos) {
+        var productosContainer = $('#productos-container');
+        productosContainer.empty(); // Limpiar el contenedor
+        
+        if (productos.length === 0) {
+            productosContainer.html('<div class="col-md-12"><p class="text-center">No se encontraron productos en esta categoría.</p></div>');
+            return;
+        }
+        
         // Iterar sobre cada producto
-        $.each(data.productos, function(index, producto) {
+        $.each(productos, function(index, producto) {
             
             // Solo mostrar productos que tengan nombre y no estén vacíos
             if (producto.nombre && producto.nombre.trim() !== '') {
                 // Crear nombre de archivo limpio para la imagen
                 var nombreImagen = producto.nombre.trim() + '.png';
                 var imagenUrl = 'images/' + nombreImagen;
-                
-               encodeURIComponent(producto.nombre);
                 
                 var productoHTML = `
             <div class="col-md-3 col-sm-6 col-xs-12">
@@ -31,8 +52,8 @@ $(document).ready(function() {
                 </div>
                 <!-- Información del producto -->
                 <div class="producto-info">
-                  <h4 <" class="producto-nombre">${producto.nombre}</h4>
-                  <p class="producto-categoria">${producto.categoria}</p>
+                  <h4 class="producto-nombre">${producto.nombre}</h4>
+                  <p class="producto-categoria">${producto.categoria || 'Sin categoría'}</p>
                   <div class="producto-precio">
                     <span class="precio">${parseInt(producto.precio)}.00 lps</span>
                   </div>
@@ -54,9 +75,52 @@ $(document).ready(function() {
                 productosContainer.append(productoHTML);
             }
         });
-    })
-    .fail(function(jqXHR, textStatus, errorThrown) {
-        console.error('Error al cargar productos:', textStatus, errorThrown);
-        $('#productos-container').html('<div class="col-md-12"><p class="text-center text-danger">Error al cargar los productos. Por favor, intente de nuevo más tarde.</p></div>');
+    }
+    
+    // Función para filtrar productos por categoría
+    function filtrarPorCategoria(categoria) {
+        var productosFiltrados = todosLosProductos.filter(function(producto) {
+            return producto.categoria && producto.categoria.toLowerCase() === categoria.toLowerCase();
+        });
+        mostrarProductos(productosFiltrados);
+    }
+    
+    // Event listener para el botón de Audifonos
+    $('#btn-Audifono').click(function(e) {
+        e.preventDefault(); // Evitar que el enlace navegue
+        filtrarPorCategoria('Audifonos');
+        
+        // Opcional: Actualizar el título de la sección
+        $('.productos-seccion h2').text('Audifonos');
     });
+
+    // Event listener para el botón de Pantallas/Monitores
+    $('#btn-Pantalla').click(function(e) {
+        e.preventDefault(); // Evitar que el enlace navegue
+        filtrarPorCategoria('Monitores');
+        
+        // Opcional: Actualizar el título de la sección
+        $('.productos-seccion h2').text('Pantallas');
+    });
+    
+    $('#btn-Computadoras').click(function(e) {
+        e.preventDefault(); // Evitar que el enlace navegue
+        filtrarPorCategoria('Computadora');
+        
+        // Opcional: Actualizar el título de la sección
+        $('.productos-seccion h2').text('Computadoras');
+    });
+
+    // Función para mostrar todos los productos (botón "Todos")
+    function mostrarTodosLosProductos() {
+        mostrarProductos(todosLosProductos);
+        $('.productos-seccion h2').text('Nuestros Productos');
+    }
+    
+    // Event listener para el botón de Productos (mostrar todos)
+    $('#btn-productos').click(function(e) {
+        e.preventDefault();
+        mostrarTodosLosProductos();
+    });
+    
 });
