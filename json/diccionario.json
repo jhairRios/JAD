@@ -4,7 +4,8 @@
             "codigo": "P001",
             "nombre": "HP Laptop",
             "descripcion": "Computadora de Ultima generacion",
-            "precio": 5000
+            "precio": 5000,
+            "categoria": "Computadora"
         },
         {
             "codigo": "P002",

@@ -19,21 +19,37 @@ $(document).ready(function() {
                 // Crear nombre de archivo limpio para la imagen
                 var nombreImagen = producto.nombre.trim() + '.png';
                 var imagenUrl = 'images/' + nombreImagen;
-                var placeholderUrl = 'https://via.placeholder.com/350x200?text=' + encodeURIComponent(producto.nombre);
+                
+               encodeURIComponent(producto.nombre);
                 
                 var productoHTML = `
-                    <div class="col-md-4 col-sm-6">
-                        <div class="producto-card">
-                            <img src="${imagenUrl}" alt="${producto.nombre}" onerror="this.src='${placeholderUrl}'"> 
-                            <div class="producto-codigo">Código: ${producto.codigo || 'N/A'}</div>
-                            <div class="producto-titulo">${producto.nombre || 'No se ha actualizado el nombre'}</div>
-                            <div class="producto-precio">L. ${producto.precio ? parseFloat(producto.precio).toLocaleString('en-US', {minimumFractionDigits: 2}) : '0.00'}</div>
-                            <div class="producto-detalles">
-                                ${producto.descripcion || 'Sin descripción disponible'}
-                            </div>
-                            <a href="#"  style="background-color: var(--color-primario);" class="btn btn-primary btn-block">Ver más detalles</a>  <a href="#" class="btn btn-success btn-block">Agregar a Carrito</a>  
-                        </div>
-                    </div>
+            <div class="col-md-3 col-sm-6 col-xs-12">
+              <div class="producto-card">
+                <!-- Contenedor de la imagen del producto -->
+                <div class="producto-imagen">
+                  <img src = "${imagenUrl}" alt="${producto.nombre}">
+                </div>
+                <!-- Información del producto -->
+                <div class="producto-info">
+                  <h4 <" class="producto-nombre">${producto.nombre}</h4>
+                  <p class="producto-categoria">${producto.categoria}</p>
+                  <div class="producto-precio">
+                    <span class="precio">${parseInt(producto.precio)}.00 lps</span>
+                  </div>
+                  <!-- Botones de acción -->
+                  <div class="producto-botones">
+                    <a href="#" class="btn btn-detalles">
+                      <i class="fas fa-eye"></i>
+                      Ver Detalles
+                    </a>
+                    <a href="#" class="btn btn-carrito">
+                      <i class="fas fa-shopping-cart"></i>
+                      Agregar
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
                 `;
                 productosContainer.append(productoHTML);
             }
