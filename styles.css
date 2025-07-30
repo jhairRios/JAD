@@ -582,7 +582,7 @@
     }
     
     #carousel-portada .carousel-caption {
-      background: rgba(0, 0, 0, 0.6);
+      background: rgba(0, 0, 0, 0.6)!important;
       padding: 15px;
       border-radius: 10px;
     }
@@ -607,6 +607,278 @@
       display: inline-block;
     }
 
+  }
 
+  /* ========================================
+     MODAL DEL CARRITO DE COMPRAS
+     ======================================== */
+  
+  /* ===== FONDO DEL MODAL ===== */
+  .modal-backdrop {
+    background-color: rgba(10, 25, 47, 0.8) !important;  /* Fondo azul oscuro semitransparente */
+  }
+  
+  /* ===== CONTENEDOR PRINCIPAL DEL MODAL ===== */
+  .modal-dialog {
+    margin: 30px auto;                                     /* Centrado con margen */
+    z-index: 1050;                                        /* Z-index alto */
+  }
+  
+  .modal-dialog.modal-lg {
+    width: 90%;                                           /* Ancho del 90% en pantallas grandes */
+    max-width: 1000px;                                    /* Ancho máximo */
+  }
+  
+  /* ===== CONTENIDO DEL MODAL ===== */
+  .modal-content {
+    background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%) !important; /* Gradiente de fondo blanco */
+    border: none !important;                              /* Sin borde */
+    border-radius: 15px !important;                      /* Esquinas muy redondeadas */
+    box-shadow: 0 20px 40px rgba(10, 25, 47, 0.3) !important; /* Sombra pronunciada */
+    overflow: hidden;                                     /* Oculta desbordamiento */
+    animation: modalFadeIn 0.3s ease-out;               /* Animación de aparición */
+  }
+  
+  /* Animación de aparición del modal */
+  @keyframes modalFadeIn {
+    from {
+      opacity: 0;
+      transform: scale(0.8) translateY(-50px);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1) translateY(0);
+    }
+  }
+  
+  /* ===== CABECERA DEL MODAL ===== */
+  .modal-header {
+    background: linear-gradient(135deg, var(--color-primario) 0%, #0a192f 100%) !important; /* Gradiente azul */
+    color: var(--color-texto) !important;                /* Texto blanco */
+    border-bottom: 3px solid #ffc107 !important;         /* Borde dorado */
+    padding: 20px 25px !important;                       /* Espaciado generoso */
+    position: relative;                                   /* Para efectos */
+  }
+  
+  /* Efecto de brillo en la cabecera */
+  .modal-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    animation: shine 3s infinite;
+  }
+  
+  /* Animación de brillo */
+  @keyframes shine {
+    0% { left: -100%; }
+    50% { left: 100%; }
+    100% { left: 100%; }
+  }
+  
+  /* Título del modal */
+  .modal-title {
+    color: var(--color-texto) !important;                /* Texto blanco */
+    font-size: 24px !important;                          /* Tamaño grande */
+    font-weight: 700 !important;                         /* Peso bold */
+    margin: 0 !important;                                /* Sin márgenes */
+    display: flex;                                        /* Layout flexbox */
+    align-items: center;                                  /* Centrado vertical */
+    gap: 10px;                                           /* Espacio entre elementos */
+  }
+  
+  /* Icono en el título */
+  .modal-title::before {
+    content: '\f07a';                                    /* Icono de carrito (FontAwesome) */
+    font-family: 'Font Awesome 5 Free';                 /* Fuente de iconos */
+    font-weight: 900;                                    /* Peso del icono */
+    color: #ffc107;                                      /* Color dorado */
+    font-size: 28px;                                     /* Tamaño del icono */
+  }
+  
+  /* ===== BOTÓN DE CERRAR ===== */
+  .modal-header .close {
+    color: var(--color-texto) !important;                /* Color blanco */
+    font-size: 28px !important;                          /* Tamaño grande */
+    font-weight: 300 !important;                         /* Peso ligero */
+    text-shadow: none !important;                        /* Sin sombra de texto */
+    opacity: 0.8 !important;                            /* Opacidad reducida */
+    transition: all 0.3s ease !important;                /* Transición suave */
+    background: rgba(255, 255, 255, 0.1) !important;    /* Fondo sutil */
+    border-radius: 50% !important;                       /* Forma circular */
+    width: 35px !important;                              /* Ancho fijo */
+    height: 35px !important;                             /* Alto fijo */
+    display: flex !important;                            /* Layout flexbox */
+    align-items: center !important;                      /* Centrado vertical */
+    justify-content: center !important;                  /* Centrado horizontal */
+  }
+  
+  /* Efecto hover del botón cerrar */
+  .modal-header .close:hover {
+    opacity: 1 !important;                               /* Opacidad completa */
+    background: rgba(255, 255, 255, 0.2) !important;    /* Fondo más visible */
+    transform: rotate(90deg) !important;                 /* Rotación */
+    color: #ffc107 !important;                          /* Color dorado */
+  }
+  
+  /* ===== CUERPO DEL MODAL ===== */
+  .modal-body {
+    padding: 30px !important;                            /* Espaciado generoso */
+    background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%); /* Gradiente sutil */
+    min-height: 300px;                                   /* Altura mínima */
+  }
+  
+  /* ===== TABLA DEL CARRITO ===== */
+  /* Contenedor responsivo de la tabla */
+  .table-responsive {
+    border-radius: 10px;                                 /* Esquinas redondeadas */
+    overflow: hidden;                                    /* Oculta desbordamiento */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);         /* Sombra sutil */
+    background: white;                                   /* Fondo blanco */
+  }
+  
+  /* Estilo de la tabla */
+  .modal-body .table {
+    margin-bottom: 0 !important;                         /* Sin margen inferior */
+    background: white;                                   /* Fondo blanco */
+    border-collapse: separate;                           /* Bordes separados */
+    border-spacing: 0;                                   /* Sin espaciado entre bordes */
+  }
+  
+  /* ===== CABECERA DE LA TABLA ===== */
+  .modal-body .table thead {
+    background: linear-gradient(135deg, var(--color-primario) 0%, #0a192f 100%) !important; /* Gradiente azul */
+  }
+  
+  .modal-body .table thead th {
+    color: var(--color-texto) !important;                /* Texto blanco */
+    font-weight: 600 !important;                         /* Peso semi-bold */
+    font-size: 14px !important;                          /* Tamaño de fuente */
+    text-transform: uppercase !important;                /* Texto en mayúsculas */
+    letter-spacing: 0.5px !important;                    /* Espaciado entre letras */
+    padding: 15px 12px !important;                       /* Espaciado de celdas */
+    border: none !important;                             /* Sin bordes */
+    text-align: center !important;                       /* Centrado */
+    position: relative;                                  /* Para efectos */
+  }
+  
+  /* Separador entre columnas de la cabecera */
+  .modal-body .table thead th:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 20%;
+    height: 60%;
+    width: 1px;
+    background: rgba(255, 255, 255, 0.3);
+  }
+  
+  /* ===== CUERPO DE LA TABLA ===== */
+  .modal-body .table tbody tr {
+    transition: all 0.3s ease;                          /* Transición suave */
+    border-bottom: 1px solid #e9ecef;                   /* Borde inferior */
+  }
+  
+  /* Efecto hover en las filas */
+  .modal-body .table tbody tr:hover {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%) !important; /* Gradiente al hover */
+    transform: translateX(5px);                          /* Desplazamiento sutil */
+    box-shadow: 0 2px 8px rgba(10, 25, 47, 0.1);       /* Sombra sutil */
+  }
+  
+  /* Celdas del cuerpo */
+  .modal-body .table tbody td {
+    padding: 15px 12px !important;                       /* Espaciado de celdas */
+    vertical-align: middle !important;                   /* Centrado vertical */
+    border: none !important;                             /* Sin bordes */
+    font-size: 14px;                                     /* Tamaño de fuente */
+    color: var(--color-primario);                        /* Color azul */
+    text-align: center;                                  /* Centrado */
+    position: relative;                                  /* Para efectos */
+  }
+  
+  /* Efecto de entrada para las celdas */
+  .modal-body .table tbody td {
+    animation: cellSlideIn 0.3s ease-out;
+  }
+  
+  @keyframes cellSlideIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* ===== ESTADO VACÍO DEL CARRITO ===== */
+  .carrito-vacio {
+    text-align: center;                                  /* Centrado */
+    padding: 60px 20px;                                 /* Espaciado generoso */
+    color: var(--color-texto-secundario);               /* Color gris */
+  }
+  
+  .carrito-vacio i {
+    font-size: 80px;                                    /* Icono grande */
+    color: #dee2e6;                                     /* Color gris claro */
+    margin-bottom: 20px;                                /* Espacio inferior */
+    display: block;                                     /* Comportamiento de bloque */
+  }
+  
+  .carrito-vacio h4 {
+    color: var(--color-primario);                       /* Color azul */
+    margin-bottom: 10px;                                /* Espacio inferior */
+    font-weight: 600;                                   /* Peso semi-bold */
+  }
+  
+  .carrito-vacio p {
+    color: var(--color-texto-secundario);               /* Color gris */
+    font-size: 16px;                                    /* Tamaño de fuente */
+    margin: 0;                                          /* Sin márgenes */
+  }
+  
+  /* ===== RESPONSIVIDAD DEL MODAL ===== */
+  @media (max-width: 768px) {
+    .modal-dialog.modal-lg {
+      width: 95% !important;                             /* Ancho del 95% en móviles */
+      margin: 10px auto !important;                     /* Márgenes reducidos */
+    }
     
+    .modal-header {
+      padding: 15px 20px !important;                    /* Espaciado reducido */
+    }
+    
+    .modal-title {
+      font-size: 20px !important;                       /* Tamaño reducido */
+    }
+    
+    .modal-body {
+      padding: 20px !important;                         /* Espaciado reducido */
+    }
+    
+    .modal-body .table thead th,
+    .modal-body .table tbody td {
+      padding: 10px 8px !important;                     /* Espaciado reducido */
+      font-size: 12px !important;                       /* Fuente más pequeña */
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .modal-dialog.modal-lg {
+      width: 98% !important;                             /* Ancho casi completo */
+      margin: 5px auto !important;                      /* Márgenes mínimos */
+    }
+    
+    .modal-title::before {
+      display: none;                                     /* Oculta el icono en móviles pequeños */
+    }
+    
+    .modal-body .table {
+      font-size: 11px;                                  /* Fuente muy pequeña */
+    }
   }
