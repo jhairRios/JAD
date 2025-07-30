@@ -1,23 +1,17 @@
 $(document).ready(function() {
-    // Variable global para almacenar todos los productos
     var todosLosProductos = [];
-    
-    // Cargar productos desde el JSON
+     var productoaggCarrito = [];
+
     $.getJSON('json/diccionario.json', function(data) {
         var productosContainer = $('#productos-container');
         
-        // Verificar si hay datos
         if (!data || !data.productos) {
             productosContainer.html('<div class="col-md-12"><p class="text-center">No se encontraron productos.</p></div>');
             return;
         }
-        
-        // Guardar todos los productos en la variable global
+
         todosLosProductos = data.productos;
-        
-        // Mostrar todos los productos inicialmente
         mostrarProductos(todosLosProductos);
-        
     })
     .fail(function(jqXHR, textStatus, errorThrown) {
         console.error('Error al cargar productos:', textStatus, errorThrown);
@@ -64,7 +58,7 @@ $(document).ready(function() {
                       Ver Detalles
                     </a>
                     <a href="#" class="btn btn-carrito">
-                      <i class="fas fa-shopping-cart"></i>
+                      <i class="fas fa-shopping-cart" ></i>
                       Agregar
                     </a>
                   </div>
@@ -77,6 +71,65 @@ $(document).ready(function() {
         });
     }
     
+// Event listener para agregar productos al carrito (usando delegación de eventos)
+$(document).on('click', '.btn-carrito', function(e) {
+    e.preventDefault();
+    
+    // Obtener información del producto desde el DOM
+    var productoCard = $(this).closest('.producto-card');
+    var nombreProducto = productoCard.find('.producto-nombre').text();
+    var precioProducto = productoCard.find('.precio').text();
+    
+    
+
+    // Crear objeto del producto
+    var producto = {
+        nombre: nombreProducto,
+        precio: precioProducto,
+        
+        
+    };
+    
+    // Agregar al array de carrito
+    productoaggCarrito.push(producto);
+    
+    console.log('Producto agregado:', producto);
+    console.log('Carrito actual:', producto);
+    
+    // Opcional: Mostrar mensaje de confirmación
+    alert('Producto "' + nombreProducto + '" agregado al carrito');
+    });
+
+
+// Event listener para el botón de Productos (mostrar todos)
+    // Escuchar clic en el botón del carrito
+    $('#btn-carrito').on('click', function(e) {
+        e.preventDefault();
+      
+        const contenedor = $('#contenidoCarrito');
+        contenedor.empty();
+      
+        if (!Array.isArray(productoaggCarrito) || productoaggCarrito.length === 0) {
+          contenedor.append(`
+            <tr>
+              <td colspan="4" class="text-center">No hay productos disponibles.</td>
+            </tr>
+          `);
+        } else {
+          productoaggCarrito.forEach(function(producto) {
+            contenedor.append(`
+              <tr>
+                <td>${producto.nombre}</td>
+                <td>${producto.precio}</td>
+                <td><input type="number" value = "1"> </input></td>
+                
+              </tr>
+            `);
+          });
+        }
+      
+        $('#modalCarrito').modal('show');
+      });
     //---------------FUNCIONES PARA MOSTRAR CATEGORIAS--------------*/
     function filtrarPorCategoria(categoria) {
         var productosFiltrados = todosLosProductos.filter(function(producto) {
