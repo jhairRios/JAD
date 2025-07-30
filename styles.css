@@ -1,508 +1,579 @@
 /* ========================================
    VARIABLES CSS GLOBALES
    ======================================== */
-:root {
-  /* Colores principales */
-  --color-primario: #0a192f;
-  --color-texto: #ffffff;
-  --color-hover: #e0e0e0;
-  
-  /* Dimensiones */
-  --navbar-height: 50px;
-  
-  /* Colores de cards */
-  --color-card-fondo: #f8f9fa;
-  --color-card-borde: #dee2e6;
-  --color-card-sombra: rgba(0, 0, 0, 0.08);
-  
-  /* Colores de texto */
-  --color-texto-secundario: #6c757d;
-  
-  /* Transparencias */
-  --transparencia-clara: rgba(255, 255, 255, 0.1);
-  --transparencia-media: rgba(255, 255, 255, 0.2);
-  --transparencia-oscura: rgba(255, 255, 255, 0.3);
-  
-  /* Redes sociales */
-  --color-facebook: #1877f2;
-  --color-twitter: #1da1f2;
-  --color-instagram: #e4405f;
-  --color-youtube: #ff0000;
-  
-  /* Animación */
-  --color-corazon: #e74c3c;
-}
-
-/* ========================================
-   ESTRUCTURA BASE
-   ======================================== */
-html, body {
-  height: 100%;
-}
-
-body {
-  display: flex;
-  flex-direction: column;
-  margin: 0;
-  padding-top: var(--navbar-height);
-}
-
-/* ========================================
-   NAVBAR
-   ======================================== */
-.navbar {
-  background-color: var(--color-primario);
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 1000;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease;
-}
-
-/* Elementos de la navbar */
-.navbar-toggle {
-  border-color: var(--color-texto);
-}
-
-.navbar-toggle .icon-bar {
-  background-color: var(--color-texto);
-}
-
-.navbar-brand,
-.navbar-nav > li > a,
-.dropdown-toggle,
-.navbar-nav.navbar-right > li > a {
-  color: var(--color-texto) !important;
-}
-
-/* Hover en enlaces */
-.navbar-nav > li > a:hover,
-.dropdown-toggle:hover,
-.navbar-nav.navbar-right > li > a:hover {
-  color: var(--color-hover) !important;
-  background-color: var(--transparencia-clara) !important;
-}
-
-/* Enlace activo */
-.navbar-nav > .active > a {
-  background-color: var(--transparencia-media) !important;
-}
-
-.navbar-nav > .active > a:hover {
-  background-color: var(--transparencia-oscura) !important;
-}
-
-/* Dropdown */
-.dropdown-toggle:focus,
-.dropdown-toggle:active,
-.dropdown.open .dropdown-toggle {
-  background-color: var(--transparencia-clara) !important;
-}
-
-.dropdown.open .dropdown-toggle:hover {
-  background-color: var(--transparencia-media) !important;
-}
-
-.dropdown-menu {
-  background-color: var(--color-primario);
-  border: 1px solid var(--transparencia-media);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-}
-
-.dropdown-menu > li > a {
-  color: var(--color-texto) !important;
-}
-
-.dropdown-menu > li > a:hover,
-.dropdown-menu > li > a:focus {
-  color: var(--color-hover) !important;
-  background-color: var(--transparencia-clara) !important;
-}
-
-.divider {
-  background-color: var(--transparencia-oscura);
-  height: 1px;
-  margin: 9px 0;
-}
-
-/* Formulario de búsqueda */
-.navbar-form .btn {
-  background-color: var(--transparencia-media);
-  color: var(--color-texto);
-  border: 1px solid var(--color-texto);
-}
-
-.navbar-form .btn:hover {
-  background-color: var(--color-texto);
-  color: var(--color-primario);
-}
-
-/* ========================================
-   SECCIÓN DE PRODUCTOS
-   ======================================== */
-.productos-seccion {
-  background-color: var(--color-texto);
-  color: var(--color-primario);
-  padding: 40px 0;
-  min-height: 500px;
-  flex: 1;
-}
-
-.productos-seccion h2 {
-  color: var(--color-primario);
-  margin-bottom: 30px;
-  font-weight: bold;
-}
-
-/* ========================================
-   CARDS DE PRODUCTOS
-   ======================================== */
-.producto-card {
-  background: linear-gradient(135deg, var(--color-card-fondo) 0%, #e9ecef 100%);
-  border: 2px solid var(--color-card-borde);
-  border-radius: 12px;
-  overflow: hidden;
-  transition: all 0.3s ease;
-  margin-bottom: 20px;
-  box-shadow: 0 4px 8px var(--color-card-sombra);
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-}
-
-.producto-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 12px 24px rgba(10, 25, 47, 0.2);
-  border-color: var(--color-primario);
-  background: linear-gradient(135deg, #ffffff 0%, #f1f3f4 100%);
-}
-
-.producto-imagen {
-  position: relative;
-  overflow: hidden;
-  background: linear-gradient(45deg, #e3f2fd 0%, #bbdefb 100%);
-  flex-shrink: 0;
-}
-
-.producto-imagen img {
-  width: 100%;
-  height: 200px;
-  object-fit: cover;
-  transition: transform 0.3s ease;
-}
-
-.producto-card:hover .producto-imagen img {
-  transform: scale(1.05);
-}
-
-.producto-info {
-  padding: 20px;
-  background: rgba(255, 255, 255, 0.9);
-  backdrop-filter: blur(5px);
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-.producto-nombre {
-  color: var(--color-primario);
-  font-size: 18px;
-  font-weight: 600;
-  margin: 0 0 8px 0;
-  line-height: 1.3;
-  text-align: center;
-}
-
-.producto-categoria {
-  color: var(--color-texto-secundario);
-  font-size: 12px;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  margin: 0 0 12px 0;
-  font-weight: 500;
-  text-align: center;
-}
-
-.producto-precio {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 15px 0;
-}
-
-.precio {
-  color: var(--color-primario);
-  font-size: 20px;
-  font-weight: 700;
-  font-family: 'Arial', sans-serif;
-  text-align: center;
-}
-
-/* Contenedor de botones */
-.producto-botones {
-  display: flex;
-  gap: 10px;
-  justify-content: center;
-  margin-top: 15px;
-}
-
-.producto-botones .btn {
-  flex: 1;
-  padding: 8px 12px;
-  font-size: 12px;
-  font-weight: 600;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  text-decoration: none;
-  text-align: center;
-  min-height: 36px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 5px;
-}
-
-.producto-botones .btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-}
-
-/* Botón Ver Detalles */
-.btn-detalles {
-  background: linear-gradient(135deg, #6c757d 0%, #545b62 100%);
-  color: white;
-}
-
-.btn-detalles:hover {
-  background: linear-gradient(135deg, #545b62 0%, #3d4449 100%);
-  color: white;
-}
-
-/* Botón Agregar al Carrito */
-.btn-carrito {
-  background: linear-gradient(135deg, var(--color-primario) 0%, #0a192f 100%);
-  color: white;
-}
-
-.btn-carrito:hover {
-  background: linear-gradient(135deg, #0a192f 0%, #06121f 100%);
-  color: white;
-}
-
-/* ========================================
-   FOOTER
-   ======================================== */
-.footer {
-  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
-  color: var(--color-texto);
-  padding: 60px 0 30px 0;
-  margin-top: auto;
-  position: relative;
-  box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.3);
-  border-top: 3px solid var(--color-hover);
-}
-
-.footer h5 {
-  color: var(--color-texto);
-  font-weight: bold;
-  margin-bottom: 25px;
-  position: relative;
-  padding-bottom: 15px;
-  font-size: 18px;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-}
-
-.footer h5::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 50px;
-  height: 3px;
-  background: linear-gradient(90deg, var(--color-hover), var(--color-texto));
-  border-radius: 2px;
-}
-
-.footer p {
-  color: #b8c5d6;
-  line-height: 1.8;
-  margin-bottom: 12px;
-  font-size: 14px;
-}
-
-/* Redes sociales */
-.redes-sociales {
-  margin-top: 20px;
-  display: flex;
-  gap: 15px;
-}
-
-.redes-sociales a {
-  color: var(--color-texto);
-  font-size: 22px;
-  width: 45px;
-  height: 45px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 50%;
-  transition: all 0.4s ease;
-  border: 2px solid transparent;
-}
-
-.redes-sociales a:hover {
-  color: var(--color-texto);
-  transform: translateY(-3px);
-  border-color: var(--color-hover);
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-}
-
-.redes-sociales a:hover .fa-facebook { color: #1877f2; }
-.redes-sociales a:hover .fa-twitter { color: #1da1f2; }
-.redes-sociales a:hover .fa-instagram { color: #e4405f; }
-.redes-sociales a:hover .fa-youtube { color: #ff0000; }
-
-/* Enlaces del footer */
-.footer-links {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.footer-links li {
-  margin-bottom: 12px;
-  position: relative;
-}
-
-.footer-links a {
-  color: #b8c5d6;
-  text-decoration: none;
-  transition: all 0.3s ease;
-  display: block;
-  padding: 8px 0;
-  border-radius: 5px;
-  position: relative;
-  overflow: hidden;
-}
-
-.footer-links a::before {
-  content: '';
-  position: absolute;
-  left: -100%;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-  transition: left 0.5s ease;
-}
-
-.footer-links a:hover {
-  color: var(--color-texto);
-  padding-left: 15px;
-  background: rgba(255, 255, 255, 0.05);
-}
-
-.footer-links a:hover::before {
-  left: 100%;
-}
-
-/* Información de contacto */
-.contacto-info p {
-  margin-bottom: 15px;
-  display: flex;
-  align-items: center;
-  padding: 10px 15px;
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 8px;
-  border-left: 3px solid var(--color-hover);
-  transition: all 0.3s ease;
-}
-
-.contacto-info p:hover {
-  background: rgba(255, 255, 255, 0.1);
-  transform: translateX(5px);
-}
-
-.contacto-info i {
-  color: var(--color-hover);
-  width: 25px;
-  margin-right: 15px;
-  font-size: 16px;
-  text-align: center;
-}
-
-.footer-divider {
-  border: none;
-  height: 2px;
-  background: linear-gradient(90deg, transparent, var(--color-hover), transparent);
-  margin: 40px 0 25px 0;
-  border-radius: 1px;
-}
-
-.copyright {
-  color: #b8c5d6;
-  font-size: 14px;
-  margin: 0;
-  text-align: center;
-  padding: 20px;
-  background: rgba(255, 255, 255, 0.03);
-  border-radius: 10px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.copyright i {
-  color: #ff6b6b;
-  animation: heartbeat 1.5s ease-in-out infinite;
-  margin: 0 5px;
-}
-
-/* ========================================
-   ANIMACIONES
-   ======================================== */
-@keyframes heartbeat {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.1); }
-}
-
-/* ========================================
-   RESPONSIVE
-   ======================================== */
-@media (max-width: 768px) {
-  :root {
-    --navbar-height: 60px;
+   :root {
+    /* ===== COLORES PRINCIPALES ===== */
+    --color-primario: #0a192f;      /* Azul oscuro principal */
+    --color-texto: #ffffff;          /* Texto blanco */
+    --color-hover: #e0e0e0;         /* Color hover gris claro */
+    
+    /* ===== DIMENSIONES ===== */
+    --navbar-height: 50px;           /* Altura de la barra de navegación */
+    
+    /* ===== COLORES DE CARDS ===== */
+    --color-card-fondo: #f8f9fa;    /* Fondo de las tarjetas de productos */
+    --color-card-borde: #dee2e6;     /* Borde de las tarjetas */
+    --color-card-sombra: rgba(0, 0, 0, 0.08); /* Sombra de las tarjetas */
+    
+    /* ===== COLORES DE TEXTO ===== */
+    --color-texto-secundario: #6c757d; /* Texto secundario gris */
+    
+    /* ===== TRANSPARENCIAS ===== */
+    --transparencia-clara: rgba(255, 255, 255, 0.1);   /* Transparencia 10% */
+    --transparencia-media: rgba(255, 255, 255, 0.2);    /* Transparencia 20% */
+    --transparencia-oscura: rgba(255, 255, 255, 0.3);   /* Transparencia 30% */
+    
+    /* ===== COLORES DE REDES SOCIALES ===== */
+    --color-facebook: #1877f2;       /* Azul Facebook */
+    --color-twitter: #1da1f2;        /* Azul Twitter */
+    --color-instagram: #e4405f;      /* Rosa Instagram */
+    --color-youtube: #ff0000;        /* Rojo YouTube */
+    
+    /* ===== COLORES DE ANIMACIÓN ===== */
+    --color-corazon: #e74c3c;        /* Rojo para el corazón animado */
   }
   
+  /* ========================================
+     ESTRUCTURA BASE DEL SITIO
+     ======================================== */
+  /* Configuración básica del HTML y Body */
+  html, body {
+    height: 100%;                    /* Altura completa para flexbox */
+  }
+  
+  body {
+    display: flex;                    /* Layout flexbox para sticky footer */
+    flex-direction: column;           /* Dirección vertical */
+    margin: 0;                       /* Sin márgenes */
+    padding-top: var(--navbar-height); /* Espacio para navbar fijo */
+  }
+  
+  /* ========================================
+     BARRA DE NAVEGACIÓN (NAVBAR)
+     ======================================== */
+  /* Contenedor principal de la navbar */
+  .navbar {
+    background-color: var(--color-primario);  /* Fondo azul oscuro */
+    position: fixed;                          /* Posición fija en la parte superior */
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;                           /* Z-index alto para estar sobre todo */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+    transition: all 0.3s ease;               /* Transición suave */
+  }
+  
+  /* ===== ELEMENTOS DE LA NAVBAR ===== */
+  /* Botón hamburguesa para móviles */
+  .navbar-toggle {
+    border-color: var(--color-texto);        /* Color del borde del botón */
+  }
+  
+  /* Barras del botón hamburguesa */
+  .navbar-toggle .icon-bar {
+    background-color: var(--color-texto);    /* Color de las barras */
+  }
+  
+  /* ===== ENLACES DE LA NAVBAR ===== */
+  /* Estilo base para todos los enlaces de navegación */
+  .navbar-brand,
+  .navbar-nav > li > a,
+  .dropdown-toggle,
+  .navbar-nav.navbar-right > li > a {
+    color: var(--color-texto) !important;    /* Color blanco para todos los enlaces */
+  }
+  
+  /* ===== EFECTOS HOVER ===== */
+  /* Efecto hover para todos los enlaces */
+  .navbar-nav > li > a:hover,
+  .dropdown-toggle:hover,
+  .navbar-nav.navbar-right > li > a:hover {
+    color: var(--color-hover) !important;           /* Color gris claro al hover */
+    background-color: var(--transparencia-clara) !important; /* Fondo semi-transparente */
+  }
+  
+  /* ===== ENLACE ACTIVO ===== */
+  /* Estilo para la página activa */
+  .navbar-nav > .active > a {
+    background-color: var(--transparencia-media) !important; /* Fondo más opaco para activo */
+  }
+  
+  .navbar-nav > .active > a:hover {
+    background-color: var(--transparencia-oscura) !important; /* Fondo aún más opaco al hover */
+  }
+  
+  /* ===== MENÚ DESPLEGABLE (DROPDOWN) ===== */
+  /* Estados del botón dropdown */
+  .dropdown-toggle:focus,
+  .dropdown-toggle:active,
+  .dropdown.open .dropdown-toggle {
+    background-color: var(--transparencia-clara) !important; /* Fondo al hacer focus/active */
+  }
+  
+  .dropdown.open .dropdown-toggle:hover {
+    background-color: var(--transparencia-media) !important; /* Fondo al hover cuando está abierto */
+  }
+  
+  /* Contenedor del menú desplegable */
+  .dropdown-menu {
+    background-color: var(--color-primario);              /* Fondo azul oscuro */
+    border: 1px solid var(--transparencia-media);        /* Borde semi-transparente */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);          /* Sombra para profundidad */
+  }
+  
+  /* Enlaces del menú desplegable */
+  .dropdown-menu > li > a {
+    color: var(--color-texto) !important;                 /* Color blanco para los enlaces */
+  }
+  
+  /* Efectos hover en enlaces del dropdown */
+  .dropdown-menu > li > a:hover,
+  .dropdown-menu > li > a:focus {
+    color: var(--color-hover) !important;                /* Color gris al hover */
+    background-color: var(--transparencia-clara) !important; /* Fondo semi-transparente */
+  }
+  
+  /* ===== DIVISOR DEL MENÚ ===== */
+  .divider {
+    background-color: var(--transparencia-oscura);        /* Línea divisoria */
+    height: 1px;
+    margin: 9px 0;
+  }
+  
+  /* ===== FORMULARIO DE BÚSQUEDA ===== */
+  /* Botón del formulario de búsqueda */
+  .navbar-form .btn {
+    background-color: var(--transparencia-media);  /* Fondo semi-transparente */
+    color: var(--color-texto);                    /* Texto blanco */
+    border: 1px solid var(--color-texto);         /* Borde blanco */
+  }
+  
+  /* Efecto hover del botón de búsqueda */
+  .navbar-form .btn:hover {
+    background-color: var(--color-texto);         /* Fondo blanco al hover */
+    color: var(--color-primario);                /* Texto azul oscuro al hover */
+  }
+  
+  /* ========================================
+     SECCIÓN PRINCIPAL DE PRODUCTOS
+     ======================================== */
+  /* Contenedor principal de la sección de productos */
+  .productos-seccion {
+    background-color: var(--color-texto);    /* Fondo blanco */
+    color: var(--color-primario);           /* Texto azul oscuro */
+    padding: 40px 0;                        /* Padding vertical */
+    min-height: 500px;                      /* Altura mínima */
+    flex: 1;                                /* Ocupa el espacio disponible */
+  }
+  
+  /* Título principal de la sección */
+  .productos-seccion h2 {
+    color: var(--color-primario);           /* Color azul oscuro */
+    margin-bottom: 30px;                    /* Espacio inferior */
+    font-weight: bold;                      /* Texto en negrita */
+  }
+  
+  /* ========================================
+     TARJETAS DE PRODUCTOS (CARDS)
+     ======================================== */
+  /* Contenedor principal de cada tarjeta de producto */
   .producto-card {
-    margin-bottom: 15px;
+    background: linear-gradient(135deg, var(--color-card-fondo) 0%, #e9ecef 100%); /* Gradiente de fondo */
+    border: 2px solid var(--color-card-borde);                                    /* Borde gris */
+    border-radius: 12px;                                                          /* Esquinas redondeadas */
+    overflow: hidden;                                                             /* Oculta contenido que se sale */
+    transition: all 0.3s ease;                                                   /* Transición suave */
+    margin-bottom: 20px;                                                         /* Espacio inferior */
+    box-shadow: 0 4px 8px var(--color-card-sombra);                             /* Sombra sutil */
+    height: 100%;                                                                /* Altura completa */
+    display: flex;                                                               /* Layout flexbox */
+    flex-direction: column;                                                      /* Dirección vertical */
   }
   
+  /* Efecto hover de la tarjeta */
+  .producto-card:hover {
+    transform: translateY(-8px);                                                 /* Elevación al hover */
+    box-shadow: 0 12px 24px rgba(10, 25, 47, 0.2);                            /* Sombra más pronunciada */
+    border-color: var(--color-primario);                                        /* Borde azul al hover */
+    background: linear-gradient(135deg, #ffffff 0%, #f1f3f4 100%);             /* Gradiente más claro */
+  }
+  
+  /* ===== IMAGEN DEL PRODUCTO ===== */
+  /* Contenedor de la imagen */
+  .producto-imagen {
+    position: relative;                                                           /* Posición relativa */
+    overflow: hidden;                                                            /* Oculta desbordamiento */
+    background: linear-gradient(45deg, #e3f2fd 0%, #bbdefb 100%);              /* Gradiente de fondo azul claro */
+    flex-shrink: 0;                                                             /* No se encoge */
+  }
+  
+  /* Imagen del producto */
+  .producto-imagen img {
+    width: 100%;                                                                /* Ancho completo */
+    height: 200px;                                                              /* Altura fija */
+    object-fit: cover;                                                          /* Mantiene proporción */
+    transition: transform 0.3s ease;                                           /* Transición suave */
+  }
+  
+  /* Efecto zoom en la imagen al hover */
+  .producto-card:hover .producto-imagen img {
+    transform: scale(1.05);                                                    /* Zoom del 5% */
+  }
+  
+  /* ===== INFORMACIÓN DEL PRODUCTO ===== */
+  /* Contenedor de la información del producto */
   .producto-info {
-    padding: 12px;
+    padding: 20px;                                                              /* Espaciado interno */
+    background: rgba(255, 255, 255, 0.9);                                      /* Fondo semi-transparente */
+    backdrop-filter: blur(5px);                                                 /* Efecto de desenfoque */
+    flex: 1;                                                                    /* Ocupa espacio disponible */
+    display: flex;                                                              /* Layout flexbox */
+    flex-direction: column;                                                     /* Dirección vertical */
+    justify-content: space-between;                                             /* Distribuye espacio */
   }
   
+  /* Nombre del producto */
   .producto-nombre {
-    font-size: 16px;
+    color: var(--color-primario);                                              /* Color azul oscuro */
+    font-size: 18px;                                                           /* Tamaño de fuente */
+    font-weight: 600;                                                          /* Peso de fuente semi-bold */
+    margin: 0 0 8px 0;                                                        /* Márgenes */
+    line-height: 1.3;                                                          /* Altura de línea */
+    text-align: center;                                                        /* Centrado */
   }
   
+  /* Categoría del producto */
+  .producto-categoria {
+    color: var(--color-texto-secundario);                                     /* Color gris */
+    font-size: 12px;                                                          /* Tamaño pequeño */
+    text-transform: uppercase;                                                 /* Texto en mayúsculas */
+    letter-spacing: 0.5px;                                                    /* Espaciado entre letras */
+    margin: 0 0 12px 0;                                                       /* Márgenes */
+    font-weight: 500;                                                         /* Peso de fuente medium */
+    text-align: center;                                                       /* Centrado */
+  }
+  
+  /* ===== PRECIO DEL PRODUCTO ===== */
+  /* Contenedor del precio */
+  .producto-precio {
+    display: flex;                                                              /* Layout flexbox */
+    justify-content: center;                                                    /* Centrado horizontal */
+    align-items: center;                                                        /* Centrado vertical */
+    margin: 15px 0;                                                            /* Márgenes verticales */
+  }
+  
+  /* Texto del precio */
   .precio {
-    font-size: 18px;
+    color: var(--color-primario);                                              /* Color azul oscuro */
+    font-size: 20px;                                                           /* Tamaño grande */
+    font-weight: 700;                                                          /* Peso de fuente bold */
+    font-family: 'Arial', sans-serif;                                         /* Fuente Arial */
+    text-align: center;                                                        /* Centrado */
   }
   
+  /* ===== BOTONES DE ACCIÓN ===== */
+  /* Contenedor de los botones */
   .producto-botones {
-    flex-direction: column;
-    gap: 8px;
+    display: flex;                                                              /* Layout flexbox */
+    gap: 10px;                                                                  /* Espacio entre botones */
+    justify-content: center;                                                    /* Centrado horizontal */
+    margin-top: 15px;                                                          /* Espacio superior */
   }
   
+  /* Estilo base para todos los botones */
   .producto-botones .btn {
-    font-size: 11px;
-    padding: 6px 10px;
-    min-height: 32px;
+    flex: 1;                                                                    /* Distribuye espacio equitativamente */
+    padding: 8px 12px;                                                         /* Espaciado interno */
+    font-size: 12px;                                                           /* Tamaño de fuente */
+    font-weight: 600;                                                          /* Peso de fuente semi-bold */
+    border: none;                                                              /* Sin borde */
+    border-radius: 6px;                                                        /* Esquinas redondeadas */
+    cursor: pointer;                                                            /* Cursor de mano */
+    transition: all 0.3s ease;                                                 /* Transición suave */
+    text-decoration: none;                                                     /* Sin subrayado */
+    text-align: center;                                                        /* Centrado */
+    min-height: 36px;                                                          /* Altura mínima */
+    display: flex;                                                             /* Layout flexbox */
+    align-items: center;                                                       /* Centrado vertical */
+    justify-content: center;                                                    /* Centrado horizontal */
+    gap: 5px;                                                                  /* Espacio entre icono y texto */
   }
-}
+  
+  /* Efecto hover para todos los botones */
+  .producto-botones .btn:hover {
+    transform: translateY(-2px);                                               /* Elevación sutil */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);                              /* Sombra al hover */
+  }
+  
+  /* ===== BOTÓN VER DETALLES ===== */
+  /* Estilo del botón de detalles */
+  .btn-detalles {
+    background: linear-gradient(135deg, #6c757d 0%, #545b62 100%);            /* Gradiente gris */
+    color: white;                                                              /* Texto blanco */
+  }
+  
+  /* Efecto hover del botón detalles */
+  .btn-detalles:hover {
+    background: linear-gradient(135deg, #545b62 0%, #3d4449 100%);           /* Gradiente más oscuro */
+    color: white;                                                              /* Texto blanco */
+  }
+  
+  /* ===== BOTÓN AGREGAR AL CARRITO ===== */
+  /* Estilo del botón del carrito */
+  .btn-carrito {
+    background: linear-gradient(135deg, var(--color-primario) 0%, #0a192f 100%); /* Gradiente azul */
+    color: white;                                                              /* Texto blanco */
+  }
+  
+  /* Efecto hover del botón carrito */
+  .btn-carrito:hover {
+    background: linear-gradient(135deg, #0a192f 0%, #06121f 100%);           /* Gradiente más oscuro */
+    color: white;                                                              /* Texto blanco */
+  }
+  
+  /* ========================================
+     PIE DE PÁGINA (FOOTER)
+     ======================================== */
+  /* Contenedor principal del footer */
+  .footer {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%); /* Gradiente azul oscuro */
+    color: var(--color-texto);                                                  /* Texto blanco */
+    padding: 60px 0 30px 0;                                                    /* Espaciado vertical */
+    margin-top: auto;                                                           /* Se pega al fondo */
+    position: relative;                                                         /* Posición relativa */
+    box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.3);                            /* Sombra superior */
+    border-top: 3px solid var(--color-hover);                                 /* Borde superior */
+  }
+  
+  /* ===== TÍTULOS DEL FOOTER ===== */
+  /* Estilo de los títulos de sección */
+  .footer h5 {
+    color: var(--color-texto);                                                  /* Color blanco */
+    font-weight: bold;                                                          /* Texto en negrita */
+    margin-bottom: 25px;                                                        /* Espacio inferior */
+    position: relative;                                                         /* Para el pseudo-elemento */
+    padding-bottom: 15px;                                                      /* Espacio para la línea */
+    font-size: 18px;                                                           /* Tamaño de fuente */
+    text-transform: uppercase;                                                  /* Texto en mayúsculas */
+    letter-spacing: 1px;                                                       /* Espaciado entre letras */
+  }
+  
+  /* Línea decorativa bajo los títulos */
+  .footer h5::after {
+    content: '';                                                                /* Contenido vacío */
+    position: absolute;                                                         /* Posición absoluta */
+    bottom: 0;                                                                  /* En la parte inferior */
+    left: 0;                                                                   /* Alineado a la izquierda */
+    width: 50px;                                                               /* Ancho de la línea */
+    height: 3px;                                                               /* Alto de la línea */
+    background: linear-gradient(90deg, var(--color-hover), var(--color-texto)); /* Gradiente */
+    border-radius: 2px;                                                        /* Esquinas redondeadas */
+  }
+  
+  /* ===== PÁRRAFOS DEL FOOTER ===== */
+  /* Estilo de los párrafos */
+  .footer p {
+    color: #b8c5d6;                                                            /* Color gris claro */
+    line-height: 1.8;                                                          /* Altura de línea */
+    margin-bottom: 12px;                                                       /* Espacio inferior */
+    font-size: 14px;                                                           /* Tamaño de fuente */
+  }
+  
+  /* ===== REDES SOCIALES ===== */
+  /* Contenedor de iconos de redes sociales */
+  .redes-sociales {
+    margin-top: 20px;                                                          /* Espacio superior */
+    display: flex;                                                             /* Layout flexbox */
+    gap: 15px;                                                                 /* Espacio entre iconos */
+  }
+  
+  /* Estilo base de los iconos de redes sociales */
+  .redes-sociales a {
+    color: var(--color-texto);                                                 /* Color blanco */
+    font-size: 22px;                                                          /* Tamaño del icono */
+    width: 45px;                                                              /* Ancho del círculo */
+    height: 45px;                                                             /* Alto del círculo */
+    display: flex;                                                             /* Layout flexbox */
+    align-items: center;                                                       /* Centrado vertical */
+    justify-content: center;                                                   /* Centrado horizontal */
+    background: rgba(255, 255, 255, 0.1);                                    /* Fondo semi-transparente */
+    border-radius: 50%;                                                       /* Forma circular */
+    transition: all 0.4s ease;                                                /* Transición suave */
+    border: 2px solid transparent;                                            /* Borde transparente */
+  }
+  
+  /* Efecto hover de los iconos */
+  .redes-sociales a:hover {
+    color: var(--color-texto);                                                /* Color blanco */
+    transform: translateY(-3px);                                              /* Elevación */
+    border-color: var(--color-hover);                                        /* Borde visible */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);                             /* Sombra */
+  }
+  
+  /* ===== COLORES ESPECÍFICOS DE REDES SOCIALES ===== */
+  /* Colores de marca al hacer hover */
+  .redes-sociales a:hover .fa-facebook { color: #1877f2; }                    /* Azul Facebook */
+  .redes-sociales a:hover .fa-twitter { color: #1da1f2; }                     /* Azul Twitter */
+  .redes-sociales a:hover .fa-instagram { color: #e4405f; }                   /* Rosa Instagram */
+  .redes-sociales a:hover .fa-youtube { color: #ff0000; }                     /* Rojo YouTube */
+  
+  /* ===== ENLACES DEL FOOTER ===== */
+  /* Lista de enlaces útiles */
+  .footer-links {
+    list-style: none;                                                          /* Sin viñetas */
+    padding: 0;                                                                /* Sin padding */
+    margin: 0;                                                                 /* Sin márgenes */
+  }
+  
+  /* Elementos de la lista */
+  .footer-links li {
+    margin-bottom: 12px;                                                       /* Espacio entre elementos */
+    position: relative;                                                        /* Para efectos */
+  }
+  
+  /* Estilo base de los enlaces */
+  .footer-links a {
+    color: #b8c5d6;                                                           /* Color gris claro */
+    text-decoration: none;                                                     /* Sin subrayado */
+    transition: all 0.3s ease;                                                 /* Transición suave */
+    display: block;                                                            /* Comportamiento de bloque */
+    padding: 8px 0;                                                           /* Espaciado vertical */
+    border-radius: 5px;                                                        /* Esquinas redondeadas */
+    position: relative;                                                        /* Para pseudo-elementos */
+    overflow: hidden;                                                          /* Oculta desbordamiento */
+  }
+  
+  /* Efecto de luz deslizante */
+  .footer-links a::before {
+    content: '';                                                               /* Contenido vacío */
+    position: absolute;                                                        /* Posición absoluta */
+    left: -100%;                                                              /* Inicia fuera del elemento */
+    top: 0;                                                                   /* Alineado al tope */
+    width: 100%;                                                              /* Ancho completo */
+    height: 100%;                                                             /* Alto completo */
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent); /* Gradiente */
+    transition: left 0.5s ease;                                               /* Transición de posición */
+  }
+  
+  /* Efecto hover de los enlaces */
+  .footer-links a:hover {
+    color: var(--color-texto);                                                /* Color blanco */
+    padding-left: 15px;                                                       /* Desplazamiento a la derecha */
+    background: rgba(255, 255, 255, 0.05);                                   /* Fondo sutil */
+  }
+  
+  /* Animación del efecto de luz */
+  .footer-links a:hover::before {
+    left: 100%;                                                               /* Se mueve hacia la derecha */
+  }
+  
+  /* ===== INFORMACIÓN DE CONTACTO ===== */
+  /* Párrafos de información de contacto */
+  .contacto-info p {
+    margin-bottom: 15px;                                                       /* Espacio entre elementos */
+    display: flex;                                                             /* Layout flexbox */
+    align-items: center;                                                       /* Centrado vertical */
+    padding: 10px 15px;                                                       /* Espaciado interno */
+    background: rgba(255, 255, 255, 0.05);                                   /* Fondo sutil */
+    border-radius: 8px;                                                       /* Esquinas redondeadas */
+    border-left: 3px solid var(--color-hover);                               /* Borde izquierdo */
+    transition: all 0.3s ease;                                                /* Transición suave */
+  }
+  
+  /* Efecto hover de la información de contacto */
+  .contacto-info p:hover {
+    background: rgba(255, 255, 255, 0.1);                                    /* Fondo más visible */
+    transform: translateX(5px);                                               /* Desplazamiento a la derecha */
+  }
+  
+  /* Iconos de la información de contacto */
+  .contacto-info i {
+    color: var(--color-hover);                                                /* Color gris claro */
+    width: 25px;                                                              /* Ancho fijo */
+    margin-right: 15px;                                                       /* Espacio a la derecha */
+    font-size: 16px;                                                          /* Tamaño del icono */
+    text-align: center;                                                       /* Centrado */
+  }
+  
+  /* ===== DIVISOR DEL FOOTER ===== */
+  /* Línea divisoria entre secciones */
+  .footer-divider {
+    border: none;                                                              /* Sin borde */
+    height: 2px;                                                               /* Alto de la línea */
+    background: linear-gradient(90deg, transparent, var(--color-hover), transparent); /* Gradiente */
+    margin: 40px 0 25px 0;                                                     /* Márgenes verticales */
+    border-radius: 1px;                                                        /* Esquinas redondeadas */
+  }
+  
+  /* ===== COPYRIGHT ===== */
+  /* Texto de copyright */
+  .copyright {
+    color: #b8c5d6;                                                            /* Color gris claro */
+    font-size: 14px;                                                           /* Tamaño de fuente */
+    margin: 0;                                                                  /* Sin márgenes */
+    text-align: center;                                                        /* Centrado */
+    padding: 20px;                                                             /* Espaciado interno */
+    background: rgba(255, 255, 255, 0.03);                                   /* Fondo muy sutil */
+    border-radius: 10px;                                                       /* Esquinas redondeadas */
+    border: 1px solid rgba(255, 255, 255, 0.1);                              /* Borde sutil */
+  }
+  
+  /* Icono del corazón en el copyright */
+  .copyright i {
+    color: #ff6b6b;                                                            /* Color rojo coral */
+    animation: heartbeat 1.5s ease-in-out infinite;                           /* Animación de latido */
+    margin: 0 5px;                                                             /* Espacio horizontal */
+  }
+  
+  /* ========================================
+     ANIMACIONES Y EFECTOS
+     ======================================== */
+  /* Animación de latido para el corazón */
+  @keyframes heartbeat {
+    0%, 100% { transform: scale(1); }                                         /* Tamaño normal */
+    50% { transform: scale(1.1); }                                            /* Tamaño aumentado */
+  }
+  
+  /* ========================================
+     DISEÑO RESPONSIVE (MÓVILES)
+     ======================================== */
+  /* Ajustes para pantallas pequeñas (móviles) */
+  @media (max-width: 768px) {
+    /* ===== VARIABLES PARA MÓVILES ===== */
+    :root {
+      --navbar-height: 60px;                                                   /* Navbar más alta en móviles */
+    }
+    
+    /* ===== TARJETAS DE PRODUCTOS ===== */
+    .producto-card {
+      margin-bottom: 15px;                                                     /* Menos espacio entre tarjetas */
+    }
+    
+    /* ===== INFORMACIÓN DE PRODUCTOS ===== */
+    .producto-info {
+      padding: 12px;                                                           /* Menos padding interno */
+    }
+    
+    /* ===== NOMBRE DEL PRODUCTO ===== */
+    .producto-nombre {
+      font-size: 16px;                                                         /* Tamaño de fuente más pequeño */
+    }
+    
+    /* ===== PRECIO ===== */
+    .precio {
+      font-size: 18px;                                                         /* Tamaño de precio más pequeño */
+    }
+    
+    /* ===== BOTONES ===== */
+    .producto-botones {
+      flex-direction: column;                                                   /* Botones en columna */
+      gap: 8px;                                                                /* Menos espacio entre botones */
+    }
+    
+    /* ===== ESTILO DE BOTONES ===== */
+    .producto-botones .btn {
+      font-size: 11px;                                                         /* Fuente más pequeña */
+      padding: 6px 10px;                                                       /* Menos padding */
+      min-height: 32px;                                                        /* Altura mínima más pequeña */
+    }
+  }
