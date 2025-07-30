@@ -1,4 +1,5 @@
 {
+    
     "productos": [
         {
             "codigo": "P001",
@@ -11,175 +12,205 @@
             "codigo": "P002",
             "nombre": "Lenovo",
             "descripcion": "Computadora I7 15va Generacion",
-            "precio": "40"
+            "precio": "40",
+            "categoria": "Computadora"
+            
         },
         {
             "codigo": "P003",
             "nombre": "Router",
             "descripcion": "Computadora de Ultima generacion",
-            "precio": "20lps"
+            "precio": "20lps",
+            "categoria": "Router"
         },
         {
             "codigo": "P004",
             "nombre": "Switch",
             "descripcion": "Computadora de Ultima generacion",
-            "precio": "2000000"
+            "precio": "2000000",
+            "categoria": "Router"
         },
         {
             "codigo": "P005",
             "nombre": "Monitor Samsung",
             "descripcion": "Monitor LED de 24 pulgadas Full HD",
-            "precio": 250
+            "precio": 250,
+            "categoria": "Monitores"
         },
         {
             "codigo": "P006",
             "nombre": "Teclado Logitech",
             "descripcion": "Teclado inalámbrico ergonómico",
-            "precio": 45
+            "precio": 45,
+            "categoria": "Teclados"
         },
         {
             "codigo": "P007",
             "nombre": "Mouse Logitech",
             "descripcion": "Mouse óptico inalámbrico",
-            "precio": 30
+            "precio": 30,
+            "categoria": "Mouse"
         },
         {
             "codigo": "P008",
             "nombre": "Disco Duro Externo WD",
             "descripcion": "Disco duro de 1TB portátil",
-            "precio": 80
+            "precio": 80,
+            "categoria": "Almacenamiento"
         },
         {
             "codigo": "P009",
             "nombre": "Memoria USB Kingston",
             "descripcion": "Memoria USB de 64GB",
-            "precio": 15
+            "precio": 15,
+            "categoria": "Almacenamiento"
         },
         {
             "codigo": "P010",
             "nombre": "Impresora HP",
             "descripcion": "Impresora multifuncional a color",
-            "precio": 120
+            "precio": 120,
+            "categoria": "Impresoras"
         },
         {
             "codigo": "P011",
             "nombre": "Tablet Samsung Galaxy",
             "descripcion": "Tablet de 10.4 pulgadas con 64GB de almacenamiento",
-            "precio": 300
+            "precio": 300,
+            "categoria": "Telefonos"
         },
         {
             "codigo": "P012",
             "nombre": "Smartphone Xiaomi",
             "descripcion": "Teléfono inteligente con cámara triple",
-            "precio": 250
+            "precio": 250,
+            "categoria": "Telefonos"
         },
         {
             "codigo": "P013",
             "nombre": "Auriculares Sony",
             "descripcion": "Auriculares inalámbricos con cancelación de ruido",
-            "precio": 100
+            "precio": 100,
+            "categoria": "Audifonos"
         },
         {
             "codigo": "P014",
             "nombre": "Proyector Epson",
             "descripcion": "Proyector portátil para presentaciones",
-            "precio": 400
+            "precio": 400,
+            "categoria": "Proyector"
         },
         {
             "codigo": "P015",
             "nombre": "Cámara Web Logitech",
             "descripcion": "Cámara Full HD para videollamadas",
-            "precio": 70
+            "precio": 70,
+            "categoria": "Camara"
         },
         {
             "codigo": "P016",
             "nombre": "Altavoces Bose",
             "descripcion": "Altavoces Bluetooth de alta fidelidad",
-            "precio": 150
+            "precio": 150,
+            "categoria": "Altavoces"
         },
         {
             "codigo": "P017",
             "nombre": "Smartwatch Huawei",
             "descripcion": "Reloj inteligente con monitor de actividad",
-            "precio": 130
+            "precio": 130,
+            "categoria": "Relojes Inteligentes"
         },
         {
             "codigo": "P018",
             "nombre": "Disco SSD Kingston",
             "descripcion": "Unidad de estado sólido de 500GB",
-            "precio": 90
+            "precio": 90,
+            "categoria": "Almacenamiento"
         },
         {
             "codigo": "P019",
             "nombre": "Tarjeta Gráfica Nvidia",
             "descripcion": "Tarjeta gráfica GTX 1660",
-            "precio": 400
+            "precio": 400,
+            "categoria": "Componentes Internos"
         },
         {
             "codigo": "P020",
             "nombre": "Memoria RAM Corsair",
             "descripcion": "Memoria RAM DDR4 de 16GB",
-            "precio": 85
+            "precio": 85,
+            "categoria": "Componentes Internos"
         },
         {
             "codigo": "P021",
             "nombre": "Cargador Portátil Anker",
             "descripcion": "Batería externa de 10000mAh",
-            "precio": 35
+            "precio": 35,
+            "categoria": "Accesorios"
         },
         {
             "codigo": "P022",
             "nombre": "Enrutador Mesh Deco",
             "descripcion": "Sistema Wi-Fi Mesh para toda la casa",
-            "precio": 220
+            "precio": 220,
+            "categoria": "Router"
         },
         {
             "codigo": "P023",
             "nombre": "Consola Xbox Series S",
             "descripcion": "Consola de videojuegos digital",
-            "precio": 300
+            "precio": 300,
+            "categoria": "Consolas"
         },
         {
             "codigo": "P024",
             "nombre": "Control Xbox",
             "descripcion": "Control inalámbrico para Xbox",
-            "precio": 60
+            "precio": 60,
+            "categoria": "Accesorios"
         },
         {
             "codigo": "P025",
             "nombre": "Cámara de seguridad Ezviz",
             "descripcion": "Cámara Wi-Fi con visión nocturna",
-            "precio": 75
+            "precio": 75,
+            "categoria": "Camara"
         },
         {
             "codigo": "P026",
             "nombre": "Laptop Dell",
             "descripcion": "Computadora portátil con procesador i5",
-            "precio": 550
+            "precio": 550,
+            "categoria": "Computadora"
         },
         {
             "codigo": "P027",
             "nombre": "Adaptador HDMI a VGA",
             "descripcion": "Convertidor de señal digital a analógica",
-            "precio": 12
+            "precio": 12,
+            "categoria": "Accesorios"
         },
         {
             "codigo": "P028",
             "nombre": "Cable USB-C",
             "descripcion": "Cable USB-C para carga rápida",
-            "precio": 10
+            "precio": 10,
+            "categoria": "Accesorios"
         },
         {
             "codigo": "P029",
             "nombre": "Soporte para Laptop",
             "descripcion": "Base ajustable para laptop",
-            "precio": 25
+            "precio": 25,
+            "categoria": "Accesorios"
         },
         {
             "codigo": "P030",
             "nombre": "Estabilizador Forza",
             "descripcion": "Protector de picos de voltaje",
-            "precio": 40
+            "precio": 40,
+            "categoria": "Accesorios"
         }
     ]
 }
