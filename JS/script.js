@@ -77,7 +77,7 @@ $(document).ready(function() {
         });
     }
     
-    // Función para filtrar productos por categoría
+    //---------------FUNCIONES PARA MOSTRAR CATEGORIAS--------------*/
     function filtrarPorCategoria(categoria) {
         var productosFiltrados = todosLosProductos.filter(function(producto) {
             return producto.categoria && producto.categoria.toLowerCase() === categoria.toLowerCase();
@@ -91,7 +91,9 @@ $(document).ready(function() {
         mostrarProductos(productosFiltrados);
     }
     
-    // Event listener para el botón de Audifonos
+
+/*-----------------------AREA DE MOSTRAR CATEGORIASSS---------------*/
+    // Mostrar Audifonoss
     $('#btn-Audifono').click(function(e) {
         e.preventDefault(); // Evitar que el enlace navegue
         filtrarPorCategoria('Audifonos');
@@ -100,7 +102,7 @@ $(document).ready(function() {
         $('.productos-seccion h2').text('Audifonos');
     });
 
-    // Event listener para el botón de Pantallas/Monitores
+    // Mostrar Pantallas/Monitores
     $('#btn-Pantalla').click(function(e) {
         e.preventDefault(); // Evitar que el enlace navegue
         filtrarPorCategoria('Monitores');
@@ -109,6 +111,7 @@ $(document).ready(function() {
         $('.productos-seccion h2').text('Pantallas');
     });
     
+    // Mostrar Computadoras
     $('#btn-Computadoras').click(function(e) {
         e.preventDefault(); // Evitar que el enlace navegue
         filtrarPorCategoria('Computadora');
@@ -117,6 +120,7 @@ $(document).ready(function() {
         $('.productos-seccion h2').text('Computadoras');
     });
 
+    // Mostrar Mas Vendidos
     $('#btn-inicio').click(function(e) {
         e.preventDefault(); // Evitar que el enlace navegue
         filtrarPorVendidos('True');
@@ -124,6 +128,12 @@ $(document).ready(function() {
         // Opcional: Actualizar el título de la sección
         $('.productos-seccion h2').text('Mas Vendidos');
     });
+
+
+
+
+
+
 
     // Función para mostrar todos los productos (botón "Todos")
     function mostrarTodosLosProductos() {
