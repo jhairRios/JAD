@@ -17,7 +17,7 @@ $(document).ready(function() {
             // Solo mostrar productos que tengan nombre y no estén vacíos
             if (producto.nombre && producto.nombre.trim() !== '') {
                 // Crear nombre de archivo limpio para la imagen
-                var nombreImagen = producto.nombre.trim() + '.jpg';
+                var nombreImagen = producto.nombre.trim() + '.png';
                 var imagenUrl = 'images/' + nombreImagen;
                 var placeholderUrl = 'https://via.placeholder.com/350x200?text=' + encodeURIComponent(producto.nombre);
                 
