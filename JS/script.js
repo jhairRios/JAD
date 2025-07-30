@@ -84,6 +84,12 @@ $(document).ready(function() {
         });
         mostrarProductos(productosFiltrados);
     }
+    function filtrarPorVendidos(masvendidos) {
+        var productosFiltrados = todosLosProductos.filter(function(producto) {
+            return producto.masvendidos && producto.masvendidos.toLowerCase() === masvendidos.toLowerCase();
+        });
+        mostrarProductos(productosFiltrados);
+    }
     
     // Event listener para el botón de Audifonos
     $('#btn-Audifono').click(function(e) {
@@ -111,11 +117,20 @@ $(document).ready(function() {
         $('.productos-seccion h2').text('Computadoras');
     });
 
+    $('#btn-inicio').click(function(e) {
+        e.preventDefault(); // Evitar que el enlace navegue
+        filtrarPorVendidos('True');
+        
+        // Opcional: Actualizar el título de la sección
+        $('.productos-seccion h2').text('Mas Vendidos');
+    });
+
     // Función para mostrar todos los productos (botón "Todos")
     function mostrarTodosLosProductos() {
         mostrarProductos(todosLosProductos);
         $('.productos-seccion h2').text('Nuestros Productos');
     }
+    
     
     // Event listener para el botón de Productos (mostrar todos)
     $('#btn-productos').click(function(e) {

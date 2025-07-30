@@ -6,7 +6,8 @@
             "nombre": "HP Laptop",
             "descripcion": "Computadora de Ultima generacion",
             "precio": 5000,
-            "categoria": "Computadora"
+            "categoria": "Computadora",
+            "masvendidos": "True"
         },
         {
             "codigo": "P002",
