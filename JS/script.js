@@ -120,6 +120,133 @@ $(document).ready(function() {
         $('.productos-seccion h2').text('Computadoras');
     });
 
+    // Mostrar Teclados
+    $('#btn-Teclados').click(function(e) {
+        e.preventDefault(); // Evitar que el enlace navegue
+        filtrarPorCategoria('Teclados');
+        
+        // Opcional: Actualizar el título de la sección
+        $('.productos-seccion h2').text('Teclados');
+    });
+
+    // Mostrar Mouse
+    $('#btn-Mouse').click(function(e) {
+        e.preventDefault(); // Evitar que el enlace navegue
+        filtrarPorCategoria('Mouse');
+        
+        // Opcional: Actualizar el título de la sección
+        $('.productos-seccion h2').text('Mouse');
+    });
+
+    // Mostrar Router
+    $('#btn-Router').click(function(e) {
+        e.preventDefault(); // Evitar que el enlace navegue
+        filtrarPorCategoria('Router');
+        
+        // Opcional: Actualizar el título de la sección
+        $('.productos-seccion h2').text('Routers');
+    });
+
+    // Mostrar Almacenamiento
+    $('#btn-Almacenamiento').click(function(e) {
+        e.preventDefault(); // Evitar que el enlace navegue
+        filtrarPorCategoria('Almacenamiento');
+        
+        // Opcional: Actualizar el título de la sección
+        $('.productos-seccion h2').text('Almacenamientos');
+    });
+
+    // Mostrar Camara
+    $('#btn-Camaras').click(function(e) {
+        e.preventDefault(); // Evitar que el enlace navegue
+        filtrarPorCategoria('Almacenamiento');
+        
+        // Opcional: Actualizar el título de la sección
+        $('.productos-seccion h2').text('Almacenamientos');
+    });
+
+    // Mostrar Impresoras
+    $('#btn-Impresoras').click(function(e) {
+        e.preventDefault(); // Evitar que el enlace navegue
+        filtrarPorCategoria('Impresoras');
+        
+        // Opcional: Actualizar el título de la sección
+        $('.productos-seccion h2').text('Impresoras');
+    });
+
+    // Mostrar Telefonos
+    $('#btn-Telefonos').click(function(e) {
+        e.preventDefault(); // Evitar que el enlace navegue
+        filtrarPorCategoria('Telefonos');
+        
+        // Opcional: Actualizar el título de la sección
+        $('.productos-seccion h2').text('Telefonos');
+    });
+
+    // Mostrar Camara
+    $('#btn-Camara').click(function(e) {
+        e.preventDefault(); // Evitar que el enlace navegue
+        filtrarPorCategoria('Camara');
+        
+        // Opcional: Actualizar el título de la sección
+        $('.productos-seccion h2').text('Camara');
+    });
+
+    // Mostrar Proyector
+    $('#btn-Proyector').click(function(e) {
+        e.preventDefault(); // Evitar que el enlace navegue
+        filtrarPorCategoria('Proyector');
+        
+        // Opcional: Actualizar el título de la sección
+        $('.productos-seccion h2').text('Proyector');
+    });
+
+    // Mostrar Compenentes Internos
+    $('#btn-Compenentes').click(function(e) {
+        e.preventDefault(); // Evitar que el enlace navegue
+        filtrarPorCategoria('Componentes Internos');
+        
+        // Opcional: Actualizar el título de la sección
+        $('.productos-seccion h2').text('Compenente');
+    });
+
+    // Mostrar Altavoces
+    $('#btn-Altavoces').click(function(e) {
+        e.preventDefault(); // Evitar que el enlace navegue
+        filtrarPorCategoria('Altavoces');
+        
+        // Opcional: Actualizar el título de la sección
+        $('.productos-seccion h2').text('Altavoces');
+    });
+
+    // Mostrar Relojes Inteligentes
+    $('#btn-Relojes').click(function(e) {
+        e.preventDefault(); // Evitar que el enlace navegue
+        filtrarPorCategoria('Relojes Inteligentes');
+        
+        // Opcional: Actualizar el título de la sección
+        $('.productos-seccion h2').text('Relojes Inteligentes');
+    });
+
+    // Mostrar Consolas
+    $('#btn-Consolas').click(function(e) {
+        e.preventDefault(); // Evitar que el enlace navegue
+        filtrarPorCategoria('Consolas');
+        
+        // Opcional: Actualizar el título de la sección
+        $('.productos-seccion h2').text('Consolas');
+    });
+
+    // Mostrar Accesorios
+    $('#btn-Accesorios').click(function(e) {
+        e.preventDefault(); // Evitar que el enlace navegue
+        filtrarPorCategoria('Accesorios');
+        
+        // Opcional: Actualizar el título de la sección
+        $('.productos-seccion h2').text('Accesorios');
+    });
+
+
     // Mostrar Mas Vendidos
     $('#btn-inicio').click(function(e) {
         e.preventDefault(); // Evitar que el enlace navegue
