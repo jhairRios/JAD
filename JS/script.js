@@ -96,7 +96,8 @@ $(document).on('click', '.btn-carrito', function(e) {
     // creamos el arreglo del producto
     var producto = {
         nombre: nombreProducto,
-        precio: precioProducto,    
+        precio: precioProducto,
+        cantidad : 1
     };
     
     //Push del producto
@@ -153,7 +154,8 @@ $(document).on('click', '.btn-carrito', function(e) {
         if (producto) {
             var productoCarrito = {
                 nombre: producto.nombre,
-                precio: parseInt(producto.precio).toFixed(2) + '.00 lps'
+                precio: parseInt(producto.precio).toFixed(2) + '.00 lps',
+                cantidad: 1
             };
             
             productoaggCarrito.push(productoCarrito);
@@ -163,6 +165,43 @@ $(document).on('click', '.btn-carrito', function(e) {
             $('#modalDetalles').modal('hide');
         }
     });
+
+
+    // Event listener para cambios en la cantidad
+    $(document).on('change', '#contenidoCarrito input[type="number"]', function() {
+        var nuevaCantidad = parseInt($(this).val());
+        var fila = $(this).closest('tr');
+        var nombreProducto = fila.find('td:first').text();
+        
+        // Actualizar la cantidad en el array
+        productoaggCarrito.forEach(function(producto) {
+            if (producto.nombre === nombreProducto) {
+                producto.cantidad = nuevaCantidad;
+            }
+        });
+        
+        // Recalcular y actualizar la fila
+        actualizarFilaCarrito(fila, nombreProducto, nuevaCantidad);
+    });
+
+    // Función para actualizar una fila del carrito
+    function actualizarFilaCarrito(fila, nombreProducto, cantidad) {
+        // Buscar el producto en el array
+        var producto = productoaggCarrito.find(function(prod) {
+            return prod.nombre === nombreProducto;
+        });
+        
+        if (producto) {
+            var precioUnitario = parseInt(producto.precio);
+            var subtotal = cantidad * precioUnitario;
+            var isv = subtotal * 0.15;
+            var total = subtotal + isv;
+            
+            // Actualizar las celdas de la fila
+            fila.find('td:eq(3)').text(subtotal.toFixed(2));
+            fila.find('td:eq(4)').text(total.toFixed(2));
+        }
+    }
 
     // Escuchar clic en el botón del carrito
     $('#btn-carrito').on('click', function(e) {
@@ -179,17 +218,19 @@ $(document).on('click', '.btn-carrito', function(e) {
           `);
         } else {
           productoaggCarrito.forEach(function(producto) {
-
-            let subtotal = 
+            var precioUnitario = parseInt(producto.precio);
+            var subtotal = (producto.cantidad || 1) * precioUnitario;
+            var isv = subtotal * 0.15;
+            var total = subtotal + isv;
+            
             contenedor.append(`
               <tr>
                 <td>${producto.nombre}</td>
                 <td>${producto.precio}</td>
-                <td><input type="number" value = "1" style="width: 100%; min="1""> </input></td>
-                <td>${producto.precio}</td>
-                <td>${producto.precio}</td>
-                <td><button class = "btn btn-danger">Eliminar</button></td>
-                
+                <td><input type="number" value="${producto.cantidad || 1}" style="width: 100%;" min="1"></td>
+                <td>${subtotal.toFixed(2)}</td>
+                <td>${total.toFixed(2)}</td>
+                <td><button class="btn btn-danger">Eliminar</button></td>
               </tr>
             `);
           });
@@ -215,12 +256,14 @@ $(document).on('click', '.btn-carrito', function(e) {
 /*-----------------------AREA DE MOSTRAR CATEGORIASSS---------------*/
     // Mostrar Audifonoss
     $('#btn-Audifono').click(function(e) {
+        e.preventDefault(); // Evitar que el enlace navegue
         filtrarPorCategoria('Audifonos');
         $('.productos-seccion h2').text('Audifonos');
     });
 
     // Mostrar Pantallas/Monitores
     $('#btn-Pantalla').click(function(e) {
+        e.preventDefault(); // Evitar que el enlace navegue
         filtrarPorCategoria('Monitores');
         $('.productos-seccion h2').text('Pantallas');
     });
