@@ -533,6 +533,46 @@
     0%, 100% { transform: scale(1); }                                         /* Tamaño normal */
     50% { transform: scale(1.1); }                                            /* Tamaño aumentado */
   }
+
+  /* ========================================
+     ESTILOS DEL CARRUSEL DE PORTADA
+     ======================================== */
+  #carousel-portada {
+    margin-bottom: 50px;
+  }
+  
+  /* Estilo principal para las leyendas del carrusel */
+  #carousel-portada .carousel-caption {
+    background: none !important;                        /* Sin fondo */
+    color: #000 !important;                             /* Texto negro */
+    border: none !important;                            /* Sin borde */
+    box-shadow: none !important;                        /* Sin sombra de caja */
+    padding: 20px !important;
+    display: inline-block !important;
+  }
+
+  /* Asegurar que los títulos y párrafos sean negros con sombra */
+  #carousel-portada .carousel-caption h3,
+  #carousel-portada .carousel-caption p {
+    color: #000 !important;                             /* Forzar texto negro */
+    margin: 0 !important;                               /* Sin márgenes para mejor control */
+    text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.8) !important; /* Sombra blanca para legibilidad */
+    font-weight: bold !important;                       /* Texto en negrita para mejor visibilidad */
+  }
+  
+  /* Estilo específico para los títulos */
+  #carousel-portada .carousel-caption h3 {
+    font-size: 20px !important;
+    margin-bottom: 8px !important;
+    text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.9) !important; /* Sombra más fuerte para títulos */
+  }
+  
+  /* Estilo específico para los párrafos */
+  #carousel-portada .carousel-caption p {
+    font-size: 16px !important;
+    opacity: 1 !important;                              /* Opacidad completa */
+    text-shadow: 1px 1px 3px rgba(255, 255, 255, 0.7) !important; /* Sombra más sutil para párrafos */
+  }
   
   /* ========================================
      DISEÑO RESPONSIVE (MÓVILES)
@@ -575,36 +615,6 @@
       font-size: 11px;                                                         /* Fuente más pequeña */
       padding: 6px 10px;                                                       /* Menos padding */
       min-height: 32px;                                                        /* Altura mínima más pequeña */
-    }
-
-    #carousel-portada {
-      margin-bottom: 50px;
-    }
-    
-    #carousel-portada .carousel-caption {
-      background: rgba(0, 0, 0, 0.6)!important;
-      padding: 15px;
-      border-radius: 10px;
-    }
-
-    /* Coloca el texto del carrusel en color negro y con fondo claro */
-    #carousel-portada .carousel-caption {
-      color: #000 !important;
-      background-color: rgba(255, 255, 255, 0.8); /* Fondo blanco semitransparente */
-      border-radius: 8px;
-      padding: 15px;
-    }
-
-    #carousel-portada .carousel-caption h3,
-    #carousel-portada .carousel-caption p {
-      color: #000 !important; /* Forzar texto negro */
-    }
-
-    #carousel-portada .carousel-caption {
-      background-color: rgba(255, 255, 255, 0.85) !important;
-      border-radius: 10px;
-      padding: 15px;
-      display: inline-block;
     }
 
   }
