@@ -102,31 +102,47 @@ $(document).on('click', '.btn-carrito', function(e) {
     
     //Push del producto
     productoaggCarrito.push(producto);
-    alert('Producto "' + nombreProducto + '" agregado al carrito');
+    
+    // Mostrar notificación toast en lugar de alert
+    mostrarToast(
+        `${nombreProducto} ha sido agregado a tu carrito`,
+        "¡Producto agregado!",
+        "success"
+    );
 
     });
 
+    /* ========================================
+       EVENT LISTENER PARA VER DETALLES
+       ======================================== */
     // Event listener para ver detalles del producto
+    // Se activa cuando se hace clic en el botón "Ver Detalles" de cualquier producto
     $(document).on('click', '.btn-detalles', function(e) {
-        e.preventDefault();
+        e.preventDefault(); // Prevenir comportamiento por defecto del enlace
         
-        // Obtener el nombre del producto desde la tarjeta
+        // Obtener el nombre del producto desde la tarjeta más cercana
         var productoCard = $(this).closest('.producto-card');
         var nombreProducto = productoCard.find('.producto-nombre').text();
         
-        // Buscar el producto completo en el array de todos los productos
+        // Buscar el producto completo en el array de todos los productos cargados
+        // Esto nos permite acceder a toda la información del producto (descripción, código, etc.)
         var productoCompleto = todosLosProductos.find(function(producto) {
             return producto.nombre === nombreProducto;
         });
         
+        // Si encontramos el producto, mostrar sus detalles en el modal
         if (productoCompleto) {
             mostrarDetallesProducto(productoCompleto);
         }
     });
 
+    /* ========================================
+       FUNCIÓN PARA MOSTRAR DETALLES EN MODAL
+       ======================================== */
     // Función para mostrar los detalles del producto en el modal
+    // Recibe un objeto producto con toda la información completa
     function mostrarDetallesProducto(producto) {
-        // Crear URL de la imagen
+        // Crear URL de la imagen basada en el nombre del producto
         var nombreImagen = producto.nombre.trim() + '.png';
         var imagenUrl = 'images/' + nombreImagen;
         
@@ -139,29 +155,48 @@ $(document).on('click', '.btn-carrito', function(e) {
         $('#detalle-descripcion').text(producto.descripcion || 'Sin descripción disponible');
         
         // Guardar los datos del producto en el botón para poder agregarlo al carrito
+        // Usamos .data() para almacenar el objeto producto completo
         $('.btn-agregar-desde-detalle').data('producto', producto);
         
-        // Mostrar el modal
+        // Mostrar el modal de detalles
         $('#modalDetalles').modal('show');
     }
 
+    /* ========================================
+       EVENT LISTENER PARA AGREGAR DESDE MODAL
+       ======================================== */
     // Event listener para agregar al carrito desde el modal de detalles
+    // Este evento es DIFERENTE al del botón de las tarjetas para evitar duplicación
     $(document).on('click', '.btn-agregar-desde-detalle', function(e) {
-        e.preventDefault();
+        e.preventDefault(); // Prevenir comportamiento por defecto
         
+        // Recuperar los datos del producto almacenados en el botón
         var producto = $(this).data('producto');
         
+        // Verificar que tenemos datos del producto
         if (producto) {
+            // Crear objeto producto para el carrito con formato consistente
             var productoCarrito = {
                 nombre: producto.nombre,
+
                 precio: parseInt(producto.precio).toFixed(2) + '.00 lps',
-                cantidad: 1
+                cantidad: 1,
+
+                precio: parseInt(producto.precio).toFixed(2) + '.00 lps' // Formato consistente con otros productos
+
             };
             
+            // Agregar el producto al array del carrito
             productoaggCarrito.push(productoCarrito);
-            alert('Producto "' + producto.nombre + '" agregado al carrito');
             
-            // Cerrar el modal de detalles
+
+            // Mostrar notificación toast en lugar de alert
+            mostrarToast(
+                `${producto.nombre} ha sido agregado a tu carrito`,
+                "¡Producto agregado!",
+                "success"
+            );
+            // Cerrar el modal de detalles automáticamente
             $('#modalDetalles').modal('hide');
         }
     });
@@ -379,3 +414,59 @@ $(document).on('click', '.btn-carrito', function(e) {
     });
     
 });
+
+// ========================================
+// FUNCIONES PARA NOTIFICACIONES TOAST
+// ========================================
+
+// Función para mostrar notificaciones toast personalizadas
+function mostrarToast(mensaje, titulo = "¡Éxito!", tipo = "success") {
+  const toastContainer = document.getElementById('toast-container');
+  
+  // Crear el elemento toast
+  const toast = document.createElement('div');
+  toast.className = `toast-notification toast-${tipo}`;
+  
+  // Definir iconos según el tipo
+  const iconos = {
+    success: 'fas fa-check-circle',
+    error: 'fas fa-exclamation-circle',
+    warning: 'fas fa-exclamation-triangle',
+    info: 'fas fa-info-circle'
+  };
+  
+  // Contenido del toast
+  toast.innerHTML = `
+    <button class="toast-close" onclick="cerrarToast(this)">&times;</button>
+    <div class="toast-header">
+      <i class="toast-icon ${iconos[tipo] || iconos.success}"></i>
+      <p class="toast-title">${titulo}</p>
+    </div>
+    <p class="toast-message">${mensaje}</p>
+  `;
+  
+  // Añadir al contenedor
+  toastContainer.appendChild(toast);
+  
+  // Mostrar con animación
+  setTimeout(() => {
+    toast.classList.add('show');
+  }, 100);
+  
+  // Auto-cerrar después de 4 segundos
+  setTimeout(() => {
+    cerrarToast(toast.querySelector('.toast-close'));
+  }, 4000);
+}
+
+// Función para cerrar toast
+function cerrarToast(button) {
+  const toast = button.closest('.toast-notification');
+  toast.classList.add('hide');
+  
+  setTimeout(() => {
+    if (toast.parentNode) {
+      toast.parentNode.removeChild(toast);
+    }
+  }, 400);
+}
