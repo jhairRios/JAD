@@ -892,3 +892,310 @@
       font-size: 11px;                                  /* Fuente muy pequeña */
     }
   }
+
+  /* ========================================
+     MODAL DE DETALLES DEL PRODUCTO
+     ======================================== */
+  
+  /* ===== CONTENEDOR DE IMAGEN DE DETALLES ===== */
+  .detalle-imagen-container {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    border-radius: 15px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    transition: all 0.3s ease;
+  }
+  
+  .detalle-imagen-container:hover {
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    transform: translateY(-2px);
+  }
+  
+  .detalle-imagen {
+    max-width: 100%;
+    height: auto;
+    max-height: 300px;
+    object-fit: contain;
+    border-radius: 10px;
+    transition: transform 0.3s ease;
+  }
+  
+  .detalle-imagen:hover {
+    transform: scale(1.05);
+  }
+  
+  /* ===== INFORMACIÓN DE DETALLES ===== */
+  .detalle-info {
+    padding: 20px;
+    background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  }
+  
+  .detalle-titulo {
+    color: var(--color-primario) !important;
+    font-size: 28px !important;
+    font-weight: 700;
+    margin-bottom: 15px;
+    text-align: center;
+    position: relative;
+    padding-bottom: 10px;
+  }
+  
+  .detalle-titulo::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--color-primario), #ffc107);
+    border-radius: 2px;
+  }
+  
+  .detalle-codigo {
+    color: var(--color-texto-secundario);
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+    font-weight: 500;
+    text-align: center;
+    padding: 5px 10px;
+    background: rgba(108, 117, 125, 0.1);
+    border-radius: 15px;
+    display: inline-block;
+    width: 100%;
+  }
+  
+  .detalle-categoria {
+    color: var(--color-primario) !important;
+    font-size: 16px !important;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 20px;
+    text-align: center;
+    padding: 12px 20px;
+    background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+    border-radius: 25px;
+    display: block;
+    border: 2px solid var(--color-primario);
+    transition: all 0.3s ease;
+  }
+  
+  .detalle-categoria:hover {
+    background: linear-gradient(135deg, var(--color-primario) 0%, #0a192f 100%);
+    color: white !important;
+  }
+  
+  /* ===== PRECIO DE DETALLES ===== */
+  .detalle-precio-container {
+    text-align: center;
+    margin: 25px 0;
+    padding: 25px;
+    background: linear-gradient(135deg, var(--color-primario) 0%, #0a192f 100%);
+    border-radius: 20px;
+    box-shadow: 0 8px 25px rgba(10, 25, 47, 0.3);
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .detalle-precio-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    animation: shine 3s infinite;
+  }
+  
+  .detalle-precio {
+    color: #ffc107 !important;
+    font-size: 36px !important;
+    font-weight: 700;
+    font-family: 'Arial', sans-serif;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    position: relative;
+    z-index: 1;
+  }
+  
+  /* ===== DESCRIPCIÓN ===== */
+  .detalle-descripcion-container {
+    margin: 25px 0;
+    padding: 20px;
+    background: rgba(248, 249, 250, 0.8);
+    border-left: 4px solid var(--color-primario);
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+  }
+  
+  .detalle-descripcion-container:hover {
+    border-left-width: 6px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  }
+  
+  .detalle-descripcion-container h4 {
+    color: var(--color-primario);
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  .detalle-descripcion-container h4::before {
+    content: '\f05a';
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
+    color: #ffc107;
+    font-size: 16px;
+  }
+  
+  .detalle-descripcion {
+    color: #495057;
+    font-size: 16px;
+    line-height: 1.6;
+    margin: 0;
+    text-align: justify;
+  }
+  
+  /* ===== BOTONES DE DETALLES ===== */
+  .detalle-botones {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    margin-top: 30px;
+    flex-wrap: wrap;
+  }
+  
+  .detalle-botones .btn {
+    flex: 1;
+    min-width: 150px;
+    padding: 15px 25px;
+    font-size: 16px;
+    font-weight: 600;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .detalle-botones .btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s ease;
+  }
+  
+  .detalle-botones .btn:hover::before {
+    left: 100%;
+  }
+  
+  .detalle-botones .btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+  }
+  
+  .btn-agregar-desde-detalle {
+    background: linear-gradient(135deg, var(--color-primario) 0%, #0a192f 100%) !important;
+    color: white !important;
+    border: 2px solid transparent !important;
+  }
+  
+  .btn-agregar-desde-detalle:hover {
+    background: linear-gradient(135deg, #0a192f 0%, #06121f 100%) !important;
+    color: #ffc107 !important;
+    border-color: #ffc107 !important;
+  }
+  
+  .detalle-botones .btn-secondary {
+    background: linear-gradient(135deg, #6c757d 0%, #545b62 100%) !important;
+    color: white !important;
+    border: 2px solid transparent !important;
+  }
+  
+  .detalle-botones .btn-secondary:hover {
+    background: linear-gradient(135deg, #545b62 0%, #3d4449 100%) !important;
+    color: white !important;
+    border-color: #6c757d !important;
+  }
+  
+  /* ===== RESPONSIVIDAD DEL MODAL DE DETALLES ===== */
+  @media (max-width: 768px) {
+    .detalle-titulo {
+      font-size: 24px !important;
+    }
+    
+    .detalle-precio {
+      font-size: 30px !important;
+    }
+    
+    .detalle-botones {
+      flex-direction: column;
+      gap: 12px;
+    }
+    
+    .detalle-botones .btn {
+      min-width: 100%;
+      padding: 12px 20px;
+      font-size: 14px;
+    }
+    
+    .detalle-imagen-container {
+      margin-bottom: 15px;
+      padding: 15px;
+    }
+    
+    .detalle-info {
+      padding: 15px;
+    }
+    
+    .detalle-precio-container {
+      padding: 20px;
+      margin: 20px 0;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .detalle-titulo {
+      font-size: 20px !important;
+    }
+    
+    .detalle-precio {
+      font-size: 26px !important;
+    }
+    
+    .detalle-descripcion-container {
+      padding: 15px;
+      margin: 20px 0;
+    }
+    
+    .detalle-categoria {
+      font-size: 14px !important;
+      padding: 10px 15px;
+    }
+    
+    .detalle-codigo {
+      font-size: 12px;
+    }
+  }
