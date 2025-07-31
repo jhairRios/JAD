@@ -2,6 +2,15 @@ $(document).ready(function() {
     var todosLosProductos = [];
      var productoaggCarrito = [];
 
+    // Función para actualizar el estado activo de la navbar
+    function actualizarNavegacionActiva(elementoActivo) {
+        // Remover la clase 'active' de todos los elementos de navegación
+        $('.nav.navbar-nav li').removeClass('active');
+        
+        // Agregar la clase 'active' al elemento seleccionado
+        $(elementoActivo).addClass('active');
+    }
+
     $.getJSON('json/diccionario.json', function(data) {
         var productosContainer = $('#productos-container');
         
@@ -139,6 +148,9 @@ $(document).on('click', '.btn-carrito', function(e) {
             return producto.categoria && producto.categoria.toLowerCase() === categoria.toLowerCase();
         });
         mostrarProductos(productosFiltrados);
+        
+        // Actualizar navegación activa para categorías
+        actualizarNavegacionActiva('#nav-categorias');
     }
     function filtrarPorVendidos(masvendidos) {
         var productosFiltrados = todosLosProductos.filter(function(producto) {
@@ -308,6 +320,9 @@ $(document).on('click', '.btn-carrito', function(e) {
         e.preventDefault(); // Evitar que el enlace navegue
         filtrarPorVendidos('True');
         
+        // Actualizar navegación activa
+        actualizarNavegacionActiva('#nav-inicio');
+        
         // Opcional: Actualizar el título de la sección
         $('.productos-seccion h2').text('Mas Vendidos');
     });
@@ -329,6 +344,9 @@ $(document).on('click', '.btn-carrito', function(e) {
     $('#btn-productos').click(function(e) {
         e.preventDefault();
         mostrarTodosLosProductos();
+        
+        // Actualizar navegación activa
+        actualizarNavegacionActiva('#nav-productos');
     });
     
 });
