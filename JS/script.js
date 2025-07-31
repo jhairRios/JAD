@@ -110,11 +110,16 @@ $(document).on('click', '.btn-carrito', function(e) {
           `);
         } else {
           productoaggCarrito.forEach(function(producto) {
+
+            let subtotal = 
             contenedor.append(`
               <tr>
                 <td>${producto.nombre}</td>
                 <td>${producto.precio}</td>
-                <td><input type="number" value = "1"> </input></td>
+                <td><input type="number" value = "1" style="width: 100%; min="1""> </input></td>
+                <td>${producto.precio}</td>
+                <td>${producto.precio}</td>
+                <td><button class = "btn btn-danger">Eliminar</button></td>
                 
               </tr>
             `);
