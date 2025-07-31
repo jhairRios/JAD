@@ -105,27 +105,37 @@ $(document).on('click', '.btn-carrito', function(e) {
 
     });
 
+    /* ========================================
+       EVENT LISTENER PARA VER DETALLES
+       ======================================== */
     // Event listener para ver detalles del producto
+    // Se activa cuando se hace clic en el botón "Ver Detalles" de cualquier producto
     $(document).on('click', '.btn-detalles', function(e) {
-        e.preventDefault();
+        e.preventDefault(); // Prevenir comportamiento por defecto del enlace
         
-        // Obtener el nombre del producto desde la tarjeta
+        // Obtener el nombre del producto desde la tarjeta más cercana
         var productoCard = $(this).closest('.producto-card');
         var nombreProducto = productoCard.find('.producto-nombre').text();
         
-        // Buscar el producto completo en el array de todos los productos
+        // Buscar el producto completo en el array de todos los productos cargados
+        // Esto nos permite acceder a toda la información del producto (descripción, código, etc.)
         var productoCompleto = todosLosProductos.find(function(producto) {
             return producto.nombre === nombreProducto;
         });
         
+        // Si encontramos el producto, mostrar sus detalles en el modal
         if (productoCompleto) {
             mostrarDetallesProducto(productoCompleto);
         }
     });
 
+    /* ========================================
+       FUNCIÓN PARA MOSTRAR DETALLES EN MODAL
+       ======================================== */
     // Función para mostrar los detalles del producto en el modal
+    // Recibe un objeto producto con toda la información completa
     function mostrarDetallesProducto(producto) {
-        // Crear URL de la imagen
+        // Crear URL de la imagen basada en el nombre del producto
         var nombreImagen = producto.nombre.trim() + '.png';
         var imagenUrl = 'images/' + nombreImagen;
         
@@ -138,28 +148,39 @@ $(document).on('click', '.btn-carrito', function(e) {
         $('#detalle-descripcion').text(producto.descripcion || 'Sin descripción disponible');
         
         // Guardar los datos del producto en el botón para poder agregarlo al carrito
+        // Usamos .data() para almacenar el objeto producto completo
         $('.btn-agregar-desde-detalle').data('producto', producto);
         
-        // Mostrar el modal
+        // Mostrar el modal de detalles
         $('#modalDetalles').modal('show');
     }
 
+    /* ========================================
+       EVENT LISTENER PARA AGREGAR DESDE MODAL
+       ======================================== */
     // Event listener para agregar al carrito desde el modal de detalles
+    // Este evento es DIFERENTE al del botón de las tarjetas para evitar duplicación
     $(document).on('click', '.btn-agregar-desde-detalle', function(e) {
-        e.preventDefault();
+        e.preventDefault(); // Prevenir comportamiento por defecto
         
+        // Recuperar los datos del producto almacenados en el botón
         var producto = $(this).data('producto');
         
+        // Verificar que tenemos datos del producto
         if (producto) {
+            // Crear objeto producto para el carrito con formato consistente
             var productoCarrito = {
                 nombre: producto.nombre,
-                precio: parseInt(producto.precio).toFixed(2) + '.00 lps'
+                precio: parseInt(producto.precio).toFixed(2) + '.00 lps' // Formato consistente con otros productos
             };
             
+            // Agregar el producto al array del carrito
             productoaggCarrito.push(productoCarrito);
+            
+            // Mostrar confirmación al usuario
             alert('Producto "' + producto.nombre + '" agregado al carrito');
             
-            // Cerrar el modal de detalles
+            // Cerrar el modal de detalles automáticamente
             $('#modalDetalles').modal('hide');
         }
     });
