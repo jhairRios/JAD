@@ -105,6 +105,65 @@ $(document).on('click', '.btn-carrito', function(e) {
 
     });
 
+    // Event listener para ver detalles del producto
+    $(document).on('click', '.btn-detalles', function(e) {
+        e.preventDefault();
+        
+        // Obtener el nombre del producto desde la tarjeta
+        var productoCard = $(this).closest('.producto-card');
+        var nombreProducto = productoCard.find('.producto-nombre').text();
+        
+        // Buscar el producto completo en el array de todos los productos
+        var productoCompleto = todosLosProductos.find(function(producto) {
+            return producto.nombre === nombreProducto;
+        });
+        
+        if (productoCompleto) {
+            mostrarDetallesProducto(productoCompleto);
+        }
+    });
+
+    // Función para mostrar los detalles del producto en el modal
+    function mostrarDetallesProducto(producto) {
+        // Crear URL de la imagen
+        var nombreImagen = producto.nombre.trim() + '.png';
+        var imagenUrl = 'images/' + nombreImagen;
+        
+        // Llenar los elementos del modal con la información del producto
+        $('#detalle-imagen').attr('src', imagenUrl).attr('alt', producto.nombre);
+        $('#detalle-nombre').text(producto.nombre);
+        $('#detalle-codigo').text('Código: ' + (producto.codigo || 'N/A'));
+        $('#detalle-categoria').text(producto.categoria || 'Sin categoría');
+        $('#detalle-precio').text(parseInt(producto.precio).toFixed(2) + ' LPS');
+        $('#detalle-descripcion').text(producto.descripcion || 'Sin descripción disponible');
+        
+        // Guardar los datos del producto en el botón para poder agregarlo al carrito
+        $('.btn-agregar-desde-detalle').data('producto', producto);
+        
+        // Mostrar el modal
+        $('#modalDetalles').modal('show');
+    }
+
+    // Event listener para agregar al carrito desde el modal de detalles
+    $(document).on('click', '.btn-agregar-desde-detalle', function(e) {
+        e.preventDefault();
+        
+        var producto = $(this).data('producto');
+        
+        if (producto) {
+            var productoCarrito = {
+                nombre: producto.nombre,
+                precio: parseInt(producto.precio).toFixed(2) + '.00 lps'
+            };
+            
+            productoaggCarrito.push(productoCarrito);
+            alert('Producto "' + producto.nombre + '" agregado al carrito');
+            
+            // Cerrar el modal de detalles
+            $('#modalDetalles').modal('hide');
+        }
+    });
+
     // Escuchar clic en el botón del carrito
     $('#btn-carrito').on('click', function(e) {
         e.preventDefault();
@@ -262,12 +321,6 @@ $(document).on('click', '.btn-carrito', function(e) {
         filtrarPorVendidos('True');
         $('.productos-seccion h2').text('Mas Vendidos');
     });
-
-
-
-
-
-
 
     // Función para mostrar todos los productos (botón "Todos")
     function mostrarTodosLosProductos() {
