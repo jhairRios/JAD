@@ -328,52 +328,89 @@
   </div>
 </div>
 
-<!-- Modal de detalles del producto -->
+<!-- ========================================
+     MODAL DE DETALLES DEL PRODUCTO
+     ======================================== -->
+<!-- Modal para mostrar información detallada de un producto específico -->
 <div class="modal fade" id="modalDetalles" tabindex="-1" role="dialog" aria-labelledby="modalDetallesLabel" aria-hidden="true">
+  <!-- Contenedor del modal con tamaño grande -->
   <div class="modal-dialog modal-lg" role="document">
+    <!-- Contenido principal del modal -->
     <div class="modal-content">
+      
+      <!-- ===== CABECERA DEL MODAL ===== -->
       <div class="modal-header">
+        <!-- Título del modal con icono dinámico -->
         <h5 class="modal-title" id="modalDetallesLabel">Detalles del Producto</h5>
+        <!-- Botón para cerrar el modal -->
         <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
+      
+      <!-- ===== CUERPO DEL MODAL ===== -->
       <div class="modal-body">
+        <!-- Layout en dos columnas: imagen y información -->
         <div class="row">
+          
+          <!-- ===== COLUMNA IZQUIERDA: IMAGEN DEL PRODUCTO ===== -->
           <div class="col-md-6">
+            <!-- Contenedor estilizado para la imagen -->
             <div class="detalle-imagen-container">
+              <!-- Imagen del producto (se carga dinámicamente) -->
               <img id="detalle-imagen" class="detalle-imagen" src="" alt="">
             </div>
           </div>
+          
+          <!-- ===== COLUMNA DERECHA: INFORMACIÓN DEL PRODUCTO ===== -->
           <div class="col-md-6">
             <div class="detalle-info">
+              
+              <!-- ===== INFORMACIÓN BÁSICA ===== -->
+              <!-- Nombre del producto -->
               <h3 id="detalle-nombre" class="detalle-titulo"></h3>
+              <!-- Código del producto -->
               <p id="detalle-codigo" class="detalle-codigo"></p>
+              <!-- Categoría del producto -->
               <div id="detalle-categoria" class="detalle-categoria"></div>
+              
+              <!-- ===== PRECIO DESTACADO ===== -->
+              <!-- Contenedor especial para mostrar el precio -->
               <div class="detalle-precio-container">
                 <span id="detalle-precio" class="detalle-precio"></span>
               </div>
+              
+              <!-- ===== DESCRIPCIÓN DEL PRODUCTO ===== -->
+              <!-- Sección con descripción detallada -->
               <div class="detalle-descripcion-container">
                 <h4>Descripción:</h4>
                 <p id="detalle-descripcion" class="detalle-descripcion"></p>
               </div>
+              
+              <!-- ===== BOTONES DE ACCIÓN ===== -->
+              <!-- Contenedor para los botones del modal -->
               <div class="detalle-botones">
+                <!-- Botón para agregar al carrito desde el modal -->
                 <button type="button" class="btn btn-agregar-desde-detalle">
                   <i class="fas fa-shopping-cart"></i>
                   Agregar al Carrito
                 </button>
+                <!-- Botón para cerrar el modal -->
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">
                   <i class="fas fa-times"></i>
                   Cerrar
                 </button>
               </div>
+              
             </div>
           </div>
+          
         </div>
       </div>
     </div>
   </div>
 </div>
+<!-- FIN DEL MODAL DE DETALLES -->
 
   </body>
 </html>
