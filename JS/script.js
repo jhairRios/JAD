@@ -101,7 +101,13 @@ $(document).on('click', '.btn-carrito', function(e) {
     
     //Push del producto
     productoaggCarrito.push(producto);
-    alert('Producto "' + nombreProducto + '" agregado al carrito');
+    
+    // Mostrar notificación toast en lugar de alert
+    mostrarToast(
+        `${nombreProducto} ha sido agregado a tu carrito`,
+        "¡Producto agregado!",
+        "success"
+    );
 
     });
 
@@ -157,7 +163,13 @@ $(document).on('click', '.btn-carrito', function(e) {
             };
             
             productoaggCarrito.push(productoCarrito);
-            alert('Producto "' + producto.nombre + '" agregado al carrito');
+            
+            // Mostrar notificación toast en lugar de alert
+            mostrarToast(
+                `${producto.nombre} ha sido agregado a tu carrito`,
+                "¡Producto agregado!",
+                "success"
+            );
             
             // Cerrar el modal de detalles
             $('#modalDetalles').modal('hide');
@@ -336,3 +348,59 @@ $(document).on('click', '.btn-carrito', function(e) {
     });
     
 });
+
+// ========================================
+// FUNCIONES PARA NOTIFICACIONES TOAST
+// ========================================
+
+// Función para mostrar notificaciones toast personalizadas
+function mostrarToast(mensaje, titulo = "¡Éxito!", tipo = "success") {
+  const toastContainer = document.getElementById('toast-container');
+  
+  // Crear el elemento toast
+  const toast = document.createElement('div');
+  toast.className = `toast-notification toast-${tipo}`;
+  
+  // Definir iconos según el tipo
+  const iconos = {
+    success: 'fas fa-check-circle',
+    error: 'fas fa-exclamation-circle',
+    warning: 'fas fa-exclamation-triangle',
+    info: 'fas fa-info-circle'
+  };
+  
+  // Contenido del toast
+  toast.innerHTML = `
+    <button class="toast-close" onclick="cerrarToast(this)">&times;</button>
+    <div class="toast-header">
+      <i class="toast-icon ${iconos[tipo] || iconos.success}"></i>
+      <p class="toast-title">${titulo}</p>
+    </div>
+    <p class="toast-message">${mensaje}</p>
+  `;
+  
+  // Añadir al contenedor
+  toastContainer.appendChild(toast);
+  
+  // Mostrar con animación
+  setTimeout(() => {
+    toast.classList.add('show');
+  }, 100);
+  
+  // Auto-cerrar después de 4 segundos
+  setTimeout(() => {
+    cerrarToast(toast.querySelector('.toast-close'));
+  }, 4000);
+}
+
+// Función para cerrar toast
+function cerrarToast(button) {
+  const toast = button.closest('.toast-notification');
+  toast.classList.add('hide');
+  
+  setTimeout(() => {
+    if (toast.parentNode) {
+      toast.parentNode.removeChild(toast);
+    }
+  }, 400);
+}
