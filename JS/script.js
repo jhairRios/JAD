@@ -2,6 +2,16 @@ $(document).ready(function() {
     var todosLosProductos = [];
      var productoaggCarrito = [];
 
+     // Función para actualizar el estado activo de la navbar
+    function actualizarNavegacionActiva(elementoActivo) {
+        // Remover la clase 'active' de todos los elementos de navegación
+        $('.nav.navbar-nav li').removeClass('active');
+        
+        // Agregar la clase 'active' al elemento seleccionado
+        $(elementoActivo).addClass('active');
+    }
+
+
     $.getJSON('json/diccionario.json', function(data) {
         var productosContainer = $('#productos-container');
         
