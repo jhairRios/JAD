@@ -33,7 +33,7 @@
     --color-corazon: #e74c3c;        /* Rojo para el corazón animado */
     
     /* ===== COLORES DE NOTIFICACIONES TOAST ===== */
-    --toast-success: #28a745;        /* Verde para éxito */
+    --toast-success: #2b8740;        /* Verde para éxito */
     --toast-error: #dc3545;          /* Rojo para error */
     --toast-warning: #ffc107;        /* Amarillo para advertencia */
     --toast-info: #17a2b8;           /* Azul claro para información */
