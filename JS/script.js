@@ -2,15 +2,6 @@ $(document).ready(function() {
     var todosLosProductos = [];
      var productoaggCarrito = [];
 
-    // Función para actualizar el estado activo de la navbar
-    function actualizarNavegacionActiva(elementoActivo) {
-        // Remover la clase 'active' de todos los elementos de navegación
-        $('.nav.navbar-nav li').removeClass('active');
-        
-        // Agregar la clase 'active' al elemento seleccionado
-        $(elementoActivo).addClass('active');
-    }
-
     $.getJSON('json/diccionario.json', function(data) {
         var productosContainer = $('#productos-container');
         
@@ -87,33 +78,23 @@ $(document).ready(function() {
 $(document).on('click', '.btn-carrito', function(e) {
     e.preventDefault();
     
-    // Obtener información del producto desde el DOM
+    //Aqui es donde estamos seleccionando los productos
     var productoCard = $(this).closest('.producto-card');
     var nombreProducto = productoCard.find('.producto-nombre').text();
     var precioProducto = productoCard.find('.precio').text();
     
-    
-
-    // Crear objeto del producto
+    // creamos el arreglo del producto
     var producto = {
         nombre: nombreProducto,
-        precio: precioProducto,
-        
-        
+        precio: precioProducto,    
     };
     
-    // Agregar al array de carrito
+    //Push del producto
     productoaggCarrito.push(producto);
-    
-    console.log('Producto agregado:', producto);
-    console.log('Carrito actual:', producto);
-    
-    // Opcional: Mostrar mensaje de confirmación
     alert('Producto "' + nombreProducto + '" agregado al carrito');
+
     });
 
-
-// Event listener para el botón de Productos (mostrar todos)
     // Escuchar clic en el botón del carrito
     $('#btn-carrito').on('click', function(e) {
         e.preventDefault();
@@ -142,15 +123,13 @@ $(document).on('click', '.btn-carrito', function(e) {
       
         $('#modalCarrito').modal('show');
       });
+
     //---------------FUNCIONES PARA MOSTRAR CATEGORIAS--------------*/
     function filtrarPorCategoria(categoria) {
         var productosFiltrados = todosLosProductos.filter(function(producto) {
             return producto.categoria && producto.categoria.toLowerCase() === categoria.toLowerCase();
         });
         mostrarProductos(productosFiltrados);
-        
-        // Actualizar navegación activa para categorías
-        actualizarNavegacionActiva('#nav-categorias');
     }
     function filtrarPorVendidos(masvendidos) {
         var productosFiltrados = todosLosProductos.filter(function(producto) {
@@ -159,171 +138,113 @@ $(document).on('click', '.btn-carrito', function(e) {
         mostrarProductos(productosFiltrados);
     }
     
-
 /*-----------------------AREA DE MOSTRAR CATEGORIASSS---------------*/
     // Mostrar Audifonoss
     $('#btn-Audifono').click(function(e) {
-        e.preventDefault(); // Evitar que el enlace navegue
         filtrarPorCategoria('Audifonos');
-        
-        // Opcional: Actualizar el título de la sección
         $('.productos-seccion h2').text('Audifonos');
     });
 
     // Mostrar Pantallas/Monitores
     $('#btn-Pantalla').click(function(e) {
-        e.preventDefault(); // Evitar que el enlace navegue
         filtrarPorCategoria('Monitores');
-        
-        // Opcional: Actualizar el título de la sección
         $('.productos-seccion h2').text('Pantallas');
     });
     
     // Mostrar Computadoras
     $('#btn-Computadoras').click(function(e) {
-        e.preventDefault(); // Evitar que el enlace navegue
         filtrarPorCategoria('Computadora');
-        
-        // Opcional: Actualizar el título de la sección
         $('.productos-seccion h2').text('Computadoras');
     });
 
     // Mostrar Teclados
     $('#btn-Teclados').click(function(e) {
-        e.preventDefault(); // Evitar que el enlace navegue
         filtrarPorCategoria('Teclados');
-        
-        // Opcional: Actualizar el título de la sección
         $('.productos-seccion h2').text('Teclados');
     });
 
     // Mostrar Mouse
     $('#btn-Mouse').click(function(e) {
-        e.preventDefault(); // Evitar que el enlace navegue
         filtrarPorCategoria('Mouse');
-        
-        // Opcional: Actualizar el título de la sección
         $('.productos-seccion h2').text('Mouse');
     });
 
     // Mostrar Router
     $('#btn-Router').click(function(e) {
-        e.preventDefault(); // Evitar que el enlace navegue
         filtrarPorCategoria('Router');
-        
-        // Opcional: Actualizar el título de la sección
         $('.productos-seccion h2').text('Routers');
     });
 
     // Mostrar Almacenamiento
     $('#btn-Almacenamiento').click(function(e) {
-        e.preventDefault(); // Evitar que el enlace navegue
         filtrarPorCategoria('Almacenamiento');
-        
-        // Opcional: Actualizar el título de la sección
         $('.productos-seccion h2').text('Almacenamientos');
     });
 
     // Mostrar Camara
     $('#btn-Camaras').click(function(e) {
-        e.preventDefault(); // Evitar que el enlace navegue
-        filtrarPorCategoria('Almacenamiento');
-        
-        // Opcional: Actualizar el título de la sección
+        filtrarPorCategoria('Almacenamiento'); 
         $('.productos-seccion h2').text('Almacenamientos');
     });
 
     // Mostrar Impresoras
     $('#btn-Impresoras').click(function(e) {
-        e.preventDefault(); // Evitar que el enlace navegue
         filtrarPorCategoria('Impresoras');
-        
-        // Opcional: Actualizar el título de la sección
         $('.productos-seccion h2').text('Impresoras');
     });
 
     // Mostrar Telefonos
     $('#btn-Telefonos').click(function(e) {
-        e.preventDefault(); // Evitar que el enlace navegue
         filtrarPorCategoria('Telefonos');
-        
-        // Opcional: Actualizar el título de la sección
         $('.productos-seccion h2').text('Telefonos');
     });
 
     // Mostrar Camara
     $('#btn-Camara').click(function(e) {
-        e.preventDefault(); // Evitar que el enlace navegue
         filtrarPorCategoria('Camara');
-        
-        // Opcional: Actualizar el título de la sección
         $('.productos-seccion h2').text('Camara');
     });
 
     // Mostrar Proyector
     $('#btn-Proyector').click(function(e) {
-        e.preventDefault(); // Evitar que el enlace navegue
         filtrarPorCategoria('Proyector');
-        
-        // Opcional: Actualizar el título de la sección
         $('.productos-seccion h2').text('Proyector');
     });
 
     // Mostrar Compenentes Internos
     $('#btn-Compenentes').click(function(e) {
-        e.preventDefault(); // Evitar que el enlace navegue
         filtrarPorCategoria('Componentes Internos');
-        
-        // Opcional: Actualizar el título de la sección
         $('.productos-seccion h2').text('Compenente');
     });
 
     // Mostrar Altavoces
     $('#btn-Altavoces').click(function(e) {
-        e.preventDefault(); // Evitar que el enlace navegue
         filtrarPorCategoria('Altavoces');
-        
-        // Opcional: Actualizar el título de la sección
         $('.productos-seccion h2').text('Altavoces');
     });
 
     // Mostrar Relojes Inteligentes
-    $('#btn-Relojes').click(function(e) {
-        e.preventDefault(); // Evitar que el enlace navegue
+    $('#btn-Relojes').click(function(e){
         filtrarPorCategoria('Relojes Inteligentes');
-        
-        // Opcional: Actualizar el título de la sección
         $('.productos-seccion h2').text('Relojes Inteligentes');
     });
 
     // Mostrar Consolas
     $('#btn-Consolas').click(function(e) {
-        e.preventDefault(); // Evitar que el enlace navegue
         filtrarPorCategoria('Consolas');
-        
-        // Opcional: Actualizar el título de la sección
         $('.productos-seccion h2').text('Consolas');
     });
 
     // Mostrar Accesorios
     $('#btn-Accesorios').click(function(e) {
-        e.preventDefault(); // Evitar que el enlace navegue
         filtrarPorCategoria('Accesorios');
-        
-        // Opcional: Actualizar el título de la sección
         $('.productos-seccion h2').text('Accesorios');
     });
 
 
     // Mostrar Mas Vendidos
     $('#btn-inicio').click(function(e) {
-        e.preventDefault(); // Evitar que el enlace navegue
         filtrarPorVendidos('True');
-        
-        // Actualizar navegación activa
-        actualizarNavegacionActiva('#nav-inicio');
-        
-        // Opcional: Actualizar el título de la sección
         $('.productos-seccion h2').text('Mas Vendidos');
     });
 
@@ -344,9 +265,6 @@ $(document).on('click', '.btn-carrito', function(e) {
     $('#btn-productos').click(function(e) {
         e.preventDefault();
         mostrarTodosLosProductos();
-        
-        // Actualizar navegación activa
-        actualizarNavegacionActiva('#nav-productos');
     });
     
 });
