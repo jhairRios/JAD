@@ -11,7 +11,10 @@ $(document).ready(function() {
         }
 
         todosLosProductos = data.productos;
-        mostrarProductos(todosLosProductos);
+        // Mostrar productos más vendidos al cargar la página
+        filtrarPorVendidos('True');
+        // Actualizar el título de la sección
+        $('.productos-seccion h2').text('Mas Vendidos');
     })
     .fail(function(jqXHR, textStatus, errorThrown) {
         console.error('Error al cargar productos:', textStatus, errorThrown);

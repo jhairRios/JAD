@@ -35,7 +35,8 @@
             "nombre": "Monitor Samsung",
             "descripcion": "Monitor LED de 24 pulgadas Full HD",
             "precio": 250,
-            "categoria": "Monitores"
+            "categoria": "Monitores",
+            "masvendidos": "True"
         },
         {
             "codigo": "P006",
@@ -70,14 +71,16 @@
             "nombre": "Impresora HP",
             "descripcion": "Impresora multifuncional a color",
             "precio": 120,
-            "categoria": "Impresoras"
+            "categoria": "Impresoras",
+            "masvendidos": "True"
         },
         {
             "codigo": "P011",
             "nombre": "Tablet Samsung Galaxy",
             "descripcion": "Tablet de 10.4 pulgadas con 64GB de almacenamiento",
             "precio": 300,
-            "categoria": "Telefonos"
+            "categoria": "Telefonos",
+            "masvendidos": "True"
         },
         {
             "codigo": "P012",
