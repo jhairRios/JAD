@@ -190,11 +190,6 @@ $(document).on('click', '.btn-carrito', function(e) {
                 "¡Producto agregado!",
                 "success"
             );
-
-            // Mostrar confirmación al usuario
-            alert('Producto "' + producto.nombre + '" agregado al carrito');
-
-            
             // Cerrar el modal de detalles automáticamente
             $('#modalDetalles').modal('hide');
         }
