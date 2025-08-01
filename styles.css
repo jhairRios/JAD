@@ -580,6 +580,119 @@
     opacity: 1 !important;                              /* Opacidad completa */
     text-shadow: 1px 1px 3px rgba(255, 255, 255, 0.7) !important; /* Sombra más sutil para párrafos */
   }
+
+  /* ========================================
+     CARRUSEL AUTOMÁTICO DE MARCAS
+     ======================================== */
+  .marcas-section {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    padding: 60px 0;
+    margin-top: 50px;
+    border-top: 1px solid #dee2e6;
+    border-bottom: 1px solid #dee2e6;
+  }
+
+  .marcas-titulo {
+    color: #0a192f;
+    font-size: 28px;
+    font-weight: 600;
+    margin-bottom: 40px;
+    position: relative;
+  }
+
+  .marcas-titulo::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 3px;
+    background: linear-gradient(90deg, #0a192f, #ffc107);
+    border-radius: 2px;
+  }
+
+  .marcas-carrusel-container {
+    overflow: hidden;
+    width: 100%;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    padding: 20px 0;
+  }
+
+  .marcas-carrusel {
+    display: flex;
+    animation: scrollMarcas 30s linear infinite;
+    width: calc(200% + 40px); /* Doble ancho para el efecto continuo */
+  }
+
+  .marca-slide {
+    flex: 0 0 180px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 15px;
+    transition: transform 0.3s ease;
+  }
+
+  .marca-slide img {
+    max-width: 120px;
+    max-height: 80px;
+    object-fit: contain;
+    filter: grayscale(20%) opacity(0.9);
+    transition: all 0.3s ease;
+    border-radius: 8px;
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.8);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .marca-slide:hover img {
+    filter: grayscale(0%) opacity(1);
+    transform: scale(1.05);
+  }
+
+  /* Animación continua */
+  @keyframes scrollMarcas {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+
+  /* Pausa la animación al hacer hover sobre el contenedor */
+  .marcas-carrusel-container:hover .marcas-carrusel {
+    animation-play-state: paused;
+  }
+
+  /* Responsive para móviles */
+  @media (max-width: 768px) {
+    .marcas-section {
+      padding: 40px 0;
+    }
+    
+    .marcas-titulo {
+      font-size: 22px;
+      margin-bottom: 30px;
+    }
+    
+    .marca-slide {
+      flex: 0 0 140px;
+      margin: 0 8px;
+    }
+    
+    .marca-slide img {
+      max-width: 100px;
+      max-height: 60px;
+    }
+    
+    .marcas-carrusel {
+      animation-duration: 25s; /* Ajustado para 12 marcas */
+    }
+  }
   
   /* ========================================
      DISEÑO RESPONSIVE (MÓVILES)

@@ -210,6 +210,97 @@
 
      </section>
     <!-- FIN DE PRODUCTOS -->
+
+    <!-- ========================================
+         CARRUSEL AUTOMÁTICO DE MARCAS
+         ======================================== -->
+    <section class="marcas-section">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <h3 class="text-center marcas-titulo">Marcas Disponibles</h3>
+            <div class="marcas-carrusel-container">
+              <div class="marcas-carrusel">
+                <!-- Primera ronda de imágenes -->
+                <div class="marca-slide">
+                  <img src="iconos/APPLE.png" alt="Apple">
+                </div>
+                <div class="marca-slide">
+                  <img src="iconos/DELL.png" alt="Dell">
+                </div>
+                <div class="marca-slide">
+                  <img src="iconos/DYSON.png" alt="Dyson">
+                </div>
+                <div class="marca-slide">
+                  <img src="iconos/FRIGIDAIRE.png" alt="Frigidaire">
+                </div>
+                <div class="marca-slide">
+                  <img src="iconos/HONOR.png" alt="Honor">
+                </div>
+                <div class="marca-slide">
+                  <img src="iconos/HP.png" alt="HP">
+                </div>
+                <div class="marca-slide">
+                  <img src="iconos/JBL.png" alt="JBL">
+                </div>
+                <div class="marca-slide">
+                  <img src="iconos/LG.png" alt="LG">
+                </div>
+                <div class="marca-slide">
+                  <img src="iconos/MABE.png" alt="Mabe">
+                </div>
+                <div class="marca-slide">
+                  <img src="iconos/MOTOROLA.png" alt="Motorola">
+                </div>
+                <div class="marca-slide">
+                  <img src="iconos/SANSUNG.png" alt="Samsung">
+                </div>
+                <div class="marca-slide">
+                  <img src="iconos/SONY.png" alt="Sony">
+                </div>
+                <!-- Segunda ronda de imágenes para efecto continuo -->
+                <div class="marca-slide">
+                  <img src="iconos/APPLE.png" alt="Apple">
+                </div>
+                <div class="marca-slide">
+                  <img src="iconos/DELL.png" alt="Dell">
+                </div>
+                <div class="marca-slide">
+                  <img src="iconos/DYSON.png" alt="Dyson">
+                </div>
+                <div class="marca-slide">
+                  <img src="iconos/FRIGIDAIRE.png" alt="Frigidaire">
+                </div>
+                <div class="marca-slide">
+                  <img src="iconos/HONOR.png" alt="Honor">
+                </div>
+                <div class="marca-slide">
+                  <img src="iconos/HP.png" alt="HP">
+                </div>
+                <div class="marca-slide">
+                  <img src="iconos/JBL.png" alt="JBL">
+                </div>
+                <div class="marca-slide">
+                  <img src="iconos/LG.png" alt="LG">
+                </div>
+                <div class="marca-slide">
+                  <img src="iconos/MABE.png" alt="Mabe">
+                </div>
+                <div class="marca-slide">
+                  <img src="iconos/MOTOROLA.png" alt="Motorola">
+                </div>
+                <div class="marca-slide">
+                  <img src="iconos/SANSUNG.png" alt="Samsung">
+                </div>
+                <div class="marca-slide">
+                  <img src="iconos/SONY.png" alt="Sony">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
      
     <!-- ========================================
          FOOTER - PIE DE PÁGINA
@@ -292,6 +383,27 @@
     <script src="CSS/bootstrap-3.4.1-dist/js/bootstrap.min.js"></script>
     <!-- Script personalizado para cargar productos -->
     <script src="JS/script.js"></script>
+    
+    <!-- Script de inicialización del carrusel -->
+    <script>
+      $(document).ready(function() {
+        console.log('Página cargada - Inicializando carruseles...');
+        
+        // Inicializar el carrusel principal de Bootstrap (si existe)
+        if ($('#pixelplay-carousel').length) {
+          $('#pixelplay-carousel').carousel({
+            interval: 4000,
+            pause: 'hover'
+          });
+          console.log('Carrusel principal Bootstrap inicializado');
+        }
+        
+        // El carrusel de marcas funciona automáticamente con CSS
+        if ($('.marcas-carrusel').length) {
+          console.log('Carrusel automático de marcas encontrado');
+        }
+      });
+    </script>
 
     <!-- Contenedor para notificaciones toast -->
     <div id="toast-container" style="position: fixed; top: 80px; right: 20px; z-index: 9999; max-width: 350px;">
