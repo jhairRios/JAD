@@ -695,6 +695,129 @@
   }
   
   /* ========================================
+     CONTADOR DEL CARRITO
+     ======================================== */
+  #carrito-contador {
+    background-color: #ffc107 !important;
+    color: #0a192f !important;
+    font-weight: bold;
+    font-size: 11px;
+    padding: 2px 6px;
+    border-radius: 50%;
+    margin-left: 5px;
+    min-width: 18px;
+    text-align: center;
+    line-height: 1.2;
+    position: relative;
+    top: -2px;
+  }
+
+  #carrito-contador.badge-empty {
+    display: none;
+  }
+
+  #carrito-contador.badge-highlight {
+    animation: pulseCarrito 0.6s ease-in-out;
+  }
+
+  @keyframes pulseCarrito {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.3); background-color: #ff6b35; }
+    100% { transform: scale(1); }
+  }
+
+  /* ========================================
+     ESTILOS DEL CARRITO
+     ======================================== */
+  .modal-body .table {
+    margin-bottom: 0 !important;
+    background: white;
+    border-collapse: separate;
+    border-spacing: 0;
+  }
+
+  .modal-body .table td {
+    vertical-align: middle !important;
+    padding: 12px 8px !important;
+    border-bottom: 1px solid var(--color-card-borde) !important;
+  }
+
+  .modal-body .table th {
+    background: linear-gradient(135deg, var(--color-primario) 0%, #0a192f 100%) !important;
+    color: var(--color-texto) !important;
+    font-weight: 600 !important;
+    text-align: center !important;
+    padding: 15px 8px !important;
+    border: none !important;
+    border-bottom: 3px solid #ffc107 !important;
+  }
+
+  .cantidad-producto {
+    border: 1px solid var(--color-card-borde) !important;
+    border-radius: 4px !important;
+    padding: 5px !important;
+    text-align: center !important;
+    background-color: var(--color-card-fondo) !important;
+  }
+
+  .cantidad-producto:focus {
+    border-color: var(--color-primario) !important;
+    box-shadow: 0 0 0 0.2rem rgba(10, 25, 47, 0.25) !important;
+    outline: none !important;
+  }
+
+  #fila-total {
+    background: linear-gradient(135deg, var(--color-primario) 0%, #0a192f 100%) !important;
+    color: var(--color-texto) !important;
+  }
+
+  #fila-total td {
+    border-top: 3px solid #ffc107 !important;
+    font-size: 16px !important;
+    color: var(--color-texto) !important;
+    font-weight: bold !important;
+    padding: 15px 8px !important;
+  }
+
+  #total-carrito {
+    color: #ffc107 !important;
+    font-size: 18px !important;
+    font-weight: bold !important;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3) !important;
+  }
+
+  .subtotal-producto {
+    font-weight: 600 !important;
+    color: var(--color-primario) !important;
+  }
+
+  /* Estilos para las imágenes del carrito */
+  .modal-body .table td img {
+    border: 2px solid var(--color-card-borde) !important;
+    box-shadow: 0 2px 4px var(--color-card-sombra) !important;
+    transition: transform 0.2s ease !important;
+  }
+
+  .modal-body .table td img:hover {
+    transform: scale(1.1) !important;
+    border-color: var(--color-primario) !important;
+  }
+
+  /* Botón eliminar del carrito */
+  .btn-eliminar-producto {
+    background: linear-gradient(135deg, #dc3545 0%, #c82333 100%) !important;
+    border: none !important;
+    color: white !important;
+    transition: all 0.3s ease !important;
+  }
+
+  .btn-eliminar-producto:hover {
+    background: linear-gradient(135deg, #c82333 0%, #a71e2a 100%) !important;
+    transform: scale(1.05) !important;
+    box-shadow: 0 4px 8px rgba(220, 53, 69, 0.3) !important;
+  }
+
+  /* ========================================
      DISEÑO RESPONSIVE (MÓVILES)
      ======================================== */
   /* Ajustes para pantallas pequeñas (móviles) */

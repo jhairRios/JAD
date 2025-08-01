@@ -101,7 +101,10 @@
           <ul class="nav navbar-nav navbar-right">
             <!-- Enlace al carrito de compras -->
             <li>
-              <a href="#" id="btn-carrito"><i class="fas fa-shopping-cart"></i> CARRITO</a>
+              <a href="#" id="btn-carrito">
+                <i class="fas fa-shopping-cart"></i> CARRITO 
+                <span id="carrito-contador" class="badge badge-warning">0</span>
+              </a>
             </li>
           </ul>
           <!-- FIN - Enlaces de navegación (lado derecho) -->
@@ -425,15 +428,24 @@
           <table class="table table-striped table-bordered">
             <thead class="thead-dark">
               <tr>
-                <th>Nombre</th>
+                <th>Imagen</th>
+                <th>Producto</th>
                 <th>Precio</th>
                 <th>Cantidad</th>
-                
+                <th>Subtotal</th>
+                <th>Acciones</th>
               </tr>
             </thead>
             <tbody id="contenidoCarrito">
               <!-- Filas de productos se insertan dinámicamente aquí -->
             </tbody>
+            <tfoot>
+              <tr id="fila-total" style="display: none;">
+                <td colspan="4" class="text-right font-weight-bold">TOTAL:</td>
+                <td id="total-carrito" class="font-weight-bold text-success"></td>
+                <td></td>
+              </tr>
+            </tfoot>
           </table>
         </div>
       </div>

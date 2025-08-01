@@ -11,6 +11,25 @@ $(document).ready(function() {
         $(elementoActivo).addClass('active');
     }
 
+    // Función para actualizar el contador del carrito
+    function actualizarContadorCarrito() {
+        var cantidad = productoaggCarrito.length;
+        var contador = $('#carrito-contador');
+        
+        contador.text(cantidad);
+        
+        if (cantidad === 0) {
+            contador.addClass('badge-empty');
+        } else {
+            contador.removeClass('badge-empty');
+            // Agregar animación de pulsación
+            contador.addClass('badge-highlight');
+            setTimeout(function() {
+                contador.removeClass('badge-highlight');
+            }, 600);
+        }
+    }
+
 
     $.getJSON('json/diccionario.json', function(data) {
         var productosContainer = $('#productos-container');
@@ -25,6 +44,8 @@ $(document).ready(function() {
         filtrarPorVendidos('True');
         // Actualizar el título de la sección
         $('.productos-seccion h2').text('Mas Vendidos');
+        // Inicializar contador del carrito
+        actualizarContadorCarrito();
     })
     .fail(function(jqXHR, textStatus, errorThrown) {
         console.error('Error al cargar productos:', textStatus, errorThrown);
@@ -101,6 +122,9 @@ $(document).on('click', '.btn-carrito', function(e) {
     
     //Push del producto
     productoaggCarrito.push(producto);
+    
+    // Actualizar contador del carrito
+    actualizarContadorCarrito();
     
     // Mostrar notificación toast en lugar de alert
     mostrarToast(
@@ -183,6 +207,8 @@ $(document).on('click', '.btn-carrito', function(e) {
             // Agregar el producto al array del carrito
             productoaggCarrito.push(productoCarrito);
             
+            // Actualizar contador del carrito
+            actualizarContadorCarrito();
 
             // Mostrar notificación toast en lugar de alert
             mostrarToast(
@@ -205,28 +231,105 @@ $(document).on('click', '.btn-carrito', function(e) {
         if (!Array.isArray(productoaggCarrito) || productoaggCarrito.length === 0) {
           contenedor.append(`
             <tr>
-              <td colspan="4" class="text-center">No hay productos disponibles.</td>
+              <td colspan="6" class="text-center">No hay productos disponibles.</td>
             </tr>
           `);
+          $('#fila-total').hide();
         } else {
-          productoaggCarrito.forEach(function(producto) {
-
-            let subtotal = 
+          let totalGeneral = 0;
+          
+          productoaggCarrito.forEach(function(producto, index) {
+            // Crear URL de la imagen basada en el nombre del producto
+            var nombreImagen = producto.nombre.trim() + '.png';
+            var imagenUrl = 'images/' + nombreImagen;
+            
+            // Extraer el precio numérico (quitar "lps" y convertir a número)
+            var precioNumerico = parseFloat(producto.precio.replace(/[^\d.]/g, ''));
+            var cantidad = 1; // Por defecto 1, se puede modificar con el input
+            var subtotal = precioNumerico * cantidad;
+            totalGeneral += subtotal;
+            
             contenedor.append(`
               <tr>
+                <td style="width: 80px;">
+                  <img src="${imagenUrl}" alt="${producto.nombre}" 
+                       style="width: 60px; height: 60px; object-fit: contain; border-radius: 5px;">
+                </td>
                 <td>${producto.nombre}</td>
-                <td>${producto.precio}</td>
-                <td><input type="number" value = "1" style="width: 100%; min="1""> </input></td>
-                <td>${producto.precio}</td>
-                <td>${producto.precio}</td>
-                <td><button class = "btn btn-danger">Eliminar</button></td>
-                
+                <td>L ${precioNumerico.toFixed(2)}</td>
+                <td>
+                  <input type="number" value="1" min="1" max="10" 
+                         class="cantidad-producto" data-index="${index}" data-precio="${precioNumerico}"
+                         style="width: 60px; text-align: center; border: 1px solid #ddd; border-radius: 3px;">
+                </td>
+                <td class="subtotal-producto">L ${subtotal.toFixed(2)}</td>
+                <td>
+                  <button class="btn btn-danger btn-sm btn-eliminar-producto" data-index="${index}">
+                    <i class="fas fa-trash"></i>
+                  </button>
+                </td>
               </tr>
             `);
           });
+          
+          // Mostrar el total
+          $('#total-carrito').text('L ' + totalGeneral.toFixed(2));
+          $('#fila-total').show();
         }
       
         $('#modalCarrito').modal('show');
+      });
+
+      // Función para eliminar producto del carrito
+      $(document).on('click', '.btn-eliminar-producto', function(e) {
+        e.preventDefault();
+        var index = $(this).data('index');
+        var nombreProducto = productoaggCarrito[index].nombre;
+        
+        // Eliminar producto del array
+        productoaggCarrito.splice(index, 1);
+        
+        // Actualizar contador
+        actualizarContadorCarrito();
+        
+        // Mostrar notificación
+        mostrarToast(
+            `${nombreProducto} ha sido eliminado del carrito`,
+            "¡Producto eliminado!",
+            "info"
+        );
+        
+        // Recargar el contenido del carrito
+        $('#btn-carrito').trigger('click');
+      });
+
+      // Función para actualizar subtotal y total cuando cambia la cantidad
+      $(document).on('change', '.cantidad-producto', function(e) {
+        var cantidad = parseInt($(this).val());
+        var precio = parseFloat($(this).data('precio'));
+        var index = $(this).data('index');
+        
+        if (cantidad < 1) {
+          cantidad = 1;
+          $(this).val(1);
+        }
+        
+        // Calcular nuevo subtotal
+        var nuevoSubtotal = precio * cantidad;
+        
+        // Actualizar subtotal en la fila
+        $(this).closest('tr').find('.subtotal-producto').text('L ' + nuevoSubtotal.toFixed(2));
+        
+        // Recalcular total general
+        var totalGeneral = 0;
+        $('.cantidad-producto').each(function() {
+          var cant = parseInt($(this).val());
+          var prec = parseFloat($(this).data('precio'));
+          totalGeneral += (cant * prec);
+        });
+        
+        // Actualizar total
+        $('#total-carrito').text('L ' + totalGeneral.toFixed(2));
       });
 
     //---------------FUNCIONES PARA MOSTRAR CATEGORIAS--------------*/
