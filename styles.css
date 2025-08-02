@@ -609,313 +609,447 @@
 
   /* ========================================
      CARRUSEL AUTOMÁTICO DE MARCAS
+     ========================================
+     Sección que muestra un carrusel con movimiento
+     continuo de logos de marcas disponibles.
+     
+     📌 CARACTERÍSTICAS PRINCIPALES:
+     - Movimiento automático sin botones
+     - Animación CSS pura (sin JavaScript)
+     - Efecto infinito mediante duplicación
+     - Responsive y optimizado para móviles
+     - Pausa al hacer hover para mejor UX
      ======================================== */
+
+  /* ===== CONTENEDOR PRINCIPAL DE LA SECCIÓN ===== */
+  /* Sección completa que contiene el carrusel de marcas */
   .marcas-section {
-    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-    padding: 60px 0;
-    margin-top: 50px;
-    border-top: 1px solid #dee2e6;
-    border-bottom: 1px solid #dee2e6;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);  /* Gradiente gris claro */
+    padding: 60px 0;                       /* Espaciado vertical generoso */
+    margin-top: 50px;                      /* Separación de sección anterior */
+    border-top: 1px solid #dee2e6;        /* Línea superior sutil */
+    border-bottom: 1px solid #dee2e6;     /* Línea inferior sutil */
   }
 
+  /* ===== TÍTULO DE LA SECCIÓN ===== */
+  /* Título principal "Marcas Disponibles" */
   .marcas-titulo {
-    color: #0a192f;
-    font-size: 28px;
-    font-weight: 600;
-    margin-bottom: 40px;
-    position: relative;
+    color: #0a192f;                        /* Color azul oscuro corporativo */
+    font-size: 28px;                       /* Tamaño grande para destacar */
+    font-weight: 600;                      /* Semi-bold para importancia */
+    margin-bottom: 40px;                   /* Espacio antes del carrusel */
+    position: relative;                    /* Para pseudo-elemento decorativo */
   }
 
+  /* ===== LÍNEA DECORATIVA BAJO EL TÍTULO ===== */
+  /* Elemento visual que resalta el título */
   .marcas-titulo::after {
-    content: '';
-    position: absolute;
-    bottom: -10px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 80px;
-    height: 3px;
-    background: linear-gradient(90deg, #0a192f, #ffc107);
-    border-radius: 2px;
+    content: '';                           /* Contenido vacío - solo visual */
+    position: absolute;                    /* Posicionamiento exacto */
+    bottom: -10px;                         /* 10px debajo del texto */
+    left: 50%;                            /* Centrado horizontalmente */
+    transform: translateX(-50%);          /* Ajuste para centrado perfecto */
+    width: 80px;                          /* Ancho fijo de la línea */
+    height: 3px;                          /* Grosor de la línea */
+    background: linear-gradient(90deg, #0a192f, #ffc107);  /* Gradiente azul a dorado */
+    border-radius: 2px;                   /* Esquinas ligeramente redondeadas */
   }
 
+  /* ===== CONTENEDOR DEL CARRUSEL ===== */
+  /* Wrapper que controla el overflow y estilo del carrusel */
   .marcas-carrusel-container {
-    overflow: hidden;
-    width: 100%;
-    background: white;
-    border-radius: 12px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    padding: 20px 0;
+    overflow: hidden;                      /* Oculta elementos fuera del área visible */
+    width: 100%;                          /* Ancho completo del contenedor padre */
+    background: white;                    /* Fondo blanco para contraste */
+    border-radius: 12px;                  /* Esquinas redondeadas modernas */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);  /* Sombra sutil para profundidad */
+    padding: 20px 0;                      /* Espaciado vertical interno */
   }
 
+  /* ===== CARRUSEL EN MOVIMIENTO ===== */
+  /* Contenedor que se mueve con la animación */
   .marcas-carrusel {
-    display: flex;
-    animation: scrollMarcas 30s linear infinite;
-    width: calc(200% + 40px); /* Doble ancho para el efecto continuo */
+    display: flex;                        /* Layout flexbox horizontal */
+    animation: scrollMarcas 30s linear infinite;  /* Animación continua de 30 segundos */
+    width: calc(200% + 40px);            /* Doble ancho + margen para efecto continuo */
+    /* EXPLICACIÓN: Necesita ser el doble de ancho porque las imágenes 
+       están duplicadas para crear el efecto infinito sin cortes */
   }
 
+  /* ===== ELEMENTOS INDIVIDUALES DE MARCA ===== */
+  /* Cada logo individual dentro del carrusel */
   .marca-slide {
-    flex: 0 0 180px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0 15px;
-    transition: transform 0.3s ease;
+    flex: 0 0 180px;                      /* Ancho fijo de 180px, no crece ni encoge */
+    display: flex;                        /* Flexbox para centrar contenido */
+    align-items: center;                  /* Centrado vertical */
+    justify-content: center;              /* Centrado horizontal */
+    margin: 0 15px;                       /* Espaciado horizontal entre logos */
+    transition: transform 0.3s ease;     /* Transición suave para efectos hover */
   }
 
+  /* ===== IMÁGENES DE LOGOS ===== */
+  /* Estilo para cada imagen de marca */
   .marca-slide img {
-    max-width: 120px;
-    max-height: 80px;
-    object-fit: contain;
-    filter: grayscale(20%) opacity(0.9);
-    transition: all 0.3s ease;
-    border-radius: 8px;
-    padding: 10px;
-    background: rgba(255, 255, 255, 0.8);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    max-width: 120px;                     /* Ancho máximo para uniformidad */
+    max-height: 80px;                     /* Alto máximo para uniformidad */
+    object-fit: contain;                  /* Mantiene proporción sin deformar */
+    filter: grayscale(20%) opacity(0.9);  /* Efecto inicial: ligeramente desaturado */
+    transition: all 0.3s ease;           /* Transición para cambios de hover */
+    border-radius: 8px;                   /* Esquinas redondeadas */
+    padding: 10px;                        /* Espaciado interno */
+    background: rgba(255, 255, 255, 0.8); /* Fondo blanco semitransparente */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);  /* Sombra sutil */
   }
 
+  /* ===== EFECTO HOVER EN LOGOS ===== */
+  /* Activación del logo al pasar el mouse */
   .marca-slide:hover img {
-    filter: grayscale(0%) opacity(1);
-    transform: scale(1.05);
+    filter: grayscale(0%) opacity(1);     /* Elimina filtro - colores completos */
+    transform: scale(1.05);               /* Zoom sutil del 5% */
   }
 
-  /* Animación continua */
+  /* ========================================
+     ANIMACIÓN DEL CARRUSEL
+     ========================================
+     Define el movimiento continuo de izquierda
+     a derecha con efecto infinito
+     ======================================== */
+
+  /* ===== KEYFRAMES DE LA ANIMACIÓN ===== */
+  /* Define el movimiento completo del carrusel */
   @keyframes scrollMarcas {
     0% {
-      transform: translateX(0);
+      transform: translateX(0);           /* Posición inicial */
     }
     100% {
-      transform: translateX(-50%);
+      transform: translateX(-50%);        /* Se mueve 50% a la izquierda */
     }
+    /* EXPLICACIÓN: Al moverse 50%, la segunda serie de imágenes
+       (que son duplicadas) toma el lugar de la primera, creando
+       la ilusión de movimiento infinito */
   }
 
-  /* Pausa la animación al hacer hover sobre el contenedor */
+  /* ===== PAUSA AL HACER HOVER ===== */
+  /* Funcionalidad UX: detiene animación para mejor visualización */
   .marcas-carrusel-container:hover .marcas-carrusel {
-    animation-play-state: paused;
+    animation-play-state: paused;         /* Pausa la animación */
+    /* BENEFICIO: Permite al usuario ver los logos claramente */
   }
 
-  /* Responsive para móviles */
+  /* ========================================
+     RESPONSIVE DESIGN PARA MÓVILES
+     ========================================
+     Adaptaciones específicas para dispositivos
+     móviles y pantallas pequeñas
+     ======================================== */
+
+  /* ===== ADAPTACIÓN PARA TABLETS Y MÓVILES ===== */
   @media (max-width: 768px) {
+    /* Reducir espaciado vertical en móviles */
     .marcas-section {
-      padding: 40px 0;
+      padding: 40px 0;                    /* Menos padding que en desktop */
     }
     
+    /* Ajustar tamaño del título */
     .marcas-titulo {
-      font-size: 22px;
-      margin-bottom: 30px;
+      font-size: 22px;                    /* Título más pequeño */
+      margin-bottom: 30px;                /* Menos espacio inferior */
     }
     
+    /* Ajustar tamaño de elementos individuales */
     .marca-slide {
-      flex: 0 0 140px;
-      margin: 0 8px;
+      flex: 0 0 140px;                    /* Elementos más pequeños */
+      margin: 0 8px;                      /* Menos espacio entre elementos */
     }
     
+    /* Ajustar tamaño de imágenes */
     .marca-slide img {
-      max-width: 100px;
-      max-height: 60px;
+      max-width: 100px;                   /* Imágenes más pequeñas */
+      max-height: 60px;                   /* Altura proporcional */
     }
     
+    /* Acelerar animación para compensar menor tamaño */
     .marcas-carrusel {
-      animation-duration: 25s; /* Ajustado para 12 marcas */
+      animation-duration: 25s;            /* Animación más rápida */
+      /* RAZÓN: Con elementos más pequeños, la animación se ve
+         más lenta, por lo que se acelera para mantener fluidez */
     }
   }
   
   /* ========================================
      CONTADOR DEL CARRITO
+     ========================================
+     Sistema de conteo visual para mostrar
+     la cantidad de productos en el carrito
+     
+     CARACTERÍSTICAS:
+     - Badge circular amarillo con números
+     - Animación de pulso al agregar productos
+     - Se oculta automáticamente cuando está vacío
+     - Posicionado encima del ícono del carrito
      ======================================== */
+  
+  /* Estilo principal del contador */
   #carrito-contador {
-    background-color: #ffc107 !important;
-    color: #0a192f !important;
-    font-weight: bold;
-    font-size: 11px;
-    padding: 2px 6px;
-    border-radius: 50%;
-    margin-left: 5px;
-    min-width: 18px;
-    text-align: center;
-    line-height: 1.2;
-    position: relative;
-    top: -2px;
+    background-color: #ffc107 !important;   /* Amarillo distintivo */
+    color: #0a192f !important;              /* Texto azul oscuro para contraste */
+    font-weight: bold;                      /* Texto en negrita para legibilidad */
+    font-size: 11px;                       /* Tamaño compacto pero legible */
+    padding: 2px 6px;                      /* Espaciado interno mínimo */
+    border-radius: 50%;                    /* Forma circular perfecta */
+    margin-left: 5px;                      /* Separación del ícono del carrito */
+    min-width: 18px;                       /* Ancho mínimo para números de 2 dígitos */
+    text-align: center;                    /* Centrar texto horizontalmente */
+    line-height: 1.2;                      /* Altura de línea compacta */
+    position: relative;                    /* Para permitir ajuste de posición */
+    top: -2px;                             /* Mover ligeramente hacia arriba */
   }
 
+  /* Estado cuando el carrito está vacío */
   #carrito-contador.badge-empty {
-    display: none;
+    display: none;                         /* Ocultar completamente cuando no hay productos */
   }
 
+  /* Estado de resaltado cuando se agrega un producto */
   #carrito-contador.badge-highlight {
-    animation: pulseCarrito 0.6s ease-in-out;
+    animation: pulseCarrito 0.6s ease-in-out;  /* Activar animación de pulso */
   }
 
+  /* Animación de pulso para feedback visual */
   @keyframes pulseCarrito {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.3); background-color: #ff6b35; }
-    100% { transform: scale(1); }
+    0% { 
+      transform: scale(1);                 /* Tamaño normal al inicio */
+    }
+    50% { 
+      transform: scale(1.3);               /* Crecer 30% en el punto medio */
+      background-color: #ff6b35;           /* Cambiar a naranja durante el pulso */
+    }
+    100% { 
+      transform: scale(1);                 /* Volver al tamaño normal */
+      /* El color vuelve automáticamente al amarillo original */
+    }
   }
 
   /* ========================================
      ESTILOS DEL CARRITO
+     ========================================
+     Estilos específicos para el modal del carrito
+     de compras, incluyendo tabla de productos,
+     cantidades, subtotales y total
+     
+     CARACTERÍSTICAS:
+     - Tabla limpia con bordes y gradientes
+     - Campos de cantidad editables
+     - Fila de total destacada
+     - Imágenes de productos en miniatura
      ======================================== */
+  
+  /* Configuración base de la tabla del carrito */
   .modal-body .table {
-    margin-bottom: 0 !important;
-    background: white;
-    border-collapse: separate;
-    border-spacing: 0;
+    margin-bottom: 0 !important;          /* Eliminar margen inferior predeterminado */
+    background: white;                    /* Fondo blanco limpio */
+    border-collapse: separate;            /* Permitir espaciado entre celdas */
+    border-spacing: 0;                    /* Sin espaciado visible entre celdas */
   }
 
+  /* Estilo para celdas de datos */
   .modal-body .table td {
-    vertical-align: middle !important;
-    padding: 12px 8px !important;
-    border-bottom: 1px solid var(--color-card-borde) !important;
+    vertical-align: middle !important;    /* Centrar contenido verticalmente */
+    padding: 12px 8px !important;         /* Espaciado interno consistente */
+    border-bottom: 1px solid var(--color-card-borde) !important;  /* Línea separadora sutil */
   }
 
+  /* Estilo para encabezados de columnas */
   .modal-body .table th {
-    background: linear-gradient(135deg, var(--color-primario) 0%, #0a192f 100%) !important;
-    color: var(--color-texto) !important;
-    font-weight: 600 !important;
-    text-align: center !important;
-    padding: 15px 8px !important;
-    border: none !important;
-    border-bottom: 3px solid #ffc107 !important;
+    background: linear-gradient(135deg, var(--color-primario) 0%, #0a192f 100%) !important;  /* Gradiente azul elegante */
+    color: var(--color-texto) !important;      /* Texto blanco para contraste */
+    font-weight: 600 !important;               /* Peso de fuente medio-bold */
+    text-align: center !important;             /* Centrar texto de encabezados */
+    padding: 15px 8px !important;              /* Mayor padding para encabezados */
+    border: none !important;                   /* Sin bordes laterales */
+    border-bottom: 3px solid #ffc107 !important;  /* Borde inferior amarillo distintivo */
   }
 
+  /* Campo de entrada para cantidad de productos */
   .cantidad-producto {
-    border: 1px solid var(--color-card-borde) !important;
-    border-radius: 4px !important;
-    padding: 5px !important;
-    text-align: center !important;
-    background-color: var(--color-card-fondo) !important;
+    border: 1px solid var(--color-card-borde) !important;  /* Borde sutil */
+    border-radius: 4px !important;             /* Esquinas redondeadas */
+    padding: 5px !important;                   /* Espaciado interno mínimo */
+    text-align: center !important;             /* Centrar números */
+    background-color: var(--color-card-fondo) !important;  /* Fondo consistente con tema */
   }
 
+  /* Estado de foco para campo de cantidad */
   .cantidad-producto:focus {
-    border-color: var(--color-primario) !important;
-    box-shadow: 0 0 0 0.2rem rgba(10, 25, 47, 0.25) !important;
-    outline: none !important;
+    border-color: var(--color-primario) !important;        /* Borde azul al enfocar */
+    box-shadow: 0 0 0 0.2rem rgba(10, 25, 47, 0.25) !important;  /* Sombra azul sutil */
+    outline: none !important;                   /* Eliminar outline predeterminado del navegador */
   }
 
+  /* Fila del total general */
   #fila-total {
-    background: linear-gradient(135deg, var(--color-primario) 0%, #0a192f 100%) !important;
-    color: var(--color-texto) !important;
+    background: linear-gradient(135deg, var(--color-primario) 0%, #0a192f 100%) !important;  /* Mismo gradiente que encabezados */
+    color: var(--color-texto) !important;      /* Texto blanco */
   }
 
+  /* Celdas de la fila de total */
   #fila-total td {
-    border-top: 3px solid #ffc107 !important;
-    font-size: 16px !important;
-    color: var(--color-texto) !important;
-    font-weight: bold !important;
-    padding: 15px 8px !important;
+    border-top: 3px solid #ffc107 !important;  /* Borde superior amarillo para separar */
+    font-size: 16px !important;                /* Texto más grande */
+    color: var(--color-texto) !important;      /* Texto blanco */
+    font-weight: bold !important;              /* Negrita para énfasis */
+    padding: 15px 8px !important;              /* Mayor padding */
   }
 
+  /* Valor del total del carrito */
   #total-carrito {
-    color: #ffc107 !important;
-    font-size: 18px !important;
-    font-weight: bold !important;
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3) !important;
+    color: #ffc107 !important;                 /* Amarillo llamativo */
+    font-size: 18px !important;                /* Tamaño destacado */
+    font-weight: bold !important;              /* Negrita */
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3) !important;  /* Sombra para profundidad */
   }
 
+  /* Subtotales individuales de productos */
   .subtotal-producto {
-    font-weight: 600 !important;
-    color: var(--color-primario) !important;
+    font-weight: 600 !important;               /* Semi-negrita */
+    color: var(--color-primario) !important;   /* Color azul del tema */
   }
 
-  /* Estilos para las imágenes del carrito */
+  /* ===== IMÁGENES EN EL CARRITO ===== */
+  /* Estilo para miniaturas de productos en la tabla del carrito */
   .modal-body .table td img {
-    border: 2px solid var(--color-card-borde) !important;
-    box-shadow: 0 2px 4px var(--color-card-sombra) !important;
-    transition: transform 0.2s ease !important;
+    border: 2px solid var(--color-card-borde) !important;     /* Borde sutil alrededor de la imagen */
+    box-shadow: 0 2px 4px var(--color-card-sombra) !important;  /* Sombra suave para profundidad */
+    transition: transform 0.2s ease !important;               /* Transición suave para hover */
   }
 
+  /* Efecto hover en imágenes del carrito */
   .modal-body .table td img:hover {
-    transform: scale(1.1) !important;
-    border-color: var(--color-primario) !important;
+    transform: scale(1.1) !important;                         /* Aumentar tamaño 10% al pasar el mouse */
+    border-color: var(--color-primario) !important;           /* Cambiar borde a azul temático */
   }
 
-  /* Botón eliminar del carrito */
+  /* ===== BOTÓN ELIMINAR PRODUCTO ===== */
+  /* Botón para eliminar productos del carrito */
   .btn-eliminar-producto {
-    background: linear-gradient(135deg, #dc3545 0%, #c82333 100%) !important;
-    border: none !important;
-    color: white !important;
-    transition: all 0.3s ease !important;
+    background: linear-gradient(135deg, #dc3545 0%, #c82333 100%) !important;  /* Gradiente rojo de peligro */
+    border: none !important;                                  /* Sin bordes */
+    color: white !important;                                  /* Texto blanco */
+    transition: all 0.3s ease !important;                     /* Transición suave para todos los efectos */
   }
 
+  /* Estado hover del botón eliminar */
   .btn-eliminar-producto:hover {
-    background: linear-gradient(135deg, #c82333 0%, #a71e2a 100%) !important;
-    transform: scale(1.05) !important;
-    box-shadow: 0 4px 8px rgba(220, 53, 69, 0.3) !important;
+    background: linear-gradient(135deg, #c82333 0%, #a71e2a 100%) !important;  /* Gradiente rojo más oscuro */
+    transform: scale(1.05) !important;                        /* Crecer ligeramente */
+    box-shadow: 0 4px 8px rgba(220, 53, 69, 0.3) !important; /* Sombra roja para efecto flotante */
   }
 
   /* ========================================
      DISEÑO RESPONSIVE (MÓVILES)
+     ========================================
+     Adaptaciones específicas para dispositivos
+     móviles y tablets (pantallas ≤ 768px)
+     
+     OBJETIVO:
+     - Optimizar la experiencia en pantallas pequeñas
+     - Reducir espaciados y tamaños de fuente
+     - Reorganizar botones en diseño vertical
+     - Ajustar variables para mejor usabilidad
+     
+     BREAKPOINT: 768px (Bootstrap breakpoint estándar)
      ======================================== */
-  /* Ajustes para pantallas pequeñas (móviles) */
+  
+  /* Media query para dispositivos móviles y tablets */
   @media (max-width: 768px) {
-    /* ===== VARIABLES PARA MÓVILES ===== */
+    /* ===== VARIABLES ADAPTADAS PARA MÓVILES ===== */
     :root {
-      --navbar-height: 60px;                                                   /* Navbar más alta en móviles */
+      --navbar-height: 60px;                                                   /* Navbar más alta para mejor toque */
+      /* RAZÓN: En móviles se necesita más espacio para dedos */
     }
     
-    /* ===== TARJETAS DE PRODUCTOS ===== */
+    /* ===== ESPACIADO ENTRE TARJETAS ===== */
     .producto-card {
-      margin-bottom: 15px;                                                     /* Menos espacio entre tarjetas */
+      margin-bottom: 15px;                                                     /* Reducir espacio vertical */
+      /* RAZÓN: Pantalla limitada requiere aprovechamiento del espacio */
     }
     
-    /* ===== INFORMACIÓN DE PRODUCTOS ===== */
+    /* ===== PADDING INTERNO DE TARJETAS ===== */
     .producto-info {
-      padding: 12px;                                                           /* Menos padding interno */
+      padding: 12px;                                                           /* Reducir padding interno */
+      /* RAZÓN: Mantener contenido sin desperdiciar espacio precioso */
     }
     
-    /* ===== NOMBRE DEL PRODUCTO ===== */
+    /* ===== TIPOGRAFÍA ADAPTADA ===== */
     .producto-nombre {
-      font-size: 16px;                                                         /* Tamaño de fuente más pequeño */
+      font-size: 16px;                                                         /* Fuente más pequeña pero legible */
+      /* RAZÓN: Balance entre legibilidad y aprovechamiento del espacio */
     }
     
-    /* ===== PRECIO ===== */
     .precio {
-      font-size: 18px;                                                         /* Tamaño de precio más pequeño */
+      font-size: 18px;                                                         /* Precio ligeramente menor */
+      /* RAZÓN: Mantener prominencia pero adaptar al espacio disponible */
     }
     
-    /* ===== BOTONES ===== */
+    /* ===== REORGANIZACIÓN DE BOTONES ===== */
     .producto-botones {
-      flex-direction: column;                                                   /* Botones en columna */
-      gap: 8px;                                                                /* Menos espacio entre botones */
+      flex-direction: column;                                                   /* Cambiar a diseño vertical */
+      gap: 8px;                                                                /* Reducir espaciado entre botones */
+      /* RAZÓN: En móviles es mejor apilar botones verticalmente */
     }
     
-    /* ===== ESTILO DE BOTONES ===== */
+    /* ===== TAMAÑO DE BOTONES OPTIMIZADO ===== */
     .producto-botones .btn {
-      font-size: 11px;                                                         /* Fuente más pequeña */
-      padding: 6px 10px;                                                       /* Menos padding */
-      min-height: 32px;                                                        /* Altura mínima más pequeña */
+      font-size: 11px;                                                         /* Fuente más compacta */
+      padding: 6px 10px;                                                       /* Padding reducido */
+      min-height: 32px;                                                        /* Altura mínima para táctil */
+      /* RAZÓN: Balance entre usabilidad táctil y economía de espacio */
     }
 
   }
 
   /* ========================================
      MODAL DEL CARRITO DE COMPRAS
+     ========================================
+     Estilos específicos para el modal que muestra
+     el contenido del carrito de compras
+     
+     CARACTERÍSTICAS:
+     - Fondo semitransparente oscuro
+     - Diseño centrado y responsive
+     - Gradientes y sombras elegantes
+     - Animación de aparición suave
      ======================================== */
   
-  /* ===== FONDO DEL MODAL ===== */
+  /* ===== FONDO OSCURO DEL MODAL ===== */
   .modal-backdrop {
-    background-color: rgba(10, 25, 47, 0.8) !important;  /* Fondo azul oscuro semitransparente */
+    background-color: rgba(10, 25, 47, 0.8) !important;  /* Azul oscuro semitransparente */
+    /* RAZÓN: Crear contraste y enfocar atención en el modal */
   }
   
   /* ===== CONTENEDOR PRINCIPAL DEL MODAL ===== */
   .modal-dialog {
-    margin: 30px auto;                                     /* Centrado con margen */
-    z-index: 1050;                                        /* Z-index alto */
+    margin: 30px auto;                                     /* Centrado con margen superior/inferior */
+    z-index: 1050;                                        /* Z-index alto para estar sobre otros elementos */
+    /* RAZÓN: Asegurar que el modal aparezca por encima de todo el contenido */
   }
   
+  /* Variante grande del modal */
   .modal-dialog.modal-lg {
-    width: 90%;                                           /* Ancho del 90% en pantallas grandes */
-    max-width: 1000px;                                    /* Ancho máximo */
+    width: 90%;                                           /* Ocupar 90% del ancho disponible */
+    max-width: 1000px;                                    /* Ancho máximo para pantallas muy grandes */
+    /* RAZÓN: Balance entre utilizar espacio y mantener legibilidad */
   }
   
-  /* ===== CONTENIDO DEL MODAL ===== */
+  /* ===== CONTENIDO Y ESTILO DEL MODAL ===== */
   .modal-content {
-    background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%) !important; /* Gradiente de fondo blanco */
-    border: none !important;                              /* Sin borde */
-    border-radius: 15px !important;                      /* Esquinas muy redondeadas */
-    box-shadow: 0 20px 40px rgba(10, 25, 47, 0.3) !important; /* Sombra pronunciada */
-    overflow: hidden;                                     /* Oculta desbordamiento */
-    animation: modalFadeIn 0.3s ease-out;               /* Animación de aparición */
+    background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%) !important; /* Gradiente blanco sutil */
+    border: none !important;                              /* Sin bordes para diseño limpio */
+    border-radius: 15px !important;                      /* Esquinas muy redondeadas para modernidad */
+    box-shadow: 0 20px 40px rgba(10, 25, 47, 0.3) !important; /* Sombra pronunciada para profundidad */
+    overflow: hidden;                                     /* Evitar desbordamiento de contenido */
+    animation: modalFadeIn 0.3s ease-out;               /* Animación de aparición suave */
+    /* RAZÓN: Crear una apariencia premium y moderna */
   }
   
   /* Animación de aparición del modal */
@@ -1889,21 +2023,214 @@
   color: #0a192f !important;
 }
 
-/* Responsive para modales */
+/* ========================================
+   MEJORAS DE LEGIBILIDAD PARA MODALES
+   ========================================
+   Esta sección contiene estilos específicos para
+   mejorar la legibilidad y experiencia de usuario
+   en las ventanas modales (pop-ups) del sitio.
+   
+   📌 PROPÓSITO:
+   - Hacer el texto más grande y fácil de leer
+   - Mejorar el contraste y espaciado
+   - Crear una jerarquía visual clara
+   - Asegurar compatibilidad con dispositivos móviles
+   ======================================== */
+
+/* ===== CONFIGURACIÓN BASE DEL MODAL ===== */
+/* Estilo principal para el cuerpo de todos los modales */
+.modal-body {
+  font-size: 16px;                    /* Tamaño base de fuente - fácil lectura */
+  line-height: 1.8;                  /* Espaciado entre líneas - mejora legibilidad */
+  color: #333;                       /* Color gris oscuro - buen contraste */
+}
+
+/* ===== TEXTO PRINCIPAL (LEAD) ===== */
+/* Párrafo introductorio destacado al inicio del modal */
+.modal-body .lead {
+  font-size: 20px;                   /* 25% más grande que el texto normal */
+  line-height: 1.6;                  /* Espaciado ajustado para texto grande */
+  font-weight: 400;                  /* Peso normal - no muy grueso */
+  color: #2c3e50;                    /* Azul grisáceo oscuro - profesional */
+  margin-bottom: 25px;               /* Espacio generoso debajo del párrafo */
+}
+
+/* ===== TÍTULOS NIVEL 4 (h4) ===== */
+/* Títulos de secciones principales dentro del modal */
+.modal-body h4 {
+  font-size: 20px;                   /* Tamaño destacado para jerarquía */
+  font-weight: 600;                  /* Semi-bold - balance perfecto */
+  margin-bottom: 15px;               /* Espacio antes del contenido siguiente */
+  color: #2c3e50;                    /* Mismo color que lead para consistencia */
+}
+
+/* ===== TÍTULOS NIVEL 5 (h5) ===== */
+/* Subtítulos para subsecciones del contenido */
+.modal-body h5 {
+  font-size: 18px;                   /* Ligeramente más pequeño que h4 */
+  font-weight: 600;                  /* Mantiene importancia visual */
+  margin-bottom: 12px;               /* Espacio menor para mejor flujo */
+  color: #34495e;                    /* Gris azulado - diferencia sutil de h4 */
+}
+
+/* ===== PÁRRAFOS NORMALES ===== */
+/* Texto de contenido principal en el modal */
+.modal-body p {
+  font-size: 16px;                   /* Tamaño base estándar */
+  line-height: 1.7;                  /* Espaciado óptimo para lectura */
+  margin-bottom: 15px;               /* Separación entre párrafos */
+  color: #555;                       /* Gris medio - fácil de leer */
+}
+
+/* ===== LISTAS NO ORDENADAS ===== */
+/* Elementos de listas con viñetas */
+.modal-body ul li {
+  font-size: 15px;                   /* Ligeramente menor que párrafos */
+  line-height: 1.6;                  /* Compacto pero legible */
+  margin-bottom: 8px;                /* Espacio entre elementos de lista */
+  color: #555;                       /* Mismo color que párrafos */
+}
+
+/* ===== LISTAS ORDENADAS ===== */
+/* Elementos de listas numeradas */
+.modal-body ol li {
+  font-size: 15px;                   /* Consistente con listas no ordenadas */
+  line-height: 1.6;                  /* Mantiene legibilidad */
+  margin-bottom: 8px;                /* Espacio uniforme */
+  color: #555;                       /* Color consistente */
+}
+
+/* ===== PANELES DENTRO DE MODALES ===== */
+/* Contenedor de información agrupada con fondo */
+.modal-body .panel-body {
+  padding: 20px;                     /* Espaciado interno generoso */
+  background: #f8f9fa;              /* Fondo gris muy claro - contraste sutil */
+  font-size: 15px;                   /* Texto ligeramente menor por ser secundario */
+  line-height: 1.7;                  /* Mantiene legibilidad */
+}
+
+/* ===== SUBTÍTULOS EN PANELES ===== */
+/* Títulos h5 específicos dentro de paneles */
+.modal-body .panel-body h5 {
+  font-size: 17px;                   /* Tamaño intermedio - destaca sin dominar */
+  font-weight: 600;                  /* Semi-bold para jerarquía */
+  color: #2c3e50;                    /* Color consistente con otros títulos */
+  margin-top: 20px;                  /* Espacio superior para separar secciones */
+  margin-bottom: 12px;               /* Espacio inferior estándar */
+}
+
+/* ===== PÁRRAFOS EN PANELES ===== */
+/* Texto dentro de paneles - contexto secundario */
+.modal-body .panel-body p {
+  font-size: 15px;                   /* Menor que párrafos principales */
+  line-height: 1.7;                  /* Mantiene legibilidad */
+  color: #555;                       /* Color estándar */
+}
+
+/* ===== LISTAS EN PANELES ===== */
+/* Elementos de lista dentro de paneles - información detallada */
+.modal-body .panel-body ul li {
+  font-size: 14px;                   /* Más pequeño por ser contenido anidado */
+  line-height: 1.6;                  /* Compacto pero legible */
+  margin-bottom: 6px;                /* Espacio reducido para densidad */
+  padding-left: 5px;                 /* Pequeña indentación adicional */
+}
+
+/* ===== LISTAS ORDENADAS EN PANELES ===== */
+/* Consistencia con listas no ordenadas en paneles */
+.modal-body .panel-body ol li {
+  font-size: 14px;                   /* Tamaño consistente */
+  line-height: 1.6;                  /* Espaciado consistente */
+  margin-bottom: 6px;                /* Separación consistente */
+  padding-left: 5px;                 /* Indentación consistente */
+}
+
+/* ===== TÍTULOS DE ENCABEZADO DE PANELES ===== */
+/* Títulos en la cabecera coloreada de los paneles */
+.modal-body .panel-heading h4 {
+  font-size: 16px;                   /* Tamaño moderado para cabecera */
+  font-weight: 600;                  /* Semi-bold para importancia */
+  margin: 0;                         /* Sin márgenes - controlado por padding */
+}
+
+/* ===== ENLACES DE TÍTULO EN PANELES ===== */
+/* Enlaces clicables en títulos de paneles (acordeones) */
+.modal-body .panel-title a {
+  font-size: 16px;                   /* Consistente con h4 de panel */
+  font-weight: 600;                  /* Mantiene peso visual */
+}
+
+/* ===== TEXTO EN NEGRITA ===== */
+/* Elementos destacados con texto bold */
+.modal-body strong {
+  color: #2c3e50;                    /* Color más oscuro para mayor énfasis */
+  font-weight: 600;                  /* Semi-bold - suficiente contraste */
+}
+
+/* ===== TEXTO CON COLOR PRIMARIO ===== */
+/* Texto destacado con el color principal del sitio */
+.modal-body .text-primary {
+  color: var(--color-primario) !important;  /* Usa variable de color primario */
+  font-weight: 500;                  /* Peso medio para distinción */
+}
+
+/* ===== ESPACIADO ENTRE PANELES ===== */
+/* Separación vertical entre paneles consecutivos */
+.modal-body .panel + .panel {
+  margin-top: 15px;                  /* Espacio entre paneles adyacentes */
+}
+
+/* ===== GRUPO DE PANELES ===== */
+/* Contenedor que agrupa múltiples paneles */
+.modal-body .panel-group {
+  margin-bottom: 0;                  /* Sin margen inferior - controlado externamente */
+}
+
+/* ========================================
+   DISEÑO RESPONSIVO PARA MODALES
+   ========================================
+   Adaptaciones específicas para dispositivos
+   móviles y pantallas pequeñas. Reduce tamaños
+   de fuente y espaciado para optimizar el espacio.
+   ======================================== */
+
+/* ===== ADAPTACIÓN PARA TABLETS Y MÓVILES ===== */
+/* Media query para pantallas menores a 768px */
 @media (max-width: 768px) {
+  /* Ajustes generales del cuerpo del modal */
   .modal-body {
-    padding: 15px;
+    padding: 15px;                   /* Reducir padding para más espacio */
+    font-size: 15px;                 /* Fuente base ligeramente menor */
   }
   
+  /* Texto principal adaptado para móviles */
   .modal-body .lead {
-    font-size: 1rem;
+    font-size: 18px;                 /* Reducir desde 20px */
   }
   
+  /* Títulos principales adaptados */
   .modal-body h4 {
-    font-size: 1.1rem;
+    font-size: 18px;                 /* Reducir desde 20px */
   }
   
+  /* Subtítulos adaptados */
+  .modal-body h5 {
+    font-size: 16px;                 /* Reducir desde 18px */
+  }
+  
+  /* Párrafos adaptados */
+  .modal-body p {
+    font-size: 15px;                 /* Reducir desde 16px */
+  }
+  
+  /* Títulos de paneles en móviles */
   .modal-body .panel-heading h4 {
-    font-size: 0.9rem;
+    font-size: 14px;                 /* Reducir desde 16px */
+  }
+  
+  /* Contenido de paneles en móviles */
+  .modal-body .panel-body {
+    padding: 15px;                   /* Reducir padding interno */
+    font-size: 14px;                 /* Reducir fuente base */
   }
 }
