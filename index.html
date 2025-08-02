@@ -333,11 +333,11 @@
           <div class="col-md-4">
             <h5>Enlaces Útiles</h5>
             <ul class="footer-links">
-              <li><a href="#">Sobre Nosotros</a></li>
-              <li><a href="#">Soporte Técnico</a></li>
-              <li><a href="#">Garantías</a></li>
-              <li><a href="#">Política de Privacidad</a></li>
-              <li><a href="#">Términos y Condiciones</a></li>
+              <li><a href="#" data-toggle="modal" data-target="#modalSobreNosotros">Sobre Nosotros</a></li>
+              <li><a href="#" data-toggle="modal" data-target="#modalSoporteTecnico">Soporte Técnico</a></li>
+              <li><a href="#" data-toggle="modal" data-target="#modalGarantias">Garantías</a></li>
+              <li><a href="#" data-toggle="modal" data-target="#modalPoliticaPrivacidad">Política de Privacidad</a></li>
+              <li><a href="#" data-toggle="modal" data-target="#modalTerminosCondiciones">Términos y Condiciones</a></li>
             </ul>
           </div>
           <!-- FIN - Enlaces útiles -->
@@ -535,6 +535,571 @@
   </div>
 </div>
 <!-- FIN DEL MODAL DE DETALLES -->
+
+<!-- ========================================
+     MODALES INFORMATIVOS
+     ======================================== -->
+
+<!-- Modal Sobre Nosotros -->
+<div class="modal fade" id="modalSobreNosotros" tabindex="-1" role="dialog" aria-labelledby="modalSobreNosotrosLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="modalSobreNosotrosLabel">
+          <i class="fas fa-building"></i> Sobre Nosotros
+        </h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p class="lead">Conoce más sobre Tienda JAD, tu aliado tecnológico de confianza.</p>
+        
+        <div class="panel-group" id="accordionSobreNosotros">
+          <div class="panel panel-primary">
+            <div class="panel-heading">
+              <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordionSobreNosotros" href="#collapseHistoria">
+                  <i class="fas fa-history"></i> Nuestra Historia
+                </a>
+              </h4>
+            </div>
+            <div id="collapseHistoria" class="panel-collapse collapse">
+              <div class="panel-body">
+                <p>Tienda JAD nació en 2015 con la visión de democratizar el acceso a la tecnología. Comenzamos como una pequeña tienda local y hemos crecido hasta convertirnos en una de las principales distribuidoras de tecnología del país.</p>
+                <p>Nuestro compromiso siempre ha sido ofrecer productos de calidad a precios justos, acompañados de un servicio al cliente excepcional.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel panel-success">
+            <div class="panel-heading">
+              <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordionSobreNosotros" href="#collapseMision">
+                  <i class="fas fa-bullseye"></i> Nuestra Misión
+                </a>
+              </h4>
+            </div>
+            <div id="collapseMision" class="panel-collapse collapse">
+              <div class="panel-body">
+                <p>Facilitar el acceso a la tecnología más avanzada, ofreciendo productos innovadores que mejoren la vida personal y profesional de nuestros clientes, con un servicio personalizado y soluciones integrales.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel panel-info">
+            <div class="panel-heading">
+              <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordionSobreNosotros" href="#collapseVision">
+                  <i class="fas fa-eye"></i> Nuestra Visión
+                </a>
+              </h4>
+            </div>
+            <div id="collapseVision" class="panel-collapse collapse">
+              <div class="panel-body">
+                <p>Ser la empresa líder en distribución tecnológica, reconocida por nuestra excelencia en servicio, innovación constante y compromiso con el desarrollo tecnológico del país.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel panel-warning">
+            <div class="panel-heading">
+              <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordionSobreNosotros" href="#collapseValores">
+                  <i class="fas fa-heart"></i> Nuestros Valores
+                </a>
+              </h4>
+            </div>
+            <div id="collapseValores" class="panel-collapse collapse">
+              <div class="panel-body">
+                <ul class="list-unstyled">
+                  <li><i class="fas fa-check text-primary"></i> <strong>Integridad:</strong> Transparencia en todas nuestras operaciones</li>
+                  <li><i class="fas fa-check text-primary"></i> <strong>Calidad:</strong> Productos y servicios de la más alta calidad</li>
+                  <li><i class="fas fa-check text-primary"></i> <strong>Innovación:</strong> Siempre a la vanguardia tecnológica</li>
+                  <li><i class="fas fa-check text-primary"></i> <strong>Servicio:</strong> Atención personalizada y profesional</li>
+                  <li><i class="fas fa-check text-primary"></i> <strong>Responsabilidad:</strong> Compromiso con el medio ambiente y la sociedad</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Productos e Información -->
+<div class="modal fade" id="modalProductosInfo" tabindex="-1" role="dialog" aria-labelledby="modalProductosInfoLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="modalProductosInfoLabel">
+          <i class="fas fa-boxes"></i> Productos e Información
+        </h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p class="lead">Descubre nuestra amplia gama de productos tecnológicos organizados por categorías.</p>
+        
+        <div class="panel panel-primary">
+          <div class="panel-heading">
+            <h4><i class="fas fa-laptop"></i> Computadoras y Laptops</h4>
+          </div>
+          <div class="panel-body">
+            <ul class="list-unstyled">
+              <li>• Laptops para gaming, trabajo y estudio</li>
+              <li>• Computadoras de escritorio personalizadas</li>
+              <li>• Workstations profesionales</li>
+              <li>• Mini PCs y sistemas compactos</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="panel panel-success">
+          <div class="panel-heading">
+            <h4><i class="fas fa-mobile-alt"></i> Dispositivos Móviles</h4>
+          </div>
+          <div class="panel-body">
+            <ul class="list-unstyled">
+              <li>• Smartphones de última generación</li>
+              <li>• Tablets para entretenimiento y productividad</li>
+              <li>• Smartwatches y wearables</li>
+              <li>• Accesorios y fundas protectoras</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="panel panel-info">
+          <div class="panel-heading">
+            <h4><i class="fas fa-gamepad"></i> Gaming y Entretenimiento</h4>
+          </div>
+          <div class="panel-body">
+            <ul class="list-unstyled">
+              <li>• Consolas de videojuegos</li>
+              <li>• Tarjetas gráficas de alto rendimiento</li>
+              <li>• Periféricos gaming especializados</li>
+              <li>• Sistemas de audio premium</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="panel panel-warning">
+          <div class="panel-heading">
+            <h4><i class="fas fa-network-wired"></i> Networking y Conectividad</h4>
+          </div>
+          <div class="panel-body">
+            <ul class="list-unstyled">
+              <li>• Routers y equipos de red</li>
+              <li>• Cables y adaptadores</li>
+              <li>• Sistemas de seguridad</li>
+              <li>• Soluciones empresariales</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Soporte Técnico -->
+<div class="modal fade" id="modalSoporteTecnico" tabindex="-1" role="dialog" aria-labelledby="modalSoporteTecnicoLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="modalSoporteTecnicoLabel">
+          <i class="fas fa-tools"></i> Soporte Técnico
+        </h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p class="lead">Nuestro equipo de expertos está aquí para ayudarte con todas tus necesidades tecnológicas.</p>
+        
+        <div class="panel-group" id="accordionSoporte">
+          <div class="panel panel-primary">
+            <div class="panel-heading">
+              <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordionSoporte" href="#collapseAsistencia">
+                  <i class="fas fa-headset"></i> Asistencia Técnica 24/7
+                </a>
+              </h4>
+            </div>
+            <div id="collapseAsistencia" class="panel-collapse collapse">
+              <div class="panel-body">
+                <p>Nuestro equipo de soporte está disponible las 24 horas del día, los 7 días de la semana para resolver cualquier duda o problema técnico.</p>
+                <ul>
+                  <li><strong>Chat en línea:</strong> Respuesta inmediata</li>
+                  <li><strong>Teléfono:</strong> +1 (555) 123-4567</li>
+                  <li><strong>Email:</strong> soporte@tiendajad.com</li>
+                  <li><strong>Tickets:</strong> Sistema de seguimiento personalizado</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel panel-success">
+            <div class="panel-heading">
+              <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordionSoporte" href="#collapseInstalacion">
+                  <i class="fas fa-cog"></i> Instalación y Configuración
+                </a>
+              </h4>
+            </div>
+            <div id="collapseInstalacion" class="panel-collapse collapse">
+              <div class="panel-body">
+                <p>Servicio profesional de instalación y configuración para todos nuestros productos.</p>
+                <ul>
+                  <li>Instalación de software especializado</li>
+                  <li>Configuración de redes domésticas y empresariales</li>
+                  <li>Optimización de sistemas</li>
+                  <li>Migración de datos</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel panel-info">
+            <div class="panel-heading">
+              <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordionSoporte" href="#collapseMantenimiento">
+                  <i class="fas fa-wrench"></i> Mantenimiento Preventivo
+                </a>
+              </h4>
+            </div>
+            <div id="collapseMantenimiento" class="panel-collapse collapse">
+              <div class="panel-body">
+                <p>Programas de mantenimiento para asegurar el óptimo funcionamiento de tus equipos.</p>
+                <ul>
+                  <li>Limpieza y optimización de hardware</li>
+                  <li>Actualizaciones de software</li>
+                  <li>Diagnósticos preventivos</li>
+                  <li>Planes de mantenimiento personalizados</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Garantías -->
+<div class="modal fade" id="modalGarantias" tabindex="-1" role="dialog" aria-labelledby="modalGarantiasLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="modalGarantiasLabel">
+          <i class="fas fa-shield-alt"></i> Garantías
+        </h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p class="lead">Protegemos tu inversión con garantías completas y políticas transparentes.</p>
+        
+        <div class="panel-group" id="accordionGarantias">
+          <div class="panel panel-primary">
+            <div class="panel-heading">
+              <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordionGarantias" href="#collapseTipos">
+                  <i class="fas fa-certificate"></i> Tipos de Garantía
+                </a>
+              </h4>
+            </div>
+            <div id="collapseTipos" class="panel-collapse collapse">
+              <div class="panel-body">
+                <h5>Garantía del Fabricante</h5>
+                <p>Todos nuestros productos incluyen la garantía original del fabricante, que varía según el tipo de producto:</p>
+                <ul>
+                  <li><strong>Laptops y Computadoras:</strong> 1-3 años</li>
+                  <li><strong>Smartphones y Tablets:</strong> 1-2 años</li>
+                  <li><strong>Accesorios:</strong> 6 meses - 1 año</li>
+                  <li><strong>Gaming:</strong> 1-5 años según componente</li>
+                </ul>
+                
+                <h5>Garantía Extendida JAD</h5>
+                <p>Ofrecemos garantía extendida adicional con cobertura ampliada:</p>
+                <ul>
+                  <li>Extensión hasta 5 años adicionales</li>
+                  <li>Cobertura contra daños accidentales</li>
+                  <li>Servicio técnico prioritario</li>
+                  <li>Reemplazo inmediato en caso necesario</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel panel-success">
+            <div class="panel-heading">
+              <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordionGarantias" href="#collapseProceso">
+                  <i class="fas fa-clipboard-check"></i> Proceso de Garantía
+                </a>
+              </h4>
+            </div>
+            <div id="collapseProceso" class="panel-collapse collapse">
+              <div class="panel-body">
+                <ol>
+                  <li><strong>Contacto inicial:</strong> Reporta el problema por cualquiera de nuestros canales</li>
+                  <li><strong>Diagnóstico:</strong> Evaluación técnica del problema</li>
+                  <li><strong>Autorización:</strong> Confirmación de cobertura de garantía</li>
+                  <li><strong>Reparación/Reemplazo:</strong> Solución según términos de garantía</li>
+                  <li><strong>Entrega:</strong> Devolución del producto reparado o nuevo</li>
+                </ol>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel panel-warning">
+            <div class="panel-heading">
+              <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordionGarantias" href="#collapseTerminos">
+                  <i class="fas fa-exclamation-triangle"></i> Términos y Condiciones
+                </a>
+              </h4>
+            </div>
+            <div id="collapseTerminos" class="panel-collapse collapse">
+              <div class="panel-body">
+                <p><strong>La garantía NO cubre:</strong></p>
+                <ul>
+                  <li>Daños por mal uso o negligencia</li>
+                  <li>Daños por líquidos (salvo garantía extendida)</li>
+                  <li>Modificaciones no autorizadas</li>
+                  <li>Desgaste normal por uso</li>
+                  <li>Software de terceros</li>
+                </ul>
+                <p><strong>Documentos requeridos:</strong> Factura de compra, caja original y accesorios incluidos.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Política de Privacidad -->
+<div class="modal fade" id="modalPoliticaPrivacidad" tabindex="-1" role="dialog" aria-labelledby="modalPoliticaPrivacidadLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="modalPoliticaPrivacidadLabel">
+          <i class="fas fa-user-shield"></i> Política de Privacidad
+        </h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p class="lead">Tu privacidad es nuestra prioridad. Conoce cómo protegemos y manejamos tu información personal.</p>
+        
+        <div class="panel-group" id="accordionPrivacidad">
+          <div class="panel panel-primary">
+            <div class="panel-heading">
+              <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordionPrivacidad" href="#collapseRecopilacion">
+                  <i class="fas fa-database"></i> Recopilación de Información
+                </a>
+              </h4>
+            </div>
+            <div id="collapseRecopilacion" class="panel-collapse collapse">
+              <div class="panel-body">
+                <h5>Información que recopilamos:</h5>
+                <ul>
+                  <li><strong>Datos personales:</strong> Nombre, email, teléfono, dirección</li>
+                  <li><strong>Información de pago:</strong> Procesada de forma segura y encriptada</li>
+                  <li><strong>Historial de compras:</strong> Para mejorar nuestro servicio</li>
+                  <li><strong>Datos de navegación:</strong> Para optimizar la experiencia web</li>
+                </ul>
+                
+                <h5>Cómo recopilamos la información:</h5>
+                <ul>
+                  <li>Cuando creas una cuenta</li>
+                  <li>Al realizar una compra</li>
+                  <li>Durante el uso de nuestros servicios</li>
+                  <li>A través de cookies y tecnologías similares</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel panel-success">
+            <div class="panel-heading">
+              <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordionPrivacidad" href="#collapseUsoProteccion">
+                  <i class="fas fa-lock"></i> Uso y Protección de Datos
+                </a>
+              </h4>
+            </div>
+            <div id="collapseUsoProteccion" class="panel-collapse collapse">
+              <div class="panel-body">
+                <h5>Usamos tu información para:</h5>
+                <ul>
+                  <li>Procesar y gestionar tus pedidos</li>
+                  <li>Brindar soporte técnico personalizado</li>
+                  <li>Enviar actualizaciones sobre productos y servicios</li>
+                  <li>Mejorar nuestra plataforma y servicios</li>
+                  <li>Cumplir con obligaciones legales</li>
+                </ul>
+                
+                <h5>Medidas de seguridad:</h5>
+                <ul>
+                  <li>Encriptación SSL en todas las transacciones</li>
+                  <li>Acceso restringido a datos personales</li>
+                  <li>Auditorías de seguridad regulares</li>
+                  <li>Cumplimiento con estándares internacionales</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel panel-info">
+            <div class="panel-heading">
+              <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordionPrivacidad" href="#collapseDerechos">
+                  <i class="fas fa-user-cog"></i> Tus Derechos
+                </a>
+              </h4>
+            </div>
+            <div id="collapseDerechos" class="panel-collapse collapse">
+              <div class="panel-body">
+                <p>Tienes derecho a:</p>
+                <ul>
+                  <li><strong>Acceso:</strong> Conocer qué información tenemos sobre ti</li>
+                  <li><strong>Rectificación:</strong> Corregir información incorrecta</li>
+                  <li><strong>Eliminación:</strong> Solicitar la eliminación de tus datos</li>
+                  <li><strong>Portabilidad:</strong> Obtener una copia de tus datos</li>
+                  <li><strong>Oposición:</strong> Oponerte al procesamiento de tus datos</li>
+                </ul>
+                <p>Para ejercer estos derechos, contacta a: privacidad@tiendajad.com</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Términos y Condiciones -->
+<div class="modal fade" id="modalTerminosCondiciones" tabindex="-1" role="dialog" aria-labelledby="modalTerminosCondicionesLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="modalTerminosCondicionesLabel">
+          <i class="fas fa-file-contract"></i> Términos y Condiciones
+        </h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p class="lead">Términos y condiciones que rigen el uso de nuestros servicios y la compra de productos.</p>
+        
+        <div class="panel-group" id="accordionTerminos">
+          <div class="panel panel-primary">
+            <div class="panel-heading">
+              <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordionTerminos" href="#collapseCondicionesUso">
+                  <i class="fas fa-gavel"></i> Condiciones de Uso
+                </a>
+              </h4>
+            </div>
+            <div id="collapseCondicionesUso" class="panel-collapse collapse">
+              <div class="panel-body">
+                <h5>Aceptación de términos</h5>
+                <p>Al utilizar nuestros servicios, aceptas estos términos y condiciones en su totalidad.</p>
+                
+                <h5>Uso apropiado</h5>
+                <ul>
+                  <li>Usar el sitio solo para fines legales</li>
+                  <li>No interferir con el funcionamiento del sitio</li>
+                  <li>Proporcionar información veraz y actualizada</li>
+                  <li>Mantener la confidencialidad de tu cuenta</li>
+                </ul>
+                
+                <h5>Restricciones</h5>
+                <ul>
+                  <li>Prohibido el uso no autorizado de contenido</li>
+                  <li>No realizar actividades fraudulentas</li>
+                  <li>No distribuir malware o contenido dañino</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel panel-success">
+            <div class="panel-heading">
+              <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordionTerminos" href="#collapseCondicionesCompra">
+                  <i class="fas fa-shopping-cart"></i> Condiciones de Compra
+                </a>
+              </h4>
+            </div>
+            <div id="collapseCondicionesCompra" class="panel-collapse collapse">
+              <div class="panel-body">
+                <h5>Proceso de compra</h5>
+                <ol>
+                  <li>Selección de productos</li>
+                  <li>Revisión del carrito de compras</li>
+                  <li>Proporcionar información de envío y pago</li>
+                  <li>Confirmación del pedido</li>
+                  <li>Procesamiento y envío</li>
+                </ol>
+                
+                <h5>Precios y pagos</h5>
+                <ul>
+                  <li>Precios sujetos a cambios sin previo aviso</li>
+                  <li>Incluyen impuestos donde corresponda</li>
+                  <li>Métodos de pago: tarjetas, transferencias, PayPal</li>
+                  <li>Pago requerido antes del envío</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel panel-warning">
+            <div class="panel-heading">
+              <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordionTerminos" href="#collapseDevoluciones">
+                  <i class="fas fa-undo"></i> Devoluciones y Reembolsos
+                </a>
+              </h4>
+            </div>
+            <div id="collapseDevoluciones" class="panel-collapse collapse">
+              <div class="panel-body">
+                <h5>Política de devoluciones</h5>
+                <ul>
+                  <li><strong>Plazo:</strong> 30 días desde la fecha de compra</li>
+                  <li><strong>Condición:</strong> Producto en estado original</li>
+                  <li><strong>Embalaje:</strong> Incluir caja y accesorios originales</li>
+                  <li><strong>Documentación:</strong> Factura de compra requerida</li>
+                </ul>
+                
+                <h5>Proceso de devolución</h5>
+                <ol>
+                  <li>Contactar servicio al cliente</li>
+                  <li>Obtener autorización de devolución</li>
+                  <li>Enviar producto según instrucciones</li>
+                  <li>Inspección del producto</li>
+                  <li>Procesamiento del reembolso (5-10 días hábiles)</li>
+                </ol>
+                
+                <h5>Excepciones</h5>
+                <p>No se aceptan devoluciones de: software abierto, productos personalizados, consumibles.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
   </body>
 </html>

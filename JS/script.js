@@ -13,12 +13,16 @@ $(document).ready(function() {
 
     // Función para actualizar el contador del carrito
     function actualizarContadorCarrito() {
-        var cantidad = productoaggCarrito.length;
+        // Calcular la cantidad total de productos (sumando las cantidades individuales)
+        var cantidadTotal = productoaggCarrito.reduce(function(total, producto) {
+            return total + (producto.cantidad || 1);
+        }, 0);
+        
         var contador = $('#carrito-contador');
         
-        contador.text(cantidad);
+        contador.text(cantidadTotal);
         
-        if (cantidad === 0) {
+        if (cantidadTotal === 0) {
             contador.addClass('badge-empty');
         } else {
             contador.removeClass('badge-empty');
@@ -114,24 +118,42 @@ $(document).on('click', '.btn-carrito', function(e) {
     var nombreProducto = productoCard.find('.producto-nombre').text();
     var precioProducto = productoCard.find('.precio').text();
     
-    // creamos el arreglo del producto
-    var producto = {
-        nombre: nombreProducto,
-        precio: precioProducto,    
-    };
+    // Verificar si el producto ya existe en el carrito
+    var productoExistente = productoaggCarrito.find(function(producto) {
+        return producto.nombre === nombreProducto;
+    });
     
-    //Push del producto
-    productoaggCarrito.push(producto);
+    if (productoExistente) {
+        // Si el producto ya existe, incrementar la cantidad
+        productoExistente.cantidad = (productoExistente.cantidad || 1) + 1;
+        
+        // Mostrar notificación toast
+        mostrarToast(
+            `Cantidad actualizada: ${productoExistente.cantidad} unidades de ${nombreProducto}`,
+            "¡Producto actualizado!",
+            "info"
+        );
+    } else {
+        // Si es un producto nuevo, agregarlo al carrito
+        var producto = {
+            nombre: nombreProducto,
+            precio: precioProducto,
+            cantidad: 1
+        };
+        
+        //Push del producto
+        productoaggCarrito.push(producto);
+        
+        // Mostrar notificación toast
+        mostrarToast(
+            `${nombreProducto} ha sido agregado a tu carrito`,
+            "¡Producto agregado!",
+            "success"
+        );
+    }
     
     // Actualizar contador del carrito
     actualizarContadorCarrito();
-    
-    // Mostrar notificación toast en lugar de alert
-    mostrarToast(
-        `${nombreProducto} ha sido agregado a tu carrito`,
-        "¡Producto agregado!",
-        "success"
-    );
 
     });
 
@@ -198,24 +220,46 @@ $(document).on('click', '.btn-carrito', function(e) {
         
         // Verificar que tenemos datos del producto
         if (producto) {
-            // Crear objeto producto para el carrito con formato consistente
-            var productoCarrito = {
-                nombre: producto.nombre,
-                precio: parseInt(producto.precio).toFixed(2) + '.00 lps' // Formato consistente con otros productos
-            };
+            // Crear formato consistente del precio
+            var precioFormateado = parseInt(producto.precio).toFixed(2) + '.00 lps';
             
-            // Agregar el producto al array del carrito
-            productoaggCarrito.push(productoCarrito);
+            // Verificar si el producto ya existe en el carrito
+            var productoExistente = productoaggCarrito.find(function(item) {
+                return item.nombre === producto.nombre;
+            });
+            
+            if (productoExistente) {
+                // Si el producto ya existe, incrementar la cantidad
+                productoExistente.cantidad = (productoExistente.cantidad || 1) + 1;
+                
+                // Mostrar notificación toast
+                mostrarToast(
+                    `Cantidad actualizada: ${productoExistente.cantidad} unidades de ${producto.nombre}`,
+                    "¡Producto actualizado!",
+                    "info"
+                );
+            } else {
+                // Si es un producto nuevo, agregarlo al carrito
+                var productoCarrito = {
+                    nombre: producto.nombre,
+                    precio: precioFormateado,
+                    cantidad: 1
+                };
+                
+                // Agregar el producto al array del carrito
+                productoaggCarrito.push(productoCarrito);
+                
+                // Mostrar notificación toast
+                mostrarToast(
+                    `${producto.nombre} ha sido agregado a tu carrito`,
+                    "¡Producto agregado!",
+                    "success"
+                );
+            }
             
             // Actualizar contador del carrito
             actualizarContadorCarrito();
 
-            // Mostrar notificación toast en lugar de alert
-            mostrarToast(
-                `${producto.nombre} ha sido agregado a tu carrito`,
-                "¡Producto agregado!",
-                "success"
-            );
             // Cerrar el modal de detalles automáticamente
             $('#modalDetalles').modal('hide');
         }
@@ -245,7 +289,7 @@ $(document).on('click', '.btn-carrito', function(e) {
             
             // Extraer el precio numérico (quitar "lps" y convertir a número)
             var precioNumerico = parseFloat(producto.precio.replace(/[^\d.]/g, ''));
-            var cantidad = 1; // Por defecto 1, se puede modificar con el input
+            var cantidad = producto.cantidad || 1; // Usar la cantidad del producto
             var subtotal = precioNumerico * cantidad;
             totalGeneral += subtotal;
             
@@ -258,7 +302,7 @@ $(document).on('click', '.btn-carrito', function(e) {
                 <td>${producto.nombre}</td>
                 <td>L ${precioNumerico.toFixed(2)}</td>
                 <td>
-                  <input type="number" value="1" min="1" max="10" 
+                  <input type="number" value="${cantidad}" min="1" max="10" 
                          class="cantidad-producto" data-index="${index}" data-precio="${precioNumerico}"
                          style="width: 60px; text-align: center; border: 1px solid #ddd; border-radius: 3px;">
                 </td>
@@ -313,6 +357,14 @@ $(document).on('click', '.btn-carrito', function(e) {
           cantidad = 1;
           $(this).val(1);
         }
+        
+        // Actualizar la cantidad en el array del carrito
+        if (productoaggCarrito[index]) {
+          productoaggCarrito[index].cantidad = cantidad;
+        }
+        
+        // Actualizar contador del carrito
+        actualizarContadorCarrito();
         
         // Calcular nuevo subtotal
         var nuevoSubtotal = precio * cantidad;

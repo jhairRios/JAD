@@ -943,8 +943,8 @@
     gap: 10px;                                           /* Espacio entre elementos */
   }
   
-  /* Icono en el título */
-  .modal-title::before {
+  /* Icono específico solo para el modal de carrito */
+  #modalCarrito .modal-title::before {
     content: '\f07a';                                    /* Icono de carrito (FontAwesome) */
     font-family: 'Font Awesome 5 Free';                 /* Fuente de iconos */
     font-weight: 900;                                    /* Peso del icono */
@@ -1665,5 +1665,219 @@
   #toast-container {
     right: 10px !important;
     max-width: 300px !important;
+  }
+}
+
+/* ========================================
+   ESTILOS PARA MODALES INFORMATIVOS
+   ======================================== */
+
+/* Modales informativos */
+.modal-lg .modal-content {
+  border-radius: 8px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+.modal-header {
+  background: linear-gradient(45deg, var(--color-primario), #1e3a8a);
+  color: white;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.modal-header .modal-title {
+  font-weight: 600;
+  font-size: 1.3rem;
+}
+
+.modal-header .modal-title i {
+  margin-right: 10px;
+}
+
+.modal-header .close {
+  color: white;
+  opacity: 0.8;
+  text-shadow: none;
+}
+
+.modal-header .close:hover {
+  opacity: 1;
+  color: white;
+}
+
+.modal-body {
+  padding: 25px;
+  line-height: 1.6;
+}
+
+.modal-body .lead {
+  color: #495057;
+  margin-bottom: 25px;
+  font-size: 1.1rem;
+}
+
+.modal-body h4 {
+  color: var(--color-primario);
+  margin-bottom: 15px;
+  font-weight: 600;
+}
+
+.modal-body h5 {
+  color: var(--color-primario);
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+.modal-body p {
+  color: #495057;
+  margin-bottom: 15px;
+}
+
+.modal-body ul {
+  color: #495057;
+  margin-bottom: 15px;
+}
+
+.modal-body li {
+  margin-bottom: 5px;
+}
+
+/* Paneles dentro de modales */
+.modal-body .panel {
+  margin-bottom: 20px;
+  border-radius: 6px;
+}
+
+.modal-body .panel-heading {
+  border-radius: 6px 6px 0 0;
+}
+
+.modal-body .panel-heading h4 {
+  margin: 0;
+  color: white;
+  font-size: 1rem;
+}
+
+.modal-body .panel-primary .panel-heading {
+  background: var(--color-primario);
+  border-color: var(--color-primario);
+}
+
+.modal-body .panel-success .panel-heading {
+  background: #28a745;
+  border-color: #28a745;
+}
+
+.modal-body .panel-info .panel-heading {
+  background: #17a2b8;
+  border-color: #17a2b8;
+}
+
+.modal-body .panel-warning .panel-heading {
+  background: #ffc107;
+  border-color: #ffc107;
+  color: #212529 !important;
+}
+
+.modal-body .panel-warning .panel-heading h4 {
+  color: #212529 !important;
+}
+
+.modal-body .panel-body {
+  padding: 15px;
+  background: #f8f9fa;
+}
+
+.modal-body .list-unstyled li {
+  padding: 3px 0;
+}
+
+/* Iconos en modales */
+.modal-body .fa-2x {
+  margin-bottom: 10px;
+}
+
+.modal-body .text-primary {
+  color: var(--color-primario) !important;
+}
+
+/* Accordion en modal */
+.panel-group .panel {
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.panel-group .panel-heading a {
+  text-decoration: none;
+  color: white !important;
+  font-weight: 600;
+  display: block;
+  padding: 15px 20px;
+  transition: all 0.3s ease;
+}
+
+.panel-group .panel-heading a:hover {
+  text-decoration: none;
+  color: #ffc107 !important;
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.panel-group .panel-heading a:focus {
+  text-decoration: none;
+  color: white !important;
+  outline: none;
+}
+
+.panel-group .panel-heading a i {
+  margin-right: 8px;
+}
+
+/* Estados específicos para accordion */
+.panel-group .panel-heading a[aria-expanded="true"] {
+  color: #ffc107 !important;
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.panel-group .panel-heading a[aria-expanded="false"] {
+  color: white !important;
+}
+
+/* Mejora para contraste en panel headings oscuros */
+.modal-body .panel-primary .panel-heading a,
+.modal-body .panel-success .panel-heading a,
+.modal-body .panel-info .panel-heading a {
+  color: white !important;
+}
+
+.modal-body .panel-primary .panel-heading a:hover,
+.modal-body .panel-success .panel-heading a:hover,
+.modal-body .panel-info .panel-heading a:hover {
+  color: #ffc107 !important;
+}
+
+.modal-body .panel-warning .panel-heading a {
+  color: #212529 !important;
+}
+
+.modal-body .panel-warning .panel-heading a:hover {
+  color: #0a192f !important;
+}
+
+/* Responsive para modales */
+@media (max-width: 768px) {
+  .modal-body {
+    padding: 15px;
+  }
+  
+  .modal-body .lead {
+    font-size: 1rem;
+  }
+  
+  .modal-body h4 {
+    font-size: 1.1rem;
+  }
+  
+  .modal-body .panel-heading h4 {
+    font-size: 0.9rem;
   }
 }
