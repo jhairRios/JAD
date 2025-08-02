@@ -1,5 +1,27 @@
 /* ========================================
+   TIENDA JAD - HOJA DE ESTILOS PRINCIPAL
+   ========================================
+   Archivo: styles.css
+   Descripción: Estilos principales para la tienda en línea JAD
+   Secciones incluidas:
+   - Variables CSS globales
+   - Estructura base del sitio
+   - Barra de navegación (navbar)
+   - Sección de productos
+   - Footer (pie de página)
+   - Carruseles (productos y marcas)
+   - Sistema de carrito
+   - Notificaciones toast
+   - Modales
+   - Efectos y animaciones
+   - Responsive design
+   ======================================== */
+
+/* ========================================
    VARIABLES CSS GLOBALES
+   ========================================
+   Centralización de colores, dimensiones y 
+   valores reutilizables en todo el sitio
    ======================================== */
    :root {
     /* ===== COLORES PRINCIPALES ===== */
@@ -42,12 +64,17 @@
   
   /* ========================================
      ESTRUCTURA BASE DEL SITIO
+     ========================================
+     Configuración fundamental de HTML y Body
      ======================================== */
-  /* Configuración básica del HTML y Body */
+  
+  /** Configuración básica para altura completa */
   html, body {
-    height: 100%;                    /* Altura completa para flexbox */
+    height: 100%;                    /* Altura completa para layout flexbox */
   }
   
+  
+  /** Configuración del elemento body */
   body {
     display: flex;                    /* Layout flexbox para sticky footer */
     flex-direction: column;           /* Dirección vertical */
@@ -57,8 +84,12 @@
   
   /* ========================================
      BARRA DE NAVEGACIÓN (NAVBAR)
+     ========================================
+     Estilos para la barra de navegación superior
+     incluyendo efectos hover, dropdown y responsive
      ======================================== */
-  /* Contenedor principal de la navbar */
+  
+  /** Contenedor principal de la navbar */
   .navbar {
     background-color: var(--color-primario);  /* Fondo azul oscuro */
     position: fixed;                          /* Posición fija en la parte superior */
@@ -70,19 +101,17 @@
     transition: all 0.3s ease;               /* Transición suave */
   }
   
-  /* ===== ELEMENTOS DE LA NAVBAR ===== */
-  /* Botón hamburguesa para móviles */
+  /** Botón hamburguesa para móviles */
   .navbar-toggle {
     border-color: var(--color-texto);        /* Color del borde del botón */
   }
   
-  /* Barras del botón hamburguesa */
+  /** Barras del botón hamburguesa */
   .navbar-toggle .icon-bar {
     background-color: var(--color-texto);    /* Color de las barras */
   }
   
-  /* ===== ENLACES DE LA NAVBAR ===== */
-  /* Estilo base para todos los enlaces de navegación */
+  /** Estilo base para todos los enlaces de navegación */
   .navbar-brand,
   .navbar-nav > li > a,
   .dropdown-toggle,
@@ -90,8 +119,7 @@
     color: var(--color-texto) !important;    /* Color blanco para todos los enlaces */
   }
   
-  /* ===== EFECTOS HOVER ===== */
-  /* Efecto hover para todos los enlaces */
+  /** Efecto hover para todos los enlaces */
   .navbar-nav > li > a:hover,
   .dropdown-toggle:hover,
   .navbar-nav.navbar-right > li > a:hover {
@@ -99,8 +127,7 @@
     background-color: var(--transparencia-clara) !important; /* Fondo semi-transparente */
   }
   
-  /* ===== ENLACE ACTIVO ===== */
-  /* Estilo para la página activa */
+  /** Estilo para la página activa */
   .navbar-nav > .active > a {
     background-color: var(--transparencia-media) !important; /* Fondo más opaco para activo */
   }
@@ -109,8 +136,7 @@
     background-color: var(--transparencia-oscura) !important; /* Fondo aún más opaco al hover */
   }
   
-  /* ===== MENÚ DESPLEGABLE (DROPDOWN) ===== */
-  /* Estados del botón dropdown */
+  /** Estados del botón dropdown */
   .dropdown-toggle:focus,
   .dropdown-toggle:active,
   .dropdown.open .dropdown-toggle {
