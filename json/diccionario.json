@@ -214,6 +214,407 @@
             "descripcion": "Protector de picos de voltaje",
             "precio": 40,
             "categoria": "Accesorios"
+        },
+        {
+            "codigo": "P031",
+            "nombre": "iPhone 15 Pro",
+            "descripcion": "Smartphone Apple con chip A17 Pro",
+            "precio": 1200,
+            "categoria": "Telefonos",
+            "masvendidos": "True"
+        },
+        {
+            "codigo": "P032",
+            "nombre": "MacBook Air M2",
+            "descripcion": "Laptop Apple con chip M2 de 13 pulgadas",
+            "precio": 1100,
+            "categoria": "Computadora",
+            "masvendidos": "True"
+        },
+        {
+            "codigo": "P033",
+            "nombre": "iPad Pro 12.9",
+            "descripcion": "Tablet Apple con pantalla Liquid Retina",
+            "precio": 1000,
+            "categoria": "Telefonos"
+        },
+        {
+            "codigo": "P034",
+            "nombre": "Apple Watch Series 9",
+            "descripcion": "Reloj inteligente Apple con GPS",
+            "precio": 400,
+            "categoria": "Relojes Inteligentes"
+        },
+        {
+            "codigo": "P035",
+            "nombre": "AirPods Pro 2",
+            "descripcion": "Auriculares inalámbricos Apple con cancelación de ruido",
+            "precio": 250,
+            "categoria": "Audifonos",
+            "masvendidos": "True"
+        },
+        {
+            "codigo": "P036",
+            "nombre": "iMac 24",
+            "descripcion": "Computadora todo en uno Apple con chip M1",
+            "precio": 1300,
+            "categoria": "Computadora"
+        },
+        {
+            "codigo": "P037",
+            "nombre": "Dell XPS 13",
+            "descripcion": "Laptop ultrabook Dell con pantalla InfinityEdge",
+            "precio": 950,
+            "categoria": "Computadora",
+            "masvendidos": "True"
+        },
+        {
+            "codigo": "P038",
+            "nombre": "Dell OptiPlex 7090",
+            "descripcion": "Computadora de escritorio Dell para empresas",
+            "precio": 800,
+            "categoria": "Computadora"
+        },
+        {
+            "codigo": "P039",
+            "nombre": "Dell Inspiron 15 3000",
+            "descripcion": "Laptop Dell económica para uso diario",
+            "precio": 450,
+            "categoria": "Computadora"
+        },
+        {
+            "codigo": "P040",
+            "nombre": "Dell UltraSharp U2720Q",
+            "descripcion": "Monitor Dell 4K de 27 pulgadas",
+            "precio": 500,
+            "categoria": "Monitores"
+        },
+        {
+            "codigo": "P041",
+            "nombre": "Dell Alienware Aurora R13",
+            "descripcion": "PC Gamer Dell de alto rendimiento",
+            "precio": 2000,
+            "categoria": "Computadora"
+        },
+        {
+            "codigo": "P042",
+            "nombre": "Dyson V15 Detect",
+            "descripcion": "Aspiradora inalámbrica Dyson con láser",
+            "precio": 650,
+            "categoria": "Electrodomesticos"
+        },
+        {
+            "codigo": "P043",
+            "nombre": "Dyson Airwrap",
+            "descripcion": "Estilizador de cabello Dyson multifuncional",
+            "precio": 550,
+            "categoria": "Cuidado Personal"
+        },
+        {
+            "codigo": "P044",
+            "nombre": "Dyson Purifier Cool",
+            "descripcion": "Purificador de aire y ventilador Dyson",
+            "precio": 400,
+            "categoria": "Electrodomesticos"
+        },
+        {
+            "codigo": "P045",
+            "nombre": "Dyson Supersonic",
+            "descripcion": "Secador de cabello Dyson de alta velocidad",
+            "precio": 400,
+            "categoria": "Cuidado Personal"
+        },
+        {
+            "codigo": "P046",
+            "nombre": "Frigidaire Gallery FGHI2164QF",
+            "descripcion": "Refrigerador Frigidaire de 21.4 pies cúbicos",
+            "precio": 1200,
+            "categoria": "Electrodomesticos"
+        },
+        {
+            "codigo": "P047",
+            "nombre": "Frigidaire FFRE0833U1",
+            "descripcion": "Aire acondicionado de ventana Frigidaire 8000 BTU",
+            "precio": 300,
+            "categoria": "Electrodomesticos"
+        },
+        {
+            "codigo": "P048",
+            "nombre": "Frigidaire FGEF3058RF",
+            "descripcion": "Estufa eléctrica Frigidaire de 30 pulgadas",
+            "precio": 800,
+            "categoria": "Electrodomesticos"
+        },
+        {
+            "codigo": "P049",
+            "nombre": "Frigidaire FGID2476SF",
+            "descripcion": "Lavavajillas Frigidaire de acero inoxidable",
+            "precio": 600,
+            "categoria": "Electrodomesticos"
+        },
+        {
+            "codigo": "P050",
+            "nombre": "Honor Magic5 Pro",
+            "descripcion": "Smartphone Honor con cámara de 50MP",
+            "precio": 800,
+            "categoria": "Telefonos"
+        },
+        {
+            "codigo": "P051",
+            "nombre": "Honor MagicBook 16",
+            "descripcion": "Laptop Honor con procesador AMD Ryzen",
+            "precio": 700,
+            "categoria": "Computadora"
+        },
+        {
+            "codigo": "P052",
+            "nombre": "Honor Pad 8",
+            "descripcion": "Tablet Honor de 12 pulgadas",
+            "precio": 300,
+            "categoria": "Telefonos"
+        },
+        {
+            "codigo": "P053",
+            "nombre": "Honor Watch GS 3",
+            "descripcion": "Reloj inteligente Honor con GPS",
+            "precio": 200,
+            "categoria": "Relojes Inteligentes"
+        },
+        {
+            "codigo": "P054",
+            "nombre": "HP Envy x360",
+            "descripcion": "Laptop convertible HP de 15.6 pulgadas",
+            "precio": 800,
+            "categoria": "Computadora"
+        },
+        {
+            "codigo": "P055",
+            "nombre": "HP Pavilion Gaming",
+            "descripcion": "PC Gaming HP con tarjeta gráfica dedicada",
+            "precio": 900,
+            "categoria": "Computadora"
+        },
+        {
+            "codigo": "P056",
+            "nombre": "HP OfficeJet Pro 9015e",
+            "descripcion": "Impresora multifuncional HP todo en uno",
+            "precio": 200,
+            "categoria": "Impresoras"
+        },
+        {
+            "codigo": "P057",
+            "nombre": "HP EliteDesk 800 G8",
+            "descripcion": "Computadora de escritorio HP para empresas",
+            "precio": 750,
+            "categoria": "Computadora"
+        },
+        {
+            "codigo": "P058",
+            "nombre": "JBL Charge 5",
+            "descripcion": "Altavoz Bluetooth JBL portátil resistente al agua",
+            "precio": 150,
+            "categoria": "Altavoces",
+            "masvendidos": "True"
+        },
+        {
+            "codigo": "P059",
+            "nombre": "JBL Flip 6",
+            "descripcion": "Altavoz Bluetooth JBL compacto",
+            "precio": 100,
+            "categoria": "Altavoces"
+        },
+        {
+            "codigo": "P060",
+            "nombre": "JBL Tune 760NC",
+            "descripcion": "Auriculares JBL con cancelación de ruido",
+            "precio": 120,
+            "categoria": "Audifonos"
+        },
+        {
+            "codigo": "P061",
+            "nombre": "JBL Xtreme 3",
+            "descripcion": "Altavoz Bluetooth JBL de alta potencia",
+            "precio": 300,
+            "categoria": "Altavoces"
+        },
+        {
+            "codigo": "P062",
+            "nombre": "JBL PartyBox 310",
+            "descripcion": "Sistema de sonido JBL para fiestas con luces",
+            "precio": 400,
+            "categoria": "Altavoces"
+        },
+        {
+            "codigo": "P063",
+            "nombre": "LG C3 OLED 55",
+            "descripcion": "Televisor LG OLED de 55 pulgadas 4K",
+            "precio": 1400,
+            "categoria": "Televisores",
+            "masvendidos": "True"
+        },
+        {
+            "codigo": "P064",
+            "nombre": "LG UltraWide 34WP65C",
+            "descripcion": "Monitor LG ultrawide curvo de 34 pulgadas",
+            "precio": 400,
+            "categoria": "Monitores"
+        },
+        {
+            "codigo": "P065",
+            "nombre": "LG gram 17",
+            "descripcion": "Laptop LG ultraliviana de 17 pulgadas",
+            "precio": 1300,
+            "categoria": "Computadora"
+        },
+        {
+            "codigo": "P066",
+            "nombre": "LG ThinQ Refrigerator",
+            "descripcion": "Refrigerador inteligente LG con Wi-Fi",
+            "precio": 2000,
+            "categoria": "Electrodomesticos"
+        },
+        {
+            "codigo": "P067",
+            "nombre": "LG Soundbar SN5Y",
+            "descripcion": "Barra de sonido LG con subwoofer inalámbrico",
+            "precio": 200,
+            "categoria": "Altavoces"
+        },
+        {
+            "codigo": "P068",
+            "nombre": "Mabe Refrigerador RMB400IBMRX",
+            "descripcion": "Refrigerador Mabe de 14 pies cúbicos",
+            "precio": 800,
+            "categoria": "Electrodomesticos"
+        },
+        {
+            "codigo": "P069",
+            "nombre": "Mabe Lavadora LMA72100WDAB",
+            "descripcion": "Lavadora automática Mabe de 20 kg",
+            "precio": 600,
+            "categoria": "Electrodomesticos"
+        },
+        {
+            "codigo": "P070",
+            "nombre": "Mabe Estufa EM7640FX",
+            "descripcion": "Estufa Mabe de 6 quemadores",
+            "precio": 500,
+            "categoria": "Electrodomesticos"
+        },
+        {
+            "codigo": "P071",
+            "nombre": "Mabe Microondas MMW15120AXX",
+            "descripcion": "Horno microondas Mabe de 1.5 pies cúbicos",
+            "precio": 150,
+            "categoria": "Electrodomesticos"
+        },
+        {
+            "codigo": "P072",
+            "nombre": "Motorola Edge 40 Pro",
+            "descripcion": "Smartphone Motorola con cámara de 50MP",
+            "precio": 600,
+            "categoria": "Telefonos"
+        },
+        {
+            "codigo": "P073",
+            "nombre": "Motorola Moto G Power",
+            "descripcion": "Smartphone Motorola con batería de larga duración",
+            "precio": 250,
+            "categoria": "Telefonos"
+        },
+        {
+            "codigo": "P074",
+            "nombre": "Motorola ThinkPhone",
+            "descripcion": "Smartphone empresarial Motorola",
+            "precio": 700,
+            "categoria": "Telefonos"
+        },
+        {
+            "codigo": "P075",
+            "nombre": "Samsung Galaxy S24 Ultra",
+            "descripcion": "Smartphone Samsung flagship con S Pen",
+            "precio": 1200,
+            "categoria": "Telefonos",
+            "masvendidos": "True"
+        },
+        {
+            "codigo": "P076",
+            "nombre": "Samsung Galaxy Book3 Pro",
+            "descripcion": "Laptop Samsung de 16 pulgadas",
+            "precio": 1100,
+            "categoria": "Computadora"
+        },
+        {
+            "codigo": "P077",
+            "nombre": "Samsung Odyssey G7",
+            "descripcion": "Monitor gaming Samsung curvo de 32 pulgadas",
+            "precio": 600,
+            "categoria": "Monitores"
+        },
+        {
+            "codigo": "P078",
+            "nombre": "Samsung The Frame 65",
+            "descripcion": "Televisor Samsung que simula un cuadro",
+            "precio": 1800,
+            "categoria": "Televisores"
+        },
+        {
+            "codigo": "P079",
+            "nombre": "Samsung Galaxy Buds2 Pro",
+            "descripcion": "Auriculares inalámbricos Samsung con ANC",
+            "precio": 200,
+            "categoria": "Audifonos"
+        },
+        {
+            "codigo": "P080",
+            "nombre": "Samsung Family Hub Refrigerator",
+            "descripcion": "Refrigerador inteligente Samsung con pantalla táctil",
+            "precio": 3000,
+            "categoria": "Electrodomesticos"
+        },
+        {
+            "codigo": "P081",
+            "nombre": "Sony WH-1000XM5",
+            "descripcion": "Auriculares Sony premium con cancelación de ruido",
+            "precio": 350,
+            "categoria": "Audifonos",
+            "masvendidos": "True"
+        },
+        {
+            "codigo": "P082",
+            "nombre": "Sony PlayStation 5",
+            "descripcion": "Consola de videojuegos Sony de nueva generación",
+            "precio": 500,
+            "categoria": "Consolas",
+            "masvendidos": "True"
+        },
+        {
+            "codigo": "P083",
+            "nombre": "Sony A7 IV",
+            "descripcion": "Cámara mirrorless Sony de 33MP",
+            "precio": 2500,
+            "categoria": "Camara"
+        },
+        {
+            "codigo": "P084",
+            "nombre": "Sony Bravia XR A90J",
+            "descripcion": "Televisor Sony OLED de 65 pulgadas",
+            "precio": 2200,
+            "categoria": "Televisores"
+        },
+        {
+            "codigo": "P085",
+            "nombre": "Sony SRS-XB43",
+            "descripcion": "Altavoz Bluetooth Sony con Extra Bass",
+            "precio": 200,
+            "categoria": "Altavoces"
+        },
+        {
+            "codigo": "P086",
+            "nombre": "Sony Xperia 1 V",
+            "descripcion": "Smartphone Sony con pantalla 4K",
+            "precio": 1300,
+            "categoria": "Telefonos"
         }
     ]
 }

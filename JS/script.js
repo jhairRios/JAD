@@ -140,8 +140,16 @@ $(document).ready(function () {
       return;
     }
 
-    // Iterar sobre cada producto y crear su HTML
-    $.each(productos, function (index, producto) {
+    // Ordenar productos por código antes de mostrarlos
+    var productosOrdenados = productos.slice().sort(function(a, b) {
+      // Extraer números del código para ordenamiento numérico correcto
+      var numA = parseInt(a.codigo.replace(/\D/g, ''));
+      var numB = parseInt(b.codigo.replace(/\D/g, ''));
+      return numA - numB;
+    });
+
+    // Iterar sobre cada producto ordenado y crear su HTML
+    $.each(productosOrdenados, function (index, producto) {
       // Solo mostrar productos que tengan nombre válido
       if (producto.nombre && producto.nombre.trim() !== "") {
         
@@ -151,7 +159,7 @@ $(document).ready(function () {
 
         // Plantilla HTML para cada producto
         var productoHTML = `
-            <div class="col-md-3 col-sm-6 col-xs-12">
+            <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 producto-col">
               <div class="producto-card">
                 <!-- Contenedor de la imagen del producto -->
                 <div class="producto-imagen">
@@ -189,6 +197,12 @@ $(document).ready(function () {
         productosContainer.append(productoHTML);
       }
     });
+
+    // Agregar clearfix después de cada grupo de 4 productos para pantallas grandes
+    // y después de cada grupo de 3 para pantallas medianas
+    productosContainer.find('.producto-col:nth-child(4n)').after('<div class="clearfix visible-lg"></div>');
+    productosContainer.find('.producto-col:nth-child(3n)').after('<div class="clearfix visible-md"></div>');
+    productosContainer.find('.producto-col:nth-child(2n)').after('<div class="clearfix visible-sm"></div>');
   }
 
   /* ========================================
@@ -556,104 +570,162 @@ $(document).ready(function () {
 
   /** Categoría: Audífonos */
   $("#btn-Audifono").click(function (e) {
+    e.preventDefault();
     filtrarPorCategoria("Audifonos");
     $(".productos-seccion h2").text("Audifonos");
+    actualizarNavegacionActiva($("#nav-categorias"));
   });
 
   /** Categoría: Pantallas/Monitores */
   $("#btn-Pantalla").click(function (e) {
+    e.preventDefault();
     filtrarPorCategoria("Monitores");
     $(".productos-seccion h2").text("Pantallas");
+    actualizarNavegacionActiva($("#nav-categorias"));
   });
 
   /** Categoría: Computadoras */
   $("#btn-Computadoras").click(function (e) {
+    e.preventDefault();
     filtrarPorCategoria("Computadora");
     $(".productos-seccion h2").text("Computadoras");
+    actualizarNavegacionActiva($("#nav-categorias"));
   });
 
   /** Categoría: Teclados */
   $("#btn-Teclados").click(function (e) {
+    e.preventDefault();
     filtrarPorCategoria("Teclados");
     $(".productos-seccion h2").text("Teclados");
+    actualizarNavegacionActiva($("#nav-categorias"));
   });
 
   /** Categoría: Mouse */
   $("#btn-Mouse").click(function (e) {
+    e.preventDefault();
     filtrarPorCategoria("Mouse");
     $(".productos-seccion h2").text("Mouse");
+    actualizarNavegacionActiva($("#nav-categorias"));
   });
 
   /** Categoría: Routers */
   $("#btn-Router").click(function (e) {
+    e.preventDefault();
     filtrarPorCategoria("Router");
     $(".productos-seccion h2").text("Routers");
+    actualizarNavegacionActiva($("#nav-categorias"));
   });
 
   /** Categoría: Almacenamiento */
   $("#btn-Almacenamiento").click(function (e) {
+    e.preventDefault();
     filtrarPorCategoria("Almacenamiento");
-    $(".productos-seccion h2").text("Almacenamientos");
+    $(".productos-seccion h2").text("Almacenamiento");
+    actualizarNavegacionActiva($("#nav-categorias"));
   });
 
   /** Categoría: Cámaras */
   $("#btn-Camaras").click(function (e) {
-    filtrarPorCategoria("Almacenamiento"); // Error: debería ser "Camaras"
-    $(".productos-seccion h2").text("Almacenamientos");
+    e.preventDefault();
+    filtrarPorCategoria("Camara");
+    $(".productos-seccion h2").text("Cámaras");
+    actualizarNavegacionActiva($("#nav-categorias"));
   });
 
   /** Categoría: Impresoras */
   $("#btn-Impresoras").click(function (e) {
+    e.preventDefault();
     filtrarPorCategoria("Impresoras");
     $(".productos-seccion h2").text("Impresoras");
+    actualizarNavegacionActiva($("#nav-categorias"));
   });
 
   /** Categoría: Teléfonos */
   $("#btn-Telefonos").click(function (e) {
+    e.preventDefault();
     filtrarPorCategoria("Telefonos");
-    $(".productos-seccion h2").text("Telefonos");
+    $(".productos-seccion h2").text("Teléfonos");
+    actualizarNavegacionActiva($("#nav-categorias"));
   });
 
   /** Categoría: Cámara (individual) */
   $("#btn-Camara").click(function (e) {
+    e.preventDefault();
     filtrarPorCategoria("Camara");
-    $(".productos-seccion h2").text("Camara");
+    $(".productos-seccion h2").text("Cámara");
+    actualizarNavegacionActiva($("#nav-categorias"));
   });
 
   /** Categoría: Proyectores */
   $("#btn-Proyector").click(function (e) {
+    e.preventDefault();
     filtrarPorCategoria("Proyector");
     $(".productos-seccion h2").text("Proyector");
+    actualizarNavegacionActiva($("#nav-categorias"));
   });
 
   /** Categoría: Componentes Internos */
   $("#btn-Compenentes").click(function (e) {
+    e.preventDefault();
     filtrarPorCategoria("Componentes Internos");
-    $(".productos-seccion h2").text("Compenente");
+    $(".productos-seccion h2").text("Componentes Internos");
+    actualizarNavegacionActiva($("#nav-categorias"));
   });
 
   /** Categoría: Altavoces */
   $("#btn-Altavoces").click(function (e) {
+    e.preventDefault();
     filtrarPorCategoria("Altavoces");
     $(".productos-seccion h2").text("Altavoces");
+    actualizarNavegacionActiva($("#nav-categorias"));
   });
 
   /** Categoría: Relojes Inteligentes */
   $("#btn-Relojes").click(function (e) {
+    e.preventDefault();
     filtrarPorCategoria("Relojes Inteligentes");
     $(".productos-seccion h2").text("Relojes Inteligentes");
+    actualizarNavegacionActiva($("#nav-categorias"));
   });
 
   /** Categoría: Consolas */
   $("#btn-Consolas").click(function (e) {
+    e.preventDefault();
     filtrarPorCategoria("Consolas");
     $(".productos-seccion h2").text("Consolas");
+    actualizarNavegacionActiva($("#nav-categorias"));
   });
 
   /** Categoría: Accesorios */
   $("#btn-Accesorios").click(function (e) {
+    e.preventDefault();
     filtrarPorCategoria("Accesorios");
     $(".productos-seccion h2").text("Accesorios");
+    actualizarNavegacionActiva($("#nav-categorias"));
+  });
+
+  /** Categoría: Electrodomésticos */
+  $("#btn-Electrodomesticos").click(function (e) {
+    e.preventDefault();
+    filtrarPorCategoria("Electrodomesticos");
+    $(".productos-seccion h2").text("Electrodomésticos");
+    actualizarNavegacionActiva($("#nav-categorias"));
+  });
+
+  /** Categoría: Cuidado Personal */
+  $("#btn-CuidadoPersonal").click(function (e) {
+    e.preventDefault();
+    filtrarPorCategoria("Cuidado Personal");
+    $(".productos-seccion h2").text("Cuidado Personal");
+    actualizarNavegacionActiva($("#nav-categorias"));
+  });
+
+  /** Categoría: Televisores */
+  $("#btn-Televisores").click(function (e) {
+    e.preventDefault();
+    filtrarPorCategoria("Televisores");
+    $(".productos-seccion h2").text("Televisores");
+    actualizarNavegacionActiva($("#nav-categorias"));
   });
 
   /* ========================================
@@ -662,8 +734,10 @@ $(document).ready(function () {
 
   /** Mostrar productos más vendidos (página de inicio) */
   $("#btn-inicio").click(function (e) {
+    e.preventDefault();
     filtrarPorVendidos("True");
     $(".productos-seccion h2").text("Mas Vendidos");
+    actualizarNavegacionActiva($("#nav-inicio"));
   });
 
   /**
@@ -679,6 +753,7 @@ $(document).ready(function () {
   $("#btn-productos").click(function (e) {
     e.preventDefault();
     mostrarTodosLosProductos();
+    actualizarNavegacionActiva($("#nav-productos"));
   });
 
 }); // FIN del $(document).ready()
