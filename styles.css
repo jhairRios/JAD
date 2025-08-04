@@ -229,6 +229,7 @@
     display: flex;                                                               /* Layout flexbox */
     flex-direction: column;                                                      /* Dirección vertical */
     min-height: 420px;                                                           /* Altura mínima para uniformidad */
+    position: relative;                                                          /* Para posicionar etiquetas */
   }
   
   /* Efecto hover de la tarjeta */
@@ -260,6 +261,105 @@
   /* Efecto zoom en la imagen al hover */
   .producto-card:hover .producto-imagen img {
     transform: scale(1.05);                                                    /* Zoom del 5% */
+  }
+  
+  /* ===== ETIQUETAS ESPECIALES ===== */
+  /* Etiqueta base para "Más Vendido" y "Oferta" */
+  .etiqueta-especial {
+    position: absolute;
+    top: 12px;
+    z-index: 10;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    animation: pulseEtiqueta 2s infinite;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+  
+  /* Etiqueta "Más Vendido" */
+  .etiqueta-mas-vendido {
+    left: 12px;
+    background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
+    color: #fff;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+  }
+  
+  /* Etiqueta "Oferta" */
+  .etiqueta-oferta {
+    right: 12px;
+    background: linear-gradient(135deg, #e53e3e 0%, #c53030 100%);
+    color: #fff;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+  }
+  
+  /* DISEÑO MEJORADO: Cuando hay ambas etiquetas */
+  /* Reorganizar las etiquetas para mejor apariencia visual */
+  
+  /* Opción 1: Etiquetas en esquinas opuestas en la misma línea */
+  .producto-card .etiqueta-mas-vendido + .etiqueta-oferta {
+    top: 12px; /* Misma altura que "Más Vendido" */
+    right: 12px; /* Esquina derecha */
+  }
+  
+  /* Asegurar que "Más Vendido" se mantiene en su posición */
+  .producto-card .etiqueta-mas-vendido {
+    top: 12px;
+    left: 12px;
+  }
+  
+  /* Estilo especial cuando ambas etiquetas están presentes - más compactas */
+  .producto-card:has(.etiqueta-mas-vendido):has(.etiqueta-oferta) .etiqueta-especial {
+    padding: 4px 8px; /* Más compactas */
+    font-size: 9px; /* Texto más pequeño */
+    border-radius: 15px; /* Bordes más redondeados */
+  }
+  
+  /* Alternativa: Si quieres las etiquetas apiladas verticalmente */
+  .producto-card.etiquetas-apiladas .etiqueta-mas-vendido + .etiqueta-oferta {
+    top: 45px; /* Debajo de "Más Vendido" */
+    right: 12px;
+  }
+  
+  /* Hover en las etiquetas */
+  .etiqueta-especial:hover {
+    transform: scale(1.1);
+    animation-play-state: paused;
+  }
+  
+  /* Efecto especial: cuando un producto tiene ambas etiquetas, crear armonía visual */
+  .producto-card:has(.etiqueta-mas-vendido):has(.etiqueta-oferta) {
+    /* Sombra especial para productos con doble etiqueta */
+    box-shadow: 0 4px 12px rgba(255, 107, 53, 0.2), 0 8px 16px rgba(229, 62, 62, 0.15);
+  }
+  
+  /* Efecto hover mejorado para productos con ambas etiquetas */
+  .producto-card:has(.etiqueta-mas-vendido):has(.etiqueta-oferta):hover {
+    box-shadow: 0 8px 20px rgba(255, 107, 53, 0.25), 0 12px 24px rgba(229, 62, 62, 0.2);
+    border-color: #ff6b35;
+  }
+  
+  /* Sincronizar animaciones cuando ambas etiquetas están presentes */
+  .producto-card .etiqueta-mas-vendido + .etiqueta-oferta {
+    animation-delay: 0.3s; /* Ligeramente desfasada para efecto visual */
+  }
+  
+  /* Animación de pulso para las etiquetas */
+  @keyframes pulseEtiqueta {
+    0%, 100% {
+      transform: scale(1);
+      opacity: 1;
+    }
+    50% {
+      transform: scale(1.05);
+      opacity: 0.9;
+    }
   }
   
   /* ===== INFORMACIÓN DEL PRODUCTO ===== */
@@ -869,6 +969,39 @@
       animation-duration: 25s;            /* Animación más rápida */
       /* RAZÓN: Con elementos más pequeños, la animación se ve
          más lenta, por lo que se acelera para mantener fluidez */
+    }
+    
+    /* ===== ETIQUETAS ESPECIALES EN MÓVILES ===== */
+    /* Ajustar tamaño y posición de etiquetas en móviles */
+    .etiqueta-especial {
+      padding: 3px 6px;                   /* Padding aún más pequeño */
+      font-size: 8px;                     /* Texto más pequeño */
+      border-radius: 10px;                /* Bordes más suaves */
+      top: 6px;                           /* Posición ajustada */
+    }
+    
+    /* Ajustar posición de etiqueta "Más Vendido" en móviles */
+    .etiqueta-mas-vendido {
+      left: 6px;                          /* Menos separación del borde */
+      top: 6px;
+    }
+    
+    /* Ajustar posición de etiqueta "Oferta" en móviles */
+    .etiqueta-oferta {
+      right: 6px;                         /* Menos separación del borde */
+      top: 6px;                           /* Misma altura para que se vean en línea */
+    }
+    
+    /* En móviles, mantener las etiquetas en la misma línea pero más pequeñas */
+    .producto-card .etiqueta-mas-vendido + .etiqueta-oferta {
+      top: 6px;                           /* Misma línea en móviles */
+      right: 6px;
+    }
+    
+    /* Hacer las etiquetas aún más compactas cuando están juntas en móviles */
+    .producto-card:has(.etiqueta-mas-vendido):has(.etiqueta-oferta) .etiqueta-especial {
+      padding: 2px 5px;                   /* Muy compactas */
+      font-size: 7px;                     /* Texto muy pequeño */
     }
   }
   
@@ -2613,4 +2746,572 @@
     font-size: 11px;
     padding: 6px 10px;
   }
+}
+
+/* ========================================
+   MODAL PRODUCTO TEMPORAL
+   ========================================
+   Estilos específicos para el modal de 
+   agregar productos temporales
+   
+   CARACTERÍSTICAS:
+   - Formulario organizado en dos columnas
+   - Vista previa en tiempo real
+   - Validación visual de campos
+   - Estética consistente con el resto del sitio
+   ======================================== */
+
+/* Contenedor principal del modal */
+#modalProductoTemporal .modal-content {
+  border: none;
+  border-radius: 8px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* Cabecera del modal */
+#modalProductoTemporal .modal-header {
+  background: linear-gradient(135deg, var(--color-primario) 0%, #1a365d 100%);
+  color: var(--color-texto);
+  border-bottom: none;
+  border-radius: 8px 8px 0 0;
+  padding: 20px;
+}
+
+#modalProductoTemporal .modal-title {
+  font-weight: 600;
+  font-size: 20px;
+}
+
+#modalProductoTemporal .modal-header .close {
+  color: var(--color-texto);
+  opacity: 0.8;
+  font-size: 28px;
+  text-shadow: none;
+}
+
+#modalProductoTemporal .modal-header .close:hover {
+  opacity: 1;
+  color: #ffc107;
+}
+
+/* Cuerpo del modal */
+#modalProductoTemporal .modal-body {
+  padding: 30px;
+  background-color: #fff;
+}
+
+/* Estilos para los campos del formulario */
+#modalProductoTemporal .form-group {
+  margin-bottom: 20px;
+}
+
+#modalProductoTemporal .control-label {
+  font-weight: 600;
+  color: var(--color-primario);
+  margin-bottom: 8px;
+  display: block;
+}
+
+#modalProductoTemporal .control-label i {
+  margin-right: 8px;
+  color: #007bff;
+}
+
+#modalProductoTemporal .form-control {
+  border: 2px solid #e9ecef;
+  border-radius: 6px;
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 1.42857143;
+  transition: all 0.3s ease;
+  background-color: #fff;
+  height: 34px;
+}
+
+#modalProductoTemporal .form-control:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+  background-color: #fff;
+}
+
+#modalProductoTemporal .form-control:invalid {
+  border-color: #dc3545;
+}
+
+#modalProductoTemporal .form-control:valid {
+  border-color: #28a745;
+}
+
+/* Estilos para el input group del precio */
+#modalProductoTemporal .input-group {
+  position: relative;
+  display: table;
+  border-collapse: separate;
+  width: 100%;
+}
+
+#modalProductoTemporal .input-group .form-control {
+  position: relative;
+  z-index: 2;
+  float: left;
+  width: 100%;
+  margin-bottom: 0;
+  border-radius: 0;
+}
+
+#modalProductoTemporal .input-group .form-control:first-child {
+  border-top-left-radius: 6px;
+  border-bottom-left-radius: 6px;
+  border-right: 0;
+}
+
+#modalProductoTemporal .input-group .form-control:last-child {
+  border-top-right-radius: 6px;
+  border-bottom-right-radius: 6px;
+  border-left: 0;
+}
+
+#modalProductoTemporal .input-group-addon {
+  padding: 6px 12px;
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 1.42857143;
+  color: #fff;
+  text-align: center;
+  background-color: var(--color-primario);
+  border: 2px solid var(--color-primario);
+  border-radius: 6px;
+  white-space: nowrap;
+  vertical-align: middle;
+  display: table-cell;
+  width: 1%;
+}
+
+#modalProductoTemporal .input-group-addon:first-child {
+  border-right: 0;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+#modalProductoTemporal .input-group-addon:last-child {
+  border-left: 0;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+#modalProductoTemporal .input-group .form-control:focus {
+  border-color: #007bff;
+  box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 0 3px rgba(0,123,255,.1);
+  z-index: 3;
+}
+
+/* Estilos mejorados para el select de categorías */
+#modalProductoTemporal select.form-control {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 5'%3E%3Cpath fill='%23666' d='m2 0-2 2h4zm0 5 2-2h-4z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 12px;
+  padding-right: 40px;
+  height: 34px;
+  line-height: 1.42857143;
+}
+
+#modalProductoTemporal select.form-control:focus {
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 5'%3E%3Cpath fill='%23007bff' d='m2 0-2 2h4zm0 5 2-2h-4z'/%3E%3C/svg%3E");
+}
+
+/* Estilos para las opciones del select */
+#modalProductoTemporal select.form-control option {
+  padding: 8px 12px;
+  background-color: #fff;
+  color: #333;
+  font-size: 14px;
+}
+
+#modalProductoTemporal select.form-control option:checked {
+  background-color: var(--color-primario);
+  color: #fff;
+}
+
+/* Ajustes para textarea */
+#modalProductoTemporal textarea.form-control {
+  resize: vertical;
+  min-height: 80px;
+  max-height: 120px;
+}
+
+/* Texto de ayuda */
+#modalProductoTemporal .help-block {
+  color: #6c757d;
+  font-size: 12px;
+  margin-top: 5px;
+  margin-bottom: 0;
+}
+
+/* Campos obligatorios */
+#modalProductoTemporal .text-danger {
+  color: #dc3545 !important;
+}
+
+/* Estilos para checkboxes de opciones especiales */
+#modalProductoTemporal .checkbox {
+  margin-bottom: 12px;
+  margin-top: 8px;
+}
+
+#modalProductoTemporal .checkbox label {
+  display: flex;
+  align-items: flex-start;
+  font-weight: 500;
+  color: #495057;
+  cursor: pointer;
+  padding-left: 0;
+  margin-bottom: 0;
+}
+
+#modalProductoTemporal .checkbox input[type="checkbox"] {
+  margin-right: 12px;
+  margin-top: 2px;
+  transform: scale(1.2);
+  cursor: pointer;
+  accent-color: var(--color-primario);
+}
+
+#modalProductoTemporal .checkbox label:hover {
+  color: var(--color-primario);
+}
+
+#modalProductoTemporal .checkbox .text-muted {
+  display: block;
+  font-weight: normal;
+  font-size: 11px;
+  color: #6c757d;
+  margin-top: 2px;
+  line-height: 1.3;
+}
+
+#modalProductoTemporal .checkbox input[type="checkbox"]:checked + strong {
+  color: var(--color-primario);
+}
+
+/* Panel de vista previa */
+#modalProductoTemporal .panel-info {
+  border-color: #007bff;
+  border-radius: 8px;
+  overflow: hidden;
+  margin-top: 20px;
+}
+
+#modalProductoTemporal .panel-info .panel-heading {
+  background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
+  color: #fff;
+  border-bottom: none;
+  padding: 15px 20px;
+}
+
+#modalProductoTemporal .panel-info .panel-title {
+  font-weight: 600;
+  margin: 0;
+}
+
+#modalProductoTemporal .panel-info .panel-body {
+  padding: 20px;
+  background-color: #f8f9fa;
+}
+
+/* Vista previa del producto */
+.producto-preview-card {
+  background: #fff;
+  border: 2px dashed #dee2e6 !important;
+  border-radius: 8px !important;
+  padding: 25px !important;
+  transition: all 0.3s ease;
+  max-width: 320px !important;
+  margin: 0 auto;
+}
+
+.producto-preview-card:hover {
+  border-color: #007bff !important;
+  border-style: solid !important;
+  box-shadow: 0 4px 15px rgba(0, 123, 255, 0.15);
+}
+
+.preview-imagen {
+  margin-bottom: 15px !important;
+}
+
+.preview-imagen i {
+  font-size: 60px !important;
+  color: #dee2e6 !important;
+  transition: color 0.3s ease;
+}
+
+.producto-preview-card:hover .preview-imagen i {
+  color: #007bff !important;
+}
+
+#preview-nombre {
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: var(--color-primario) !important;
+  font-size: 16px;
+}
+
+#preview-categoria {
+  margin-bottom: 10px;
+  font-size: 14px;
+  color: #6c757d !important;
+}
+
+.precio-preview {
+  font-size: 18px !important;
+  font-weight: bold !important;
+  color: var(--color-primario) !important;
+  margin: 0;
+}
+
+/* Pie del modal */
+#modalProductoTemporal .modal-footer {
+  background-color: #f8f9fa;
+  border-top: 1px solid #dee2e6;
+  padding: 20px 30px;
+  border-radius: 0 0 8px 8px;
+}
+
+#modalProductoTemporal .modal-footer .btn {
+  padding: 12px 24px;
+  font-weight: 600;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+  margin-left: 10px;
+}
+
+#modalProductoTemporal .modal-footer .btn-secondary {
+  background-color: #6c757d;
+  border-color: #6c757d;
+  color: #fff;
+}
+
+#modalProductoTemporal .modal-footer .btn-secondary:hover {
+  background-color: #5a6268;
+  border-color: #545b62;
+  transform: translateY(-1px);
+}
+
+#modalProductoTemporal .modal-footer .btn-success {
+  background-color: #28a745;
+  border-color: #28a745;
+  color: #fff;
+}
+
+#modalProductoTemporal .modal-footer .btn-success:hover {
+  background-color: #218838;
+  border-color: #1e7e34;
+  transform: translateY(-1px);
+}
+
+#modalProductoTemporal .modal-footer .btn-success:disabled {
+  background-color: #6c757d;
+  border-color: #6c757d;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Animaciones para el modal */
+#modalProductoTemporal.fade .modal-dialog {
+  transform: translate(0, -50px);
+  transition: transform 0.3s ease-out;
+}
+
+#modalProductoTemporal.fade.in .modal-dialog {
+  transform: translate(0, 0);
+}
+
+/* Responsive para dispositivos móviles */
+@media (max-width: 768px) {
+  #modalProductoTemporal .modal-body {
+    padding: 20px 15px;
+  }
+  
+  #modalProductoTemporal .modal-footer {
+    padding: 15px;
+  }
+  
+  #modalProductoTemporal .modal-footer .btn {
+    width: 100%;
+    margin: 5px 0;
+  }
+  
+  .producto-preview-card {
+    padding: 20px !important;
+  }
+  
+  /* Ajustes para input group en móviles */
+  #modalProductoTemporal .input-group {
+    display: block;
+  }
+  
+  #modalProductoTemporal .input-group-addon {
+    display: inline-block;
+    width: auto;
+    border-radius: 6px 0 0 6px !important;
+    text-align: center;
+    margin-bottom: 0;
+    z-index: 1;
+    vertical-align: top;
+  }
+  
+  #modalProductoTemporal .input-group .form-control {
+    border-radius: 0 6px 6px 0 !important;
+    border-left: 0;
+    display: inline-block;
+    width: calc(100% - 40px);
+    vertical-align: top;
+  }
+}
+
+/* Validación visual mejorada */
+#modalProductoTemporal .form-group.has-error .form-control {
+  border-color: #dc3545;
+  box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 0 3px rgba(220, 53, 69, 0.1);
+}
+
+#modalProductoTemporal .form-group.has-error .input-group-addon {
+  background-color: #dc3545;
+  border-color: #dc3545;
+  color: #fff;
+}
+
+#modalProductoTemporal .form-group.has-success .form-control {
+  border-color: #28a745;
+  box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 0 3px rgba(40, 167, 69, 0.1);
+}
+
+#modalProductoTemporal .form-group.has-success .input-group-addon {
+  background-color: #28a745;
+  border-color: #28a745;
+  color: #fff;
+}
+
+/* Estilos para campos deshabilitados */
+#modalProductoTemporal .form-control:disabled,
+#modalProductoTemporal .form-control[readonly] {
+  background-color: #f8f9fa;
+  opacity: 1;
+  cursor: not-allowed;
+}
+
+/* Mejoras adicionales para mejor compatibilidad */
+#modalProductoTemporal .modal-dialog {
+  margin: 30px auto;
+}
+
+#modalProductoTemporal .panel {
+  border-radius: 6px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+}
+
+#modalProductoTemporal .panel-info .panel-heading {
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+}
+
+#modalProductoTemporal .panel-info .panel-body {
+  border-bottom-left-radius: 6px;
+  border-bottom-right-radius: 6px;
+}
+
+/* ========================================
+   ESTILOS PARA CARGA DE IMAGEN PERSONALIZADA
+   ======================================== */
+
+/* Estilo del campo de archivo */
+#modalProductoTemporal #temp-imagen {
+  border: 2px dashed #ddd;
+  background-color: #fafafa;
+  transition: all 0.3s ease;
+}
+
+#modalProductoTemporal #temp-imagen:hover {
+  border-color: #007bff;
+  background-color: #f0f8ff;
+}
+
+#modalProductoTemporal #temp-imagen:focus {
+  border-color: #007bff;
+  background-color: #f0f8ff;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+}
+
+/* Botón de limpiar imagen */
+#modalProductoTemporal #btn-limpiar-imagen {
+  border-color: #dc3545;
+  color: #dc3545;
+  transition: all 0.3s ease;
+}
+
+#modalProductoTemporal #btn-limpiar-imagen:hover {
+  background-color: #dc3545;
+  color: white;
+}
+
+/* Vista previa mini de la imagen */
+#imagen-preview-mini {
+  padding: 8px;
+  background-color: #f8f9fa;
+  border: 1px solid #e9ecef;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  animation: fadeIn 0.3s ease-in;
+}
+
+#imagen-preview-mini img {
+  transition: transform 0.3s ease;
+}
+
+#imagen-preview-mini img:hover {
+  transform: scale(1.1);
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; transform: translateY(-10px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+/* Indicador de drag and drop (futuro) */
+#modalProductoTemporal .imagen-drop-zone {
+  position: relative;
+  overflow: hidden;
+}
+
+#modalProductoTemporal .imagen-drop-zone::before {
+  content: '📁 Arrastra aquí tu imagen o haz clic para seleccionar';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #6c757d;
+  font-size: 12px;
+  text-align: center;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+#modalProductoTemporal .imagen-drop-zone:hover::before {
+  opacity: 1;
+}
+
+/* Etiqueta especial para productos temporales en carrito */
+.label-temporal {
+  background-color: #17a2b8 !important;
+  font-size: 9px !important;
+  padding: 2px 6px !important;
+  border-radius: 10px !important;
+  margin-left: 8px !important;
 }

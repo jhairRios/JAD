@@ -1,0 +1,65 @@
+{
+  "configuracion_etiquetas": {
+    "productos_mas_vendidos": [
+      "P001",
+      "P005", 
+      "P010",
+      "P011",
+      "P031",
+      "P032",
+      "P035",
+      "P037",
+      "P058",
+      "P063",
+      "P075",
+      "P081",
+      "P082",
+      "P088",
+      "P089",
+      "P095",
+      "P018"
+    ],
+    "productos_en_oferta": [
+      "P001",
+      "P005",
+      "P010",
+      "P012",
+      "P016",
+      "P018"
+    ],
+    "productos_destacados": {
+      "descripcion": "Productos con ambas etiquetas para promociones especiales",
+      "codigos": [
+        "P001",
+        "P005", 
+        "P010"
+      ]
+    }
+  },
+  "instrucciones": {
+    "como_usar": [
+      "1. Edita los arrays 'productos_mas_vendidos' y 'productos_en_oferta' con los códigos que quieras",
+      "2. Usa las funciones JavaScript en la consola del navegador:",
+      "   - cambiarMasVendido('P001', true)",
+      "   - cambiarOferta('P001', false)", 
+      "   - cambiarEtiquetas('P001', true, true)",
+      "   - activarMasVendidos(['P001', 'P002', 'P003'])",
+      "   - activarOfertas(['P001', 'P002'])",
+      "   - listarProductos()",
+      "   - resetearEtiquetas()"
+    ],
+    "ejemplos": [
+      "// Activar producto como más vendido:",
+      "cambiarMasVendido('P031', true);",
+      "",
+      "// Activar múltiples productos en oferta:",
+      "activarOfertas(['P001', 'P005', 'P012']);",
+      "",
+      "// Ver todos los productos y sus códigos:",
+      "listarProductos();",
+      "",
+      "// Resetear todas las etiquetas:",
+      "resetearEtiquetas();"
+    ]
+  }
+}

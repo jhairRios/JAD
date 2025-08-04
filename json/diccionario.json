@@ -7,28 +7,35 @@
             "descripcion": "Computadora de Ultima generacion",
             "precio": 5000,
             "categoria": "Computadora",
-            "masvendidos": "True"
+            "masvendidos": "True",
+            "oferta": "True"
         },
         {
             "codigo": "P002",
             "nombre": "Lenovo",
             "descripcion": "Computadora I7 15va Generacion",
             "precio": "40",
-            "categoria": "Computadora"
+            "categoria": "Computadora",
+            "masvendidos": "False",
+            "oferta": "False"
         },
         {
             "codigo": "P003",
             "nombre": "Router",
             "descripcion": "Computadora de Ultima generacion",
             "precio": "20lps",
-            "categoria": "Router"
+            "categoria": "Router",
+            "masvendidos": "False",
+            "oferta": "False"
         },
         {
             "codigo": "P004",
             "nombre": "Switch",
             "descripcion": "Computadora de Ultima generacion",
             "precio": "2000000",
-            "categoria": "Router"
+            "categoria": "Router",
+            "masvendidos": "False",
+            "oferta": "False"
         },
         {
             "codigo": "P005",
@@ -36,35 +43,44 @@
             "descripcion": "Monitor LED de 24 pulgadas Full HD",
             "precio": 250,
             "categoria": "Monitores",
-            "masvendidos": "True"
+            "masvendidos": "True",
+            "oferta": "True"
         },
         {
             "codigo": "P006",
             "nombre": "Teclado Logitech",
             "descripcion": "Teclado inalámbrico ergonómico",
             "precio": 45,
-            "categoria": "Teclados"
+            "categoria": "Teclados",
+            "masvendidos": "False",
+            "oferta": "False"
         },
         {
             "codigo": "P007",
             "nombre": "Mouse Logitech",
             "descripcion": "Mouse óptico inalámbrico",
             "precio": 30,
-            "categoria": "Mouse"
+            "categoria": "Mouse",
+            "masvendidos": "False",
+            "oferta": "False"
         },
         {
             "codigo": "P008",
             "nombre": "Disco Duro Externo WD",
             "descripcion": "Disco duro de 1TB portátil",
             "precio": 80,
-            "categoria": "Almacenamiento"
+            "categoria": "Almacenamiento",
+            "masvendidos": "False",
+            "oferta": "False"
         },
         {
             "codigo": "P009",
             "nombre": "Memoria USB Kingston",
             "descripcion": "Memoria USB de 64GB",
             "precio": 15,
-            "categoria": "Almacenamiento"
+            "categoria": "Almacenamiento",
+            "masvendidos": "False",
+            "oferta": "False"
         },
         {
             "codigo": "P010",
@@ -72,7 +88,8 @@
             "descripcion": "Impresora multifuncional a color",
             "precio": 120,
             "categoria": "Impresoras",
-            "masvendidos": "True"
+            "masvendidos": "True",
+            "oferta": "True"
         },
         {
             "codigo": "P011",
@@ -87,63 +104,79 @@
             "nombre": "Smartphone Xiaomi",
             "descripcion": "Teléfono inteligente con cámara triple",
             "precio": 250,
-            "categoria": "Telefonos"
+            "categoria": "Telefonos",
+            "oferta": "True"
         },
         {
             "codigo": "P013",
             "nombre": "Auriculares Sony",
             "descripcion": "Auriculares inalámbricos con cancelación de ruido",
             "precio": 100,
-            "categoria": "Audifonos"
+            "categoria": "Audifonos",
+            "masvendidos": "False",
+            "oferta": "False"
         },
         {
             "codigo": "P014",
             "nombre": "Proyector Epson",
             "descripcion": "Proyector portátil para presentaciones",
             "precio": 400,
-            "categoria": "Proyector"
+            "categoria": "Proyector",
+            "masvendidos": "False",
+            "oferta": "False"
         },
         {
             "codigo": "P015",
             "nombre": "Cámara Web Logitech",
             "descripcion": "Cámara Full HD para videollamadas",
             "precio": 70,
-            "categoria": "Camara"
+            "categoria": "Camara",
+            "masvendidos": "False",
+            "oferta": "False"
         },
         {
             "codigo": "P016",
             "nombre": "Altavoces Bose",
             "descripcion": "Altavoces Bluetooth de alta fidelidad",
             "precio": 150,
-            "categoria": "Altavoces"
+            "categoria": "Altavoces",
+            "oferta": "True"
         },
         {
             "codigo": "P017",
             "nombre": "Smartwatch Huawei",
             "descripcion": "Reloj inteligente con monitor de actividad",
             "precio": 130,
-            "categoria": "Relojes Inteligentes"
+            "categoria": "Relojes Inteligentes",
+            "masvendidos": "False",
+            "oferta": "False"
         },
         {
             "codigo": "P018",
             "nombre": "Disco SSD Kingston",
             "descripcion": "Unidad de estado sólido de 500GB",
             "precio": 90,
-            "categoria": "Almacenamiento"
+            "categoria": "Almacenamiento",
+            "masvendidos": "False",
+            "oferta": "True"
         },
         {
             "codigo": "P019",
             "nombre": "Tarjeta Gráfica Nvidia",
             "descripcion": "Tarjeta gráfica GTX 1660",
             "precio": 400,
-            "categoria": "Componentes Internos"
+            "categoria": "Componentes Internos",
+            "masvendidos": "False",
+            "oferta": "False"
         },
         {
             "codigo": "P020",
             "nombre": "Memoria RAM Corsair",
             "descripcion": "Memoria RAM DDR4 de 16GB",
             "precio": 85,
-            "categoria": "Componentes Internos"
+            "categoria": "Componentes Internos",
+            "masvendidos": "False",
+            "oferta": "False"
         },
         {
             "codigo": "P021",
@@ -621,10 +654,7 @@
             "nombre": "Nintendo Switch OLED",
             "descripcion": "Consola Nintendo Switch con pantalla OLED",
             "precio": 350,
-            "categoria": "Consolas",
-            "oferta": "True",
-            "precioOriginal": 450,
-            "descuento": 22
+            "categoria": "Consolas"
         },
         {
             "codigo": "P088",
@@ -647,50 +677,35 @@
             "nombre": "Razer DeathAdder V3",
             "descripcion": "Mouse gaming Razer con sensor Focus Pro 30K",
             "precio": 70,
-            "categoria": "Mouse",
-            "oferta": "True",
-            "precioOriginal": 90,
-            "descuento": 22
+            "categoria": "Mouse"
         },
         {
             "codigo": "P091",
             "nombre": "Logitech MX Master 3S",
             "descripcion": "Mouse ergonómico Logitech para productividad",
             "precio": 85,
-            "categoria": "Mouse",
-            "oferta": "True",
-            "precioOriginal": 110,
-            "descuento": 23
+            "categoria": "Mouse"
         },
         {
             "codigo": "P092",
             "nombre": "HyperX Cloud II",
             "descripcion": "Auriculares gaming HyperX con sonido 7.1",
             "precio": 80,
-            "categoria": "Audifonos",
-            "oferta": "True",
-            "precioOriginal": 100,
-            "descuento": 20
+            "categoria": "Audifonos"
         },
         {
             "codigo": "P093",
             "nombre": "Webcam Logitech C920",
             "descripcion": "Cámara web Logitech Full HD 1080p",
             "precio": 60,
-            "categoria": "Camara",
-            "oferta": "True",
-            "precioOriginal": 80,
-            "descuento": 25
+            "categoria": "Camara"
         },
         {
             "codigo": "P094",
             "nombre": "Microfono Blue Yeti",
             "descripcion": "Micrófono USB profesional Blue Yeti",
             "precio": 90,
-            "categoria": "Accesorios",
-            "oferta": "True",
-            "precioOriginal": 120,
-            "descuento": 25
+            "categoria": "Accesorios"
         },
         {
             "codigo": "P095",

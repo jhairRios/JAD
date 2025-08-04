@@ -158,6 +158,13 @@
           <!-- INICIO - Enlaces de navegación (lado derecho) -->
           <!-- Sección del carrito de compras con contador dinámico -->
           <ul class="nav navbar-nav navbar-right">
+            <!-- Enlace para agregar producto temporal -->
+            <li>
+              <a href="#" id="btn-producto-temporal">
+                <!-- Icono de agregar producto -->
+                <i class="fas fa-plus-circle"></i> AGREGAR PRODUCTO
+              </a>
+            </li>
             <!-- Enlace al carrito de compras con badge de cantidad -->
             <li>
               <a href="#" id="btn-carrito">
@@ -278,27 +285,6 @@
     <!-- Fin de Seccion 1-->
 
     <!-- FIN - Sección de productos -->
-
-
-    <!-- ========================================
-         SECCIÓN DE OFERTAS ESPECIALES
-         ======================================== -->
-    <section class="ofertas-seccion">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12">
-            <!-- Título de la sección de ofertas -->
-            <h2 class="text-center">🔥 OFERTAS ESPECIALES 🔥</h2>
-            
-            <!-- Contenedor donde se cargarán los productos en oferta dinámicamente -->
-            <div id="ofertas-container" class="row">
-              <!-- Los productos en oferta se cargarán aquí dinámicamente -->
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
     <!-- ========================================
          CARRUSEL AUTOMÁTICO DE MARCAS
          ======================================== -->
@@ -532,6 +518,165 @@
             </tfoot>
           </table>
         </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ========================================
+     MODAL AGREGAR PRODUCTO TEMPORAL
+     ======================================== -->
+<!-- Modal para agregar productos temporales personalizados -->
+<div class="modal fade" id="modalProductoTemporal" tabindex="-1" role="dialog" aria-labelledby="modalProductoTemporalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalProductoTemporalLabel">
+          <i class="fas fa-plus-circle"></i> Agregar Producto Temporal
+        </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p class="lead text-center">Agrega un producto personalizado temporalmente al carrito</p>
+        
+        <!-- Formulario para agregar producto temporal -->
+        <form id="form-producto-temporal">
+          <div class="row">
+            <!-- Columna izquierda -->
+            <div class="col-md-6">
+              <!-- Nombre del producto -->
+              <div class="form-group">
+                <label for="temp-nombre" class="control-label">
+                  <i class="fas fa-tag"></i> Nombre del Producto <span class="text-danger">*</span>
+                </label>
+                <input type="text" class="form-control" id="temp-nombre" 
+                       placeholder="Ejemplo: Laptop Gaming Personalizada" required maxlength="50">
+                <small class="help-block">Máximo 50 caracteres</small>
+              </div>
+              
+              <!-- Categoría del producto -->
+              <div class="form-group">
+                <label for="temp-categoria" class="control-label">
+                  <i class="fas fa-list"></i> Categoría
+                </label>
+                <select class="form-control" id="temp-categoria">
+                  <option value="Producto Personalizado">Producto Personalizado</option>
+                  <option value="Audifonos">Audífonos</option>
+                  <option value="Monitores">Pantallas</option>
+                  <option value="Computadora">Computadoras</option>
+                  <option value="Mouse">Mouse</option>
+                  <option value="Teclados">Teclados</option>
+                  <option value="Router">Router</option>
+                  <option value="Almacenamiento">Almacenamiento</option>
+                  <option value="Camara">Cámaras</option>
+                  <option value="Impresoras">Impresoras</option>
+                  <option value="Telefonos">Teléfonos</option>
+                  <option value="Proyector">Proyector</option>
+                  <option value="Componentes Internos">Componentes Internos</option>
+                  <option value="Altavoces">Altavoces</option>
+                  <option value="Relojes Inteligentes">Relojes Inteligentes</option>
+                  <option value="Consolas">Consolas</option>
+                  <option value="Accesorios">Accesorios</option>
+                  <option value="Electrodomesticos">Electrodomésticos</option>
+                  <option value="Cuidado Personal">Cuidado Personal</option>
+                  <option value="Televisores">Televisores</option>
+                </select>
+              </div>
+              
+              <!-- Precio del producto -->
+              <div class="form-group">
+                <label for="temp-precio" class="control-label">
+                  <i class="fas fa-dollar-sign"></i> Precio (LPS) <span class="text-danger">*</span>
+                </label>
+                <div class="input-group">
+                  <span class="input-group-addon">L</span>
+                  <input type="number" class="form-control" id="temp-precio" 
+                         placeholder="0.00" required min="0.01" step="0.01" max="999999.99">
+                </div>
+                <small class="help-block">Ingresa el precio en Lempiras (LPS)</small>
+              </div>
+              
+              <!-- Imagen del producto -->
+              <div class="form-group">
+                <label for="temp-imagen" class="control-label">
+                  <i class="fas fa-image"></i> Imagen del Producto
+                </label>
+                <div class="input-group">
+                  <input type="file" class="form-control" id="temp-imagen" 
+                         accept="image/*" style="height: auto; padding: 6px 12px;">
+                  <span class="input-group-btn">
+                    <button class="btn btn-default" type="button" id="btn-limpiar-imagen">
+                      <i class="fas fa-times"></i>
+                    </button>
+                  </span>
+                </div>
+                <small class="help-block">Sube una imagen personalizada (JPG, PNG, GIF - Máx: 5MB)</small>
+                <div id="imagen-preview-mini" style="margin-top: 8px; display: none;">
+                  <img id="mini-preview" src="" alt="Vista previa" style="max-width: 80px; max-height: 60px; border: 1px solid #ddd; border-radius: 4px;">
+                  <small class="text-success" style="margin-left: 8px;">
+                    <i class="fas fa-check"></i> Imagen cargada
+                  </small>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Columna derecha -->
+            <div class="col-md-6">
+              <!-- Código del producto -->
+              <div class="form-group">
+                <label for="temp-codigo" class="control-label">
+                  <i class="fas fa-barcode"></i> Código del Producto
+                </label>
+                <input type="text" class="form-control" id="temp-codigo" 
+                       placeholder="TEMP-001" maxlength="20">
+                <small class="help-block">Código único (opcional)</small>
+              </div>
+              
+              <!-- Descripción del producto -->
+              <div class="form-group">
+                <label for="temp-descripcion" class="control-label">
+                  <i class="fas fa-align-left"></i> Descripción
+                </label>
+                <textarea class="form-control" id="temp-descripcion" rows="3" 
+                          placeholder="Descripción opcional del producto..." maxlength="200"></textarea>
+                <small class="help-block">Máximo 200 caracteres (opcional)</small>
+              </div>
+              
+              <!-- Opciones especiales del producto -->
+              <div class="form-group">
+                <label class="control-label">
+                  <i class="fas fa-star"></i> Opciones Especiales
+                </label>
+                <div class="checkbox">
+                  <label>
+                    <input type="checkbox" id="temp-masvendido" value="True">
+                    <strong>Producto más vendido</strong>
+                    <small class="text-muted">- Aparecerá destacado en la sección de más vendidos</small>
+                  </label>
+                </div>
+                <div class="checkbox">
+                  <label>
+                    <input type="checkbox" id="temp-oferta" value="True">
+                    <strong>Producto en oferta</strong>
+                    <small class="text-muted">- Se mostrará con etiqueta especial de oferta</small>
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+      
+      <!-- Pie del modal con botones -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">
+          <i class="fas fa-times"></i> Cancelar
+        </button>
+        <button type="button" class="btn btn-success" id="btn-guardar-temporal">
+          <i class="fas fa-shopping-cart"></i> Agregar producto
+        </button>
       </div>
     </div>
   </div>

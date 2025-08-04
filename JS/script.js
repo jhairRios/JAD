@@ -18,6 +18,160 @@ $(document).ready(function () {
      ======================================== */
   var todosLosProductos = [];    // Array que contiene todos los productos cargados desde JSON
   var productoaggCarrito = [];   // Array que contiene los productos agregados al carrito
+  var imagenPersonalizadaUrl = null; // URL de la imagen personalizada cargada
+
+  /* ========================================
+     FUNCIONES DE CONTROL DE ETIQUETAS
+     ======================================== */
+  
+  /**
+   * Función para cambiar el estado de "más vendido" de un producto
+   * @param {string} codigo - Código del producto
+   * @param {boolean} estado - true para activar, false para desactivar
+   */
+  window.cambiarMasVendido = function(codigo, estado) {
+    var producto = todosLosProductos.find(p => p.codigo === codigo);
+    if (producto) {
+      producto.masvendidos = estado ? "True" : "False";
+      mostrarProductos(todosLosProductos);
+      console.log(`✅ Producto ${codigo} - Más vendido: ${estado}`);
+    } else {
+      console.log(`❌ Producto ${codigo} no encontrado`);
+    }
+  };
+
+  /**
+   * Función para cambiar el estado de "oferta" de un producto
+   * @param {string} codigo - Código del producto
+   * @param {boolean} estado - true para activar, false para desactivar
+   */
+  window.cambiarOferta = function(codigo, estado) {
+    var producto = todosLosProductos.find(p => p.codigo === codigo);
+    if (producto) {
+      producto.oferta = estado ? "True" : "False";
+      mostrarProductos(todosLosProductos);
+      console.log(`✅ Producto ${codigo} - Oferta: ${estado}`);
+    } else {
+      console.log(`❌ Producto ${codigo} no encontrado`);
+    }
+  };
+
+  /**
+   * Función para cambiar ambos estados de un producto
+   * @param {string} codigo - Código del producto
+   * @param {boolean} masVendido - Estado de más vendido
+   * @param {boolean} oferta - Estado de oferta
+   */
+  window.cambiarEtiquetas = function(codigo, masVendido, oferta) {
+    var producto = todosLosProductos.find(p => p.codigo === codigo);
+    if (producto) {
+      producto.masvendidos = masVendido ? "True" : "False";
+      producto.oferta = oferta ? "True" : "False";
+      mostrarProductos(todosLosProductos);
+      console.log(`✅ Producto ${codigo} - Más vendido: ${masVendido}, Oferta: ${oferta}`);
+    } else {
+      console.log(`❌ Producto ${codigo} no encontrado`);
+    }
+  };
+
+  /**
+   * Función para activar múltiples productos como más vendidos
+   * @param {Array} codigos - Array de códigos de productos
+   */
+  window.activarMasVendidos = function(codigos) {
+    codigos.forEach(codigo => {
+      cambiarMasVendido(codigo, true);
+    });
+    console.log(`✅ Activados ${codigos.length} productos como más vendidos`);
+  };
+
+  /**
+   * Función para activar múltiples productos en oferta
+   * @param {Array} codigos - Array de códigos de productos
+   */
+  window.activarOfertas = function(codigos) {
+    codigos.forEach(codigo => {
+      cambiarOferta(codigo, true);
+    });
+    console.log(`✅ Activados ${codigos.length} productos en oferta`);
+  };
+
+  /**
+   * Función para mostrar todos los productos y sus códigos
+   */
+  window.listarProductos = function() {
+    console.log("📋 Lista de todos los productos:");
+    todosLosProductos.forEach(producto => {
+      var etiquetas = [];
+      if (producto.masvendidos === "True") etiquetas.push("MÁS VENDIDO");
+      if (producto.oferta === "True") etiquetas.push("OFERTA");
+      var estado = etiquetas.length > 0 ? ` [${etiquetas.join(", ")}]` : "";
+      console.log(`   ${producto.codigo}: ${producto.nombre}${estado}`);
+    });
+  };
+
+  /**
+   * Función para resetear todas las etiquetas
+   */
+  window.resetearEtiquetas = function() {
+    todosLosProductos.forEach(producto => {
+      producto.masvendidos = "False";
+      producto.oferta = "False";
+    });
+    mostrarProductos(todosLosProductos);
+    console.log("🔄 Todas las etiquetas han sido reseteadas");
+  };
+
+  /**
+   * Función para aplicar configuración de etiquetas desde archivo de configuración
+   */
+  window.aplicarConfiguracionEtiquetas = function() {
+    $.getJSON("json/configuracion_etiquetas.json")
+      .done(function(config) {
+        // Resetear todas las etiquetas primero
+        resetearEtiquetas();
+        
+        // Aplicar productos más vendidos
+        if (config.configuracion_etiquetas.productos_mas_vendidos) {
+          config.configuracion_etiquetas.productos_mas_vendidos.forEach(codigo => {
+            cambiarMasVendido(codigo, true);
+          });
+        }
+        
+        // Aplicar productos en oferta
+        if (config.configuracion_etiquetas.productos_en_oferta) {
+          config.configuracion_etiquetas.productos_en_oferta.forEach(codigo => {
+            cambiarOferta(codigo, true);
+          });
+        }
+        
+        console.log("✅ Configuración de etiquetas aplicada exitosamente");
+        console.log("📋 Para ver la lista de productos, usa: listarProductos()");
+      })
+      .fail(function() {
+        console.log("❌ Error al cargar configuración de etiquetas");
+      });
+  };
+
+  /**
+   * Función de ayuda para mostrar todas las funciones disponibles
+   */
+  window.ayuda = function() {
+    console.log("🔧 FUNCIONES DISPONIBLES PARA GESTIÓN DE ETIQUETAS:");
+    console.log("════════════════════════════════════════════════");
+    console.log("📋 listarProductos() - Mostrar todos los productos con sus etiquetas");
+    console.log("🔍 buscarProducto('nombre') - Buscar producto por nombre");
+    console.log("⭐ cambiarMasVendido('codigo', true/false) - Cambiar etiqueta 'Más Vendido'");
+    console.log("🏷️ cambiarOferta('codigo', true/false) - Cambiar etiqueta 'Oferta'");
+    console.log("🔄 resetearEtiquetas() - Quitar todas las etiquetas");
+    console.log("⚙️ aplicarConfiguracionEtiquetas() - Aplicar configuración desde archivo JSON");
+    console.log("❓ ayuda() - Mostrar esta ayuda");
+    console.log("════════════════════════════════════════════════");
+    console.log("📝 EJEMPLOS DE USO:");
+    console.log("cambiarMasVendido('P001', true);");
+    console.log("cambiarOferta('P002', false);");
+    console.log("buscarProducto('iPhone');");
+  };
 
   /* ========================================
      FUNCIONES DE NAVEGACIÓN
@@ -105,8 +259,10 @@ $(document).ready(function () {
     // Actualizar el título de la sección
     $(".productos-seccion h2").text("Mas Vendidos");
     
-    // Cargar productos en oferta inmediatamente después
-    cargarProductosEnOferta();
+    // Aplicar configuración de etiquetas después de cargar productos
+    setTimeout(() => {
+      aplicarConfiguracionEtiquetas();
+    }, 200);
     
     // Inicializar contador del carrito en cero
     actualizarContadorCarrito();
@@ -157,13 +313,33 @@ $(document).ready(function () {
       if (producto.nombre && producto.nombre.trim() !== "") {
         
         // Crear nombre de archivo para la imagen del producto
-        var nombreImagen = producto.nombre.trim() + ".png";
-        var imagenUrl = "images/" + nombreImagen;
+        var imagenUrl;
+        if (producto.imagenTemporal || producto.imagenPersonalizada) {
+          // Si el producto tiene una imagen temporal (cargada por el usuario)
+          imagenUrl = producto.imagenTemporal || producto.imagenPersonalizada;
+        } else {
+          // Usar la imagen estándar basada en el nombre
+          var nombreImagen = producto.nombre.trim() + ".png";
+          imagenUrl = "images/" + nombreImagen;
+        }
 
         // Plantilla HTML para cada producto
+        var etiquetasEspeciales = '';
+        
+        // Agregar etiqueta de "Más Vendido" si aplica
+        if (producto.masvendidos && producto.masvendidos.toLowerCase() === 'true') {
+          etiquetasEspeciales += '<div class="etiqueta-especial etiqueta-mas-vendido"><i class="fas fa-fire"></i> Más Vendido</div>';
+        }
+        
+        // Agregar etiqueta de "Oferta" si aplica
+        if (producto.oferta && producto.oferta.toLowerCase() === 'true') {
+          etiquetasEspeciales += '<div class="etiqueta-especial etiqueta-oferta"><i class="fas fa-tag"></i> Oferta</div>';
+        }
+        
         var productoHTML = `
             <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 producto-col">
               <div class="producto-card">
+                ${etiquetasEspeciales}
                 <!-- Contenedor de la imagen del producto -->
                 <div class="producto-imagen">
                   <img src = "${imagenUrl}" alt="${producto.nombre}">
@@ -347,40 +523,6 @@ $(document).ready(function () {
   });
 
   /**
-   * Event listeners específicos para productos en oferta
-   * Se manejan por separado para evitar conflictos
-   */
-  $(document).on("click", "#ofertas-container .btn-detalles", function (e) {
-    e.preventDefault();
-    
-    var productoCard = $(this).closest(".producto-card");
-    var nombreProducto = productoCard.find(".producto-nombre").text();
-    
-    var productoCompleto = todosLosProductos.find(function (producto) {
-      return producto.nombre === nombreProducto;
-    });
-    
-    if (productoCompleto) {
-      mostrarDetallesProducto(productoCompleto);
-    }
-  });
-
-  $(document).on("click", "#ofertas-container .btn-oferta", function (e) {
-    e.preventDefault();
-    
-    var productoCard = $(this).closest(".producto-card");
-    var nombreProducto = productoCard.find(".producto-nombre").text();
-    var precioTexto = productoCard.find(".precio-oferta").text();
-    
-    // Limpiar el precio
-    var precioLimpio = precioTexto.replace(/[^0-9.]/g, "");
-    
-    if (nombreProducto && precioLimpio) {
-      agregarAlCarrito(nombreProducto, precioLimpio);
-    }
-  });
-
-  /**
    * Función para mostrar los detalles del producto en el modal
    * @param {Object} producto - Objeto producto con información completa
    */
@@ -497,9 +639,16 @@ $(document).ready(function () {
 
       // Iterar sobre cada producto en el carrito
       productoaggCarrito.forEach(function (producto, index) {
-        // Crear URL de la imagen del producto
-        var nombreImagen = producto.nombre.trim() + ".png";
-        var imagenUrl = "images/" + nombreImagen;
+        // Determinar qué imagen usar
+        var imagenUrl;
+        if (producto.imagenPersonalizada) {
+          // Usar imagen personalizada si existe
+          imagenUrl = producto.imagenPersonalizada;
+        } else {
+          // Crear URL de la imagen del producto por defecto
+          var nombreImagen = producto.nombre.trim() + ".png";
+          imagenUrl = "images/" + nombreImagen;
+        }
 
         // Extraer el precio numérico (remover texto y convertir a número)
         var precioNumerico = parseFloat(producto.precio.replace(/[^\d.]/g, ""));
@@ -512,9 +661,13 @@ $(document).ready(function () {
               <tr>
                 <td style="width: 80px;">
                   <img src="${imagenUrl}" alt="${producto.nombre}" 
-                       style="width: 60px; height: 60px; object-fit: contain; border-radius: 5px;">
+                       style="width: 60px; height: 60px; object-fit: cover; border-radius: 5px; border: 1px solid #ddd;"
+                       onerror="this.src='images/Laptop Dell.png';">
                 </td>
-                <td>${producto.nombre}</td>
+                <td>
+                  ${producto.nombre}
+                  ${producto.temporal ? '<span class="label label-info" style="margin-left: 5px; font-size: 10px;">TEMPORAL</span>' : ''}
+                </td>
                 <td>L ${precioNumerico.toFixed(2)}</td>
                 <td>
                   <input type="number" value="${cantidad}" min="1" max="10" 
@@ -642,96 +795,6 @@ $(document).ready(function () {
       );
     });
     mostrarProductos(productosFiltrados);
-  }
-
-  /* ========================================
-     FUNCIONES DE OFERTAS ESPECIALES
-     ======================================== */
-  
-  /**
-   * Función para cargar y mostrar productos en oferta en la sección dedicada
-   */
-  function cargarProductosEnOferta() {
-    var ofertasContainer = $("#ofertas-container");
-    
-    if (ofertasContainer.length === 0) {
-      console.error("No se encontró el contenedor #ofertas-container");
-      return;
-    }
-    
-    // Verificar que tengamos productos
-    if (!todosLosProductos || todosLosProductos.length === 0) {
-      console.log("No hay productos cargados aún");
-      return;
-    }
-    
-    // Filtrar productos que tienen el campo "oferta" marcado como "True"
-    var productosEnOferta = [];
-    for (var i = 0; i < todosLosProductos.length; i++) {
-      var producto = todosLosProductos[i];
-      if (producto.oferta && producto.oferta === "True") {
-        productosEnOferta.push(producto);
-      }
-    }
-
-    console.log("Productos en oferta encontrados:", productosEnOferta.length);
-
-    // Limpiar el contenedor
-    ofertasContainer.empty();
-
-    // Si no hay ofertas
-    if (productosEnOferta.length === 0) {
-      ofertasContainer.html('<div class="col-md-12"><p class="text-center" style="color: white;">No hay ofertas disponibles</p></div>');
-      return;
-    }
-
-    // Crear HTML con la misma estructura que las cards normales
-    for (var j = 0; j < productosEnOferta.length; j++) {
-      var producto = productosEnOferta[j];
-      
-      var descuento = producto.descuento || 20;
-      var precioOriginal = producto.precioOriginal || (parseFloat(producto.precio) * 1.5);
-      
-      // HTML con estructura idéntica a las cards normales
-      var htmlProducto = 
-        '<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 producto-col">' +
-          '<div class="producto-card producto-oferta">' +
-            '<div class="badge-oferta">¡OFERTA!</div>' +
-            '<div class="badge-descuento">-' + descuento + '%</div>' +
-            
-            '<!-- Contenedor de la imagen del producto -->' +
-            '<div class="producto-imagen">' +
-              '<img src="images/' + producto.nombre + '.png" alt="' + producto.nombre + '">' +
-            '</div>' +
-            
-            '<!-- Información del producto -->' +
-            '<div class="producto-info">' +
-              '<h4 class="producto-nombre">' + producto.nombre + '</h4>' +
-              '<p class="producto-descripcion">' + (producto.descripcion || producto.categoria || "Sin descripción") + '</p>' +
-              
-              '<!-- Contenedor de precios de oferta -->' +
-              '<div class="precio-oferta-container">' +
-                '<span class="precio-original">L. ' + precioOriginal.toFixed(0) + '.00 lps</span>' +
-                '<span class="precio precio-oferta">L. ' + parseInt(producto.precio) + '.00 lps</span>' +
-              '</div>' +
-              
-              '<!-- Botones de acción del producto -->' +
-              '<div class="producto-botones">' +
-                '<a href="#" class="btn btn-detalles">' +
-                  '<i class="fas fa-eye"></i> Ver Detalles' +
-                '</a>' +
-                '<a href="#" class="btn btn-oferta">' +
-                  '<i class="fas fa-shopping-cart"></i> ¡Agregar Oferta!' +
-                '</a>' +
-              '</div>' +
-            '</div>' +
-          '</div>' +
-        '</div>';
-      
-      ofertasContainer.append(htmlProducto);
-    }
-    
-    console.log("Ofertas cargadas exitosamente");
   }
 
   /* ========================================
@@ -1005,6 +1068,298 @@ function cerrarToast(button) {
     }
   }, 400);
 }
+
+/* ========================================
+   MODAL PRODUCTO TEMPORAL
+   ========================================
+   Funcionalidad para agregar productos
+   temporales personalizados al carrito
+   ======================================== */
+
+/**
+ * Event listener para abrir el modal de producto temporal
+ */
+$("#btn-producto-temporal").on("click", function(e) {
+  e.preventDefault();
+  
+  // Limpiar el formulario
+  limpiarFormularioTemporal();
+  
+  // Mostrar el modal
+  $("#modalProductoTemporal").modal("show");
+});
+
+/**
+ * Función para limpiar el formulario del producto temporal
+ */
+function limpiarFormularioTemporal() {
+  $("#form-producto-temporal")[0].reset();
+  $("#temp-categoria").val("Producto Personalizado");
+  $("#temp-codigo").val("");
+  
+  // Limpiar checkboxes
+  $("#temp-masvendido").prop("checked", false);
+  $("#temp-oferta").prop("checked", false);
+  
+  // Limpiar vista previa de imagen
+  $("#imagen-preview-mini").hide();
+  $("#mini-preview").attr('src', '');
+  
+  // Reset imagen personalizada
+  imagenPersonalizadaUrl = null;
+}
+
+/**
+ * Función para obtener imagen por categoría
+ */
+function obtenerImagenPorCategoria(categoria) {
+  var imagenesCategoria = {
+    "Audifonos": "images/Auriculares Sony.png",
+    "Monitores": "images/Monitor Samsung.png", 
+    "Pantallas": "images/Monitor Samsung.png",
+    "Computadora": "images/Laptop Dell.png",
+    "Computadoras": "images/Laptop Dell.png",
+    "Mouse": "images/Mouse Logitech.png",
+    "Teclados": "images/Teclado Logitech.png",
+    "Router": "images/Router.png",
+    "Almacenamiento": "images/Disco SSD Kingston.png",
+    "Camara": "images/Cámara Web Logitech.png",
+    "Camaras": "images/Cámara Web Logitech.png",
+    "Impresoras": "images/Impresora HP.png",
+    "Telefonos": "images/iPhone 15 Pro.png",
+    "Proyector": "images/Proyector Epson.png",
+    "Componentes Internos": "images/Tarjeta Gráfica Nvidia.png",
+    "Compenentes": "images/Tarjeta Gráfica Nvidia.png",
+    "Altavoces": "images/Altavoces Bose.png",
+    "Relojes Inteligentes": "images/Apple Watch Series 9.png",
+    "Consolas": "images/Consola Xbox Series S.png",
+    "Accesorios": "images/Cable USB-C.png",
+    "Electrodomesticos": "images/Estabilizador Forza.png",
+    "Cuidado Personal": "images/Smartwatch Huawei.png",
+    "Televisores": "images/Monitor Samsung.png",
+    "Producto Personalizado": "images/Laptop Dell.png"
+  };
+  
+  return imagenesCategoria[categoria] || "images/Laptop Dell.png";
+}
+
+/**
+ * Event listener para carga de imagen personalizada
+ */
+$("#temp-imagen").on("change", function(e) {
+  var archivo = e.target.files[0];
+  
+  if (archivo) {
+    // Validar tipo de archivo
+    var tiposPermitidos = ['image/jpeg', 'image/jpg', 'image/png', 'image/gif'];
+    if (!tiposPermitidos.includes(archivo.type)) {
+      mostrarToast(
+        "Solo se permiten imágenes JPG, PNG o GIF",
+        "Formato no válido",
+        "error"
+      );
+      $(this).val(''); // Limpiar input
+      return;
+    }
+    
+    // Validar tamaño (máximo 5MB)
+    if (archivo.size > 5 * 1024 * 1024) {
+      mostrarToast(
+        "La imagen no puede ser mayor a 5MB",
+        "Archivo muy grande",
+        "error"
+      );
+      $(this).val(''); // Limpiar input
+      return;
+    }
+    
+    // Crear FileReader para leer el archivo
+    var reader = new FileReader();
+    
+    reader.onload = function(e) {
+      imagenPersonalizadaUrl = e.target.result;
+      
+      // Mostrar mini preview
+      $("#mini-preview").attr('src', imagenPersonalizadaUrl);
+      $("#imagen-preview-mini").show();
+      
+      mostrarToast(
+        "Imagen cargada correctamente",
+        "¡Éxito!",
+        "success"
+      );
+    };
+    
+    reader.onerror = function() {
+      mostrarToast(
+        "Error al cargar la imagen",
+        "Error",
+        "error"
+      );
+    };
+    
+    reader.readAsDataURL(archivo);
+  }
+});
+
+/**
+ * Event listener para limpiar imagen
+ */
+$("#btn-limpiar-imagen").on("click", function(e) {
+  e.preventDefault();
+  
+  // Limpiar input de archivo
+  $("#temp-imagen").val('');
+  
+  // Ocultar preview mini
+  $("#imagen-preview-mini").hide();
+  $("#mini-preview").attr('src', '');
+  
+  // Reset imagen personalizada
+  imagenPersonalizadaUrl = null;
+  
+  mostrarToast(
+    "Imagen removida. Se usará imagen por categoría",
+    "Imagen eliminada",
+    "info"
+  );
+});
+
+/**
+ * Event listener para generar código automático
+ */
+$("#temp-nombre").on("input", function() {
+  var nombre = $(this).val();
+  if (nombre.length > 0 && $("#temp-codigo").val() === "") {
+    // Generar código basado en el nombre
+    var codigo = "TEMP-" + nombre.substring(0, 6).toUpperCase().replace(/[^A-Z0-9]/g, "");
+    if (codigo === "TEMP-") {
+      codigo = "TEMP-" + Math.floor(Math.random() * 1000).toString().padStart(3, '0');
+    }
+    $("#temp-codigo").val(codigo);
+  }
+});
+
+/**
+ * Validación en tiempo real de los campos
+ */
+$("#temp-nombre").on("input", function() {
+  var nombre = $(this).val();
+  var grupo = $(this).closest(".form-group");
+  
+  if (nombre.length >= 3) {
+    grupo.removeClass("has-error").addClass("has-success");
+  } else {
+    grupo.removeClass("has-success").addClass("has-error");
+  }
+});
+
+$("#temp-precio").on("input", function() {
+  var precio = parseFloat($(this).val());
+  var grupo = $(this).closest(".form-group");
+  
+  if (precio > 0) {
+    grupo.removeClass("has-error").addClass("has-success");
+  } else {
+    grupo.removeClass("has-success").addClass("has-error");
+  }
+});
+
+/**
+ * Event listener para guardar el producto temporal
+ */
+$("#btn-guardar-temporal").on("click", function(e) {
+  e.preventDefault();
+  
+  // Validar campos obligatorios
+  var nombre = $("#temp-nombre").val().trim();
+  var precio = parseFloat($("#temp-precio").val());
+  
+  if (!nombre || nombre.length < 3) {
+    mostrarToast(
+      "El nombre del producto debe tener al menos 3 caracteres",
+      "Error de validación",
+      "error"
+    );
+    $("#temp-nombre").focus();
+    return;
+  }
+  
+  if (!precio || precio <= 0) {
+    mostrarToast(
+      "El precio debe ser mayor a 0",
+      "Error de validación", 
+      "error"
+    );
+    $("#temp-precio").focus();
+    return;
+  }
+  
+  // Recopilar datos del formulario
+  var productoTemporal = {
+    nombre: nombre,
+    categoria: $("#temp-categoria").val(),
+    precio: precio.toFixed(2) + ".00 lps",
+    codigo: $("#temp-codigo").val() || "TEMP-" + Date.now(),
+    descripcion: $("#temp-descripcion").val().trim() || "Producto temporal agregado manualmente",
+    cantidad: 1, // Cantidad fija de 1 para productos temporales
+    temporal: true, // Marcar como producto temporal
+    imagenPersonalizada: imagenPersonalizadaUrl, // Guardar la imagen personalizada
+    masvendidos: $("#temp-masvendido").is(":checked") ? "True" : "False", // Estado de más vendido
+    oferta: $("#temp-oferta").is(":checked") ? "True" : "False" // Estado de oferta
+  };
+  
+  // Verificar si el producto ya existe en el carrito
+  var productoExistente = productoaggCarrito.find(function(producto) {
+    return producto.nombre === productoTemporal.nombre;
+  });
+  
+  if (productoExistente) {
+    // Si existe, actualizar cantidad
+    productoExistente.cantidad = (productoExistente.cantidad || 1) + 1;
+    
+    mostrarToast(
+      `Cantidad actualizada: ${productoExistente.cantidad} unidades de ${productoTemporal.nombre}`,
+      "¡Producto actualizado!",
+      "info"
+    );
+  } else {
+    // Si es nuevo, agregarlo al carrito
+    productoaggCarrito.push(productoTemporal);
+    
+    // Agregar el producto temporal al array de todos los productos para que aparezca en la vista
+    todosLosProductos.push(productoTemporal);
+    
+    // Actualizar la vista de productos para mostrar el nuevo producto
+    mostrarProductos(todosLosProductos);
+    
+    mostrarToast(
+      `${productoTemporal.nombre} ha sido agregado al carrito`,
+      "¡Producto temporal agregado!",
+      "success"
+    );
+  }
+  
+  // Actualizar contador del carrito
+  actualizarContadorCarrito();
+  
+  // Cerrar el modal
+  $("#modalProductoTemporal").modal("hide");
+  
+  // Limpiar formulario para próximo uso
+  setTimeout(function() {
+    limpiarFormularioTemporal();
+  }, 500);
+});
+
+/**
+ * Event listener para limpiar formulario al cerrar modal
+ */
+$("#modalProductoTemporal").on("hidden.bs.modal", function() {
+  limpiarFormularioTemporal();
+  // Remover clases de validación
+  $(this).find(".form-group").removeClass("has-error has-success");
+});
 
 /* ========================================
    FIN DEL SCRIPT PRINCIPAL
