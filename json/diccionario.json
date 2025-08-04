@@ -25,8 +25,8 @@
             "descripcion": "Computadora de Ultima generacion",
             "precio": "20lps",
             "categoria": "Router",
-            "masvendidos": "False",
-            "oferta": "False"
+            "masvendidos": "True",
+            "oferta": "True"
         },
         {
             "codigo": "P004",
