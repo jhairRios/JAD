@@ -615,6 +615,90 @@
             "descripcion": "Smartphone Sony con pantalla 4K",
             "precio": 1300,
             "categoria": "Telefonos"
+        },
+        {
+            "codigo": "P087",
+            "nombre": "Nintendo Switch OLED",
+            "descripcion": "Consola Nintendo Switch con pantalla OLED",
+            "precio": 350,
+            "categoria": "Consolas",
+            "oferta": "True",
+            "precioOriginal": 450,
+            "descuento": 22
+        },
+        {
+            "codigo": "P088",
+            "nombre": "PlayStation 5",
+            "descripcion": "Consola Sony PlayStation 5 con SSD ultrarrápido",
+            "precio": 500,
+            "categoria": "Consolas",
+            "masvendidos": "True"
+        },
+        {
+            "codigo": "P089",
+            "nombre": "Xbox Series X",
+            "descripcion": "Consola Microsoft Xbox Series X 4K",
+            "precio": 500,
+            "categoria": "Consolas",
+            "masvendidos": "True"
+        },
+        {
+            "codigo": "P090",
+            "nombre": "Razer DeathAdder V3",
+            "descripcion": "Mouse gaming Razer con sensor Focus Pro 30K",
+            "precio": 70,
+            "categoria": "Mouse",
+            "oferta": "True",
+            "precioOriginal": 90,
+            "descuento": 22
+        },
+        {
+            "codigo": "P091",
+            "nombre": "Logitech MX Master 3S",
+            "descripcion": "Mouse ergonómico Logitech para productividad",
+            "precio": 85,
+            "categoria": "Mouse",
+            "oferta": "True",
+            "precioOriginal": 110,
+            "descuento": 23
+        },
+        {
+            "codigo": "P092",
+            "nombre": "HyperX Cloud II",
+            "descripcion": "Auriculares gaming HyperX con sonido 7.1",
+            "precio": 80,
+            "categoria": "Audifonos",
+            "oferta": "True",
+            "precioOriginal": 100,
+            "descuento": 20
+        },
+        {
+            "codigo": "P093",
+            "nombre": "Webcam Logitech C920",
+            "descripcion": "Cámara web Logitech Full HD 1080p",
+            "precio": 60,
+            "categoria": "Camara",
+            "oferta": "True",
+            "precioOriginal": 80,
+            "descuento": 25
+        },
+        {
+            "codigo": "P094",
+            "nombre": "Microfono Blue Yeti",
+            "descripcion": "Micrófono USB profesional Blue Yeti",
+            "precio": 90,
+            "categoria": "Accesorios",
+            "oferta": "True",
+            "precioOriginal": 120,
+            "descuento": 25
+        },
+        {
+            "codigo": "P095",
+            "nombre": "Tablet Samsung Galaxy Tab S9",
+            "descripcion": "Tablet Samsung con S Pen incluido",
+            "precio": 650,
+            "categoria": "Telefonos",
+            "masvendidos": "True"
         }
     ]
 }

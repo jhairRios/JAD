@@ -105,6 +105,9 @@ $(document).ready(function () {
     // Actualizar el título de la sección
     $(".productos-seccion h2").text("Mas Vendidos");
     
+    // Cargar productos en oferta inmediatamente después
+    cargarProductosEnOferta();
+    
     // Inicializar contador del carrito en cero
     actualizarContadorCarrito();
     
@@ -263,6 +266,55 @@ $(document).ready(function () {
     actualizarContadorCarrito();
   });
 
+  /**
+   * Función auxiliar para agregar productos al carrito
+   * @param {string} nombre - Nombre del producto
+   * @param {string|number} precio - Precio del producto
+   */
+  function agregarAlCarrito(nombre, precio) {
+    // Limpiar y formatear el precio
+    var precioLimpio = typeof precio === 'string' ? 
+        precio.replace(/[^0-9.]/g, '') : precio.toString();
+    var precioFormateado = parseInt(precioLimpio) + ".00 lps";
+
+    // Verificar si el producto ya existe en el carrito
+    var productoExistente = productoaggCarrito.find(function (producto) {
+      return producto.nombre === nombre;
+    });
+
+    if (productoExistente) {
+      // Si el producto ya existe, incrementar la cantidad
+      productoExistente.cantidad = (productoExistente.cantidad || 1) + 1;
+
+      // Mostrar notificación de actualización
+      mostrarToast(
+        `Cantidad actualizada: ${productoExistente.cantidad} unidades de ${nombre}`,
+        "¡Producto actualizado!",
+        "info"
+      );
+    } else {
+      // Si es un producto nuevo, agregarlo al carrito
+      var producto = {
+        nombre: nombre,
+        precio: precioFormateado,
+        cantidad: 1,
+      };
+
+      // Agregar producto al array del carrito
+      productoaggCarrito.push(producto);
+
+      // Mostrar notificación de éxito
+      mostrarToast(
+        `${nombre} ha sido agregado a tu carrito`,
+        "¡Producto agregado!",
+        "success"
+      );
+    }
+
+    // Actualizar contador visual del carrito
+    actualizarContadorCarrito();
+  }
+
   /* ========================================
      EVENT LISTENERS - DETALLES DE PRODUCTO
      ======================================== */
@@ -291,6 +343,40 @@ $(document).ready(function () {
     // Si encontramos el producto, mostrar sus detalles en el modal
     if (productoCompleto) {
       mostrarDetallesProducto(productoCompleto);
+    }
+  });
+
+  /**
+   * Event listeners específicos para productos en oferta
+   * Se manejan por separado para evitar conflictos
+   */
+  $(document).on("click", "#ofertas-container .btn-detalles", function (e) {
+    e.preventDefault();
+    
+    var productoCard = $(this).closest(".producto-card");
+    var nombreProducto = productoCard.find(".producto-nombre").text();
+    
+    var productoCompleto = todosLosProductos.find(function (producto) {
+      return producto.nombre === nombreProducto;
+    });
+    
+    if (productoCompleto) {
+      mostrarDetallesProducto(productoCompleto);
+    }
+  });
+
+  $(document).on("click", "#ofertas-container .btn-oferta", function (e) {
+    e.preventDefault();
+    
+    var productoCard = $(this).closest(".producto-card");
+    var nombreProducto = productoCard.find(".producto-nombre").text();
+    var precioTexto = productoCard.find(".precio-oferta").text();
+    
+    // Limpiar el precio
+    var precioLimpio = precioTexto.replace(/[^0-9.]/g, "");
+    
+    if (nombreProducto && precioLimpio) {
+      agregarAlCarrito(nombreProducto, precioLimpio);
     }
   });
 
@@ -556,6 +642,96 @@ $(document).ready(function () {
       );
     });
     mostrarProductos(productosFiltrados);
+  }
+
+  /* ========================================
+     FUNCIONES DE OFERTAS ESPECIALES
+     ======================================== */
+  
+  /**
+   * Función para cargar y mostrar productos en oferta en la sección dedicada
+   */
+  function cargarProductosEnOferta() {
+    var ofertasContainer = $("#ofertas-container");
+    
+    if (ofertasContainer.length === 0) {
+      console.error("No se encontró el contenedor #ofertas-container");
+      return;
+    }
+    
+    // Verificar que tengamos productos
+    if (!todosLosProductos || todosLosProductos.length === 0) {
+      console.log("No hay productos cargados aún");
+      return;
+    }
+    
+    // Filtrar productos que tienen el campo "oferta" marcado como "True"
+    var productosEnOferta = [];
+    for (var i = 0; i < todosLosProductos.length; i++) {
+      var producto = todosLosProductos[i];
+      if (producto.oferta && producto.oferta === "True") {
+        productosEnOferta.push(producto);
+      }
+    }
+
+    console.log("Productos en oferta encontrados:", productosEnOferta.length);
+
+    // Limpiar el contenedor
+    ofertasContainer.empty();
+
+    // Si no hay ofertas
+    if (productosEnOferta.length === 0) {
+      ofertasContainer.html('<div class="col-md-12"><p class="text-center" style="color: white;">No hay ofertas disponibles</p></div>');
+      return;
+    }
+
+    // Crear HTML con la misma estructura que las cards normales
+    for (var j = 0; j < productosEnOferta.length; j++) {
+      var producto = productosEnOferta[j];
+      
+      var descuento = producto.descuento || 20;
+      var precioOriginal = producto.precioOriginal || (parseFloat(producto.precio) * 1.5);
+      
+      // HTML con estructura idéntica a las cards normales
+      var htmlProducto = 
+        '<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 producto-col">' +
+          '<div class="producto-card producto-oferta">' +
+            '<div class="badge-oferta">¡OFERTA!</div>' +
+            '<div class="badge-descuento">-' + descuento + '%</div>' +
+            
+            '<!-- Contenedor de la imagen del producto -->' +
+            '<div class="producto-imagen">' +
+              '<img src="images/' + producto.nombre + '.png" alt="' + producto.nombre + '">' +
+            '</div>' +
+            
+            '<!-- Información del producto -->' +
+            '<div class="producto-info">' +
+              '<h4 class="producto-nombre">' + producto.nombre + '</h4>' +
+              '<p class="producto-descripcion">' + (producto.descripcion || producto.categoria || "Sin descripción") + '</p>' +
+              
+              '<!-- Contenedor de precios de oferta -->' +
+              '<div class="precio-oferta-container">' +
+                '<span class="precio-original">L. ' + precioOriginal.toFixed(0) + '.00 lps</span>' +
+                '<span class="precio precio-oferta">L. ' + parseInt(producto.precio) + '.00 lps</span>' +
+              '</div>' +
+              
+              '<!-- Botones de acción del producto -->' +
+              '<div class="producto-botones">' +
+                '<a href="#" class="btn btn-detalles">' +
+                  '<i class="fas fa-eye"></i> Ver Detalles' +
+                '</a>' +
+                '<a href="#" class="btn btn-oferta">' +
+                  '<i class="fas fa-shopping-cart"></i> ¡Agregar Oferta!' +
+                '</a>' +
+              '</div>' +
+            '</div>' +
+          '</div>' +
+        '</div>';
+      
+      ofertasContainer.append(htmlProducto);
+    }
+    
+    console.log("Ofertas cargadas exitosamente");
   }
 
   /* ========================================
