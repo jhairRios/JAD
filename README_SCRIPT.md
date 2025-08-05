@@ -1,4 +1,4 @@
-# 📚 TIENDA JAD - DOCUMENTACIÓN TÉCNICA DEL SCRIPT
+# 📚 TIENDA JAD - DOCUMENTACIÓN TÉCNICA COMPLETA
 
 ## 🎯 Descripción General
 
@@ -10,20 +10,20 @@ La **Tienda JAD** es una aplicación web de comercio electrónico desarrollada c
 
 ```
 JAD/
-├── index.html                          # Página principal
-├── styles.css                          # Estilos personalizados
+├── index.html                          # Página principal (1418 líneas)
+├── styles.css                          # Estilos personalizados (3317 líneas)
 ├── README.md                           # Documentación del proyecto
 ├── README_SCRIPT.md                    # Esta documentación técnica
 ├── CSS/
 │   ├── bootstrap-3.4.1-dist/          # Framework Bootstrap
 │   └── fontawesome/                    # Iconos FontAwesome
 ├── JS/
-│   ├── script.js                       # Script principal
+│   ├── script.js                       # Script principal (918 líneas)
 │   ├── carrito.js                      # Funciones del carrito
 │   └── jquery-3.1.1.min.js           # Librería jQuery
 ├── json/
-│   ├── diccionario.json               # Base de datos de productos
-│   └── configuracion_etiquetas.json   # Configuración de etiquetas
+│   ├── diccionario.json               # Base de datos de productos (719 líneas)
+│   └── configuracion_etiquetas.json   # Configuración de etiquetas (63 líneas)
 ├── images/                             # Imágenes de productos
 ├── iconos/                             # Iconos de marcas
 └── imagenesCarrucel/                   # Imágenes del carrusel
@@ -44,9 +44,9 @@ JAD/
 
 ---
 
-## 📝 ARCHIVO: `script.js`
+## 📝 ARCHIVO: `script.js` - ANÁLISIS COMPLETO
 
-### 🏗️ Estructura del Script
+### 🏗️ Estructura del Script (918 líneas)
 
 El script está organizado en secciones bien definidas:
 
@@ -61,12 +61,13 @@ $(document).ready(function () {
   // 7. DETALLES DE PRODUCTOS
   // 8. FILTRADO DE PRODUCTOS
   // 9. NAVEGACIÓN POR CATEGORÍAS
+  // 10. SISTEMA DE NOTIFICACIONES
 });
 ```
 
 ---
 
-## 🔍 Análisis Detallado por Secciones
+## 🔍 ANÁLISIS DETALLADO POR SECCIONES
 
 ### 1️⃣ **VARIABLES GLOBALES**
 
@@ -76,6 +77,10 @@ var productoaggCarrito = [];   // Array que contiene los productos agregados al 
 ```
 
 **Propósito**: Almacenar el estado global de la aplicación.
+
+**Funcionamiento**:
+- `todosLosProductos`: Se llena al cargar `diccionario.json` y contiene todos los productos disponibles
+- `productoaggCarrito`: Array dinámico que se modifica cuando el usuario agrega/quita productos del carrito
 
 ---
 
@@ -94,6 +99,13 @@ function actualizarNavegacionActiva(elementoActivo) {
 - Remueve la clase `active` de todos los elementos de navegación
 - Agrega la clase `active` al elemento seleccionado
 - **Uso**: Resaltar la sección actual en la barra de navegación
+
+**Ejemplo de uso**:
+```javascript
+// Cuando se hace clic en "Computadoras"
+actualizarNavegacionActiva($("#nav-categorias"));
+// Resultado: Se marca "CATEGORÍAS" como activo en la navbar
+```
 
 ---
 
@@ -123,10 +135,19 @@ function actualizarContadorCarrito() {
 ```
 
 **Funcionalidad**:
-- Calcula la cantidad total de productos en el carrito
-- Actualiza el badge visual del contador
-- Aplica animaciones para llamar la atención
-- **Tecnologías**: jQuery, CSS animations
+- **Cálculo**: Suma todas las cantidades de productos en el carrito
+- **Actualización**: Modifica el texto del badge del carrito
+- **Animación**: Aplica efecto de pulsación por 600ms cuando hay productos
+- **Estados**: 
+  - `badge-empty`: Cuando el carrito está vacío
+  - `badge-highlight`: Efecto visual cuando se agregan productos
+
+**Ejemplo de funcionamiento**:
+```javascript
+// Si el carrito tiene: [{"cantidad": 2}, {"cantidad": 1}, {"cantidad": 3}]
+// cantidadTotal = 2 + 1 + 3 = 6
+// El badge mostrará "6" con animación
+```
 
 ---
 
@@ -134,12 +155,16 @@ function actualizarContadorCarrito() {
 
 ```javascript
 $.getJSON("json/diccionario.json", function (data) {
+  var productosContainer = $("#productos-container");
+
   // Validación de datos
   if (!data || !data.productos) {
-    productosContainer.html('<div class="col-md-12">Error...</div>');
+    productosContainer.html(
+      '<div class="col-md-12"><p class="text-center">No se encontraron productos.</p></div>'
+    );
     return;
   }
-  
+
   // Almacenar productos globalmente
   todosLosProductos = data.productos;
   
@@ -152,6 +177,12 @@ $.getJSON("json/diccionario.json", function (data) {
   // Inicializar contador del carrito
   actualizarContadorCarrito();
 })
+.fail(function (jqXHR, textStatus, errorThrown) {
+  console.error("Error al cargar productos:", textStatus, errorThrown);
+  $("#productos-container").html(
+    '<div class="col-md-12"><p class="text-center text-danger">Error al cargar los productos. Por favor, intente de nuevo más tarde.</p></div>'
+  );
+});
 ```
 
 **Proceso de carga**:
@@ -162,68 +193,157 @@ $.getJSON("json/diccionario.json", function (data) {
 5. **UI Update**: Actualiza título y contador
 6. **Manejo de errores**: Muestra mensaje si falla la carga
 
+**Flujo completo**:
+```
+Página se carga → $.getJSON() → Carga diccionario.json → 
+Valida datos → Guarda en todosLosProductos → 
+Filtra por "Más Vendidos" → Muestra productos → 
+Actualiza UI → Inicializa carrito
+```
+
 ---
 
 ### 5️⃣ **VISUALIZACIÓN DE PRODUCTOS**
 
-#### `mostrarProductos(productos)`
+#### `mostrarProductos(productos)` - Función Principal
 
 ```javascript
 function mostrarProductos(productos) {
   var productosContainer = $("#productos-container");
-  productosContainer.empty();
-  
+  productosContainer.empty(); // Limpiar el contenedor antes de agregar nuevos productos
+
+  // Verificar si hay productos para mostrar
   if (productos.length === 0) {
-    productosContainer.html('<div class="col-md-12">No se encontraron productos...</div>');
+    productosContainer.html(
+      '<div class="col-md-12"><p class="text-center">No se encontraron productos en esta categoría.</p></div>'
+    );
     return;
   }
-  
-  // Ordenamiento por código
+
+  // Ordenar productos por código antes de mostrarlos
   var productosOrdenados = productos.slice().sort(function(a, b) {
     var numA = parseInt(a.codigo.replace(/\D/g, ''));
     var numB = parseInt(b.codigo.replace(/\D/g, ''));
     return numA - numB;
   });
-  
-  // Generación de HTML para cada producto
+
+  // Iterar sobre cada producto ordenado y crear su HTML
   $.each(productosOrdenados, function (index, producto) {
-    // Lógica de imágenes
-    var imagenUrl;
-    if (producto.imagenTemporal || producto.imagenPersonalizada) {
-      imagenUrl = producto.imagenTemporal || producto.imagenPersonalizada;
-    } else {
-      var nombreImagen = producto.nombre.trim() + ".png";
-      imagenUrl = "images/" + nombreImagen;
+    // Solo mostrar productos que tengan nombre válido
+    if (producto.nombre && producto.nombre.trim() !== "") {
+      
+      // Crear nombre de archivo para la imagen del producto
+      var imagenUrl;
+      if (producto.imagenTemporal || producto.imagenPersonalizada) {
+        imagenUrl = producto.imagenTemporal || producto.imagenPersonalizada;
+      } else {
+        var nombreImagen = producto.nombre.trim() + ".png";
+        imagenUrl = "images/" + nombreImagen;
+      }
+
+      // Generar etiquetas especiales
+      var etiquetasEspeciales = '';
+      
+      if (producto.masvendidos && producto.masvendidos.toLowerCase() === 'true') {
+        etiquetasEspeciales += '<div class="etiqueta-especial etiqueta-mas-vendido"><i class="fas fa-fire"></i> Más Vendido</div>';
+      }
+      
+      if (producto.oferta && producto.oferta.toLowerCase() === 'true') {
+        etiquetasEspeciales += '<div class="etiqueta-especial etiqueta-oferta"><i class="fas fa-tag"></i> Oferta</div>';
+      }
+      
+      // Template HTML del producto
+      var productoHTML = `
+          <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 producto-col">
+            <div class="producto-card">
+              ${etiquetasEspeciales}
+              <div class="producto-imagen">
+                <img src="${imagenUrl}" alt="${producto.nombre}">
+              </div>
+              
+              <div class="producto-info">
+                <h4 class="producto-nombre">${producto.nombre}</h4>
+                <p class="producto-categoria">${producto.categoria || "Sin categoría"}</p>
+                <div class="producto-precio">
+                  <span class="precio">${parseInt(producto.precio)}.00 lps</span>
+                </div>
+                
+                <div class="producto-botones">
+                  <a href="#" class="btn btn-detalles">
+                    <i class="fas fa-eye"></i>
+                    Ver Detalles
+                  </a>
+                  <a href="#" class="btn btn-carrito">
+                    <i class="fas fa-shopping-cart"></i>
+                    Agregar
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+      `;
+      
+      productosContainer.append(productoHTML);
     }
-    
-    // Generación de etiquetas especiales
-    var etiquetasEspeciales = '';
-    if (producto.masvendidos && producto.masvendidos.toLowerCase() === 'true') {
-      etiquetasEspeciales += '<div class="etiqueta-especial etiqueta-mas-vendido">...';
-    }
-    if (producto.oferta && producto.oferta.toLowerCase() === 'true') {
-      etiquetasEspeciales += '<div class="etiqueta-especial etiqueta-oferta">...';
-    }
-    
-    // Template HTML del producto
-    var productoHTML = `...`;
-    productosContainer.append(productoHTML);
   });
-  
+
   // Responsive clearfix
   productosContainer.find('.producto-col:nth-child(4n)').after('<div class="clearfix visible-lg"></div>');
-  // ... más clearfix para diferentes pantallas
+  productosContainer.find('.producto-col:nth-child(3n)').after('<div class="clearfix visible-md"></div>');
+  productosContainer.find('.producto-col:nth-child(2n)').after('<div class="clearfix visible-sm"></div>');
 }
 ```
 
 **Características principales**:
-- **Limpieza del contenedor**: Vacía el contenedor antes de mostrar nuevos productos
-- **Validación**: Verifica si hay productos para mostrar
-- **Ordenamiento**: Ordena productos por código numérico
-- **Imágenes dinámicas**: Soporte para imágenes personalizadas y estándar
-- **Etiquetas especiales**: Genera badges para "Más Vendido" y "Oferta"
-- **Template HTML**: Crea el HTML de cada producto dinámicamente
-- **Responsive Design**: Agrega clearfix para diferentes tamaños de pantalla
+
+1. **Limpieza del contenedor**: `productosContainer.empty()` - Vacía el contenedor antes de mostrar nuevos productos
+
+2. **Validación**: Verifica si hay productos para mostrar
+
+3. **Ordenamiento**: Ordena productos por código numérico (P001, P002, etc.)
+
+4. **Imágenes dinámicas**: 
+   - Soporte para imágenes personalizadas (`imagenTemporal`, `imagenPersonalizada`)
+   - Fallback a imagen estándar basada en nombre del producto
+
+5. **Etiquetas especiales**: Genera badges para "Más Vendido" y "Oferta"
+
+6. **Template HTML**: Crea el HTML de cada producto dinámicamente
+
+7. **Responsive Design**: Agrega clearfix para diferentes tamaños de pantalla
+
+**Ejemplo de producto generado**:
+```html
+<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 producto-col">
+  <div class="producto-card">
+    <div class="etiqueta-especial etiqueta-mas-vendido">
+      <i class="fas fa-fire"></i> Más Vendido
+    </div>
+    <div class="producto-imagen">
+      <img src="images/HP Laptop.png" alt="HP Laptop">
+    </div>
+    
+    <div class="producto-info">
+      <h4 class="producto-nombre">HP Laptop</h4>
+      <p class="producto-categoria">Computadora</p>
+      <div class="producto-precio">
+        <span class="precio">5000.00 lps</span>
+      </div>
+      
+      <div class="producto-botones">
+        <a href="#" class="btn btn-detalles">
+          <i class="fas fa-eye"></i>
+          Ver Detalles
+        </a>
+        <a href="#" class="btn btn-carrito">
+          <i class="fas fa-shopping-cart"></i>
+          Agregar
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+```
 
 ---
 
@@ -245,7 +365,11 @@ $(document).on("click", ".btn-carrito", function (e) {
   
   if (productoExistente) {
     productoExistente.cantidad = (productoExistente.cantidad || 1) + 1;
-    mostrarToast(`Cantidad actualizada: ${productoExistente.cantidad} unidades...`, "¡Producto actualizado!", "info");
+    mostrarToast(
+      `Cantidad actualizada: ${productoExistente.cantidad} unidades de ${nombreProducto}`,
+      "¡Producto actualizado!",
+      "info"
+    );
   } else {
     var producto = {
       nombre: nombreProducto,
@@ -253,7 +377,11 @@ $(document).on("click", ".btn-carrito", function (e) {
       cantidad: 1,
     };
     productoaggCarrito.push(producto);
-    mostrarToast(`${nombreProducto} ha sido agregado a tu carrito`, "¡Producto agregado!", "success");
+    mostrarToast(
+      `${nombreProducto} ha sido agregado a tu carrito`,
+      "¡Producto agregado!",
+      "success"
+    );
   }
   
   actualizarContadorCarrito();
@@ -268,6 +396,15 @@ $(document).on("click", ".btn-carrito", function (e) {
 5. **Notificación**: Muestra toast de confirmación
 6. **UI Update**: Actualiza contador del carrito
 
+**Ejemplo de funcionamiento**:
+```javascript
+// Primer clic en "HP Laptop"
+// productoaggCarrito = [{"nombre": "HP Laptop", "precio": "5000.00 lps", "cantidad": 1}]
+
+// Segundo clic en "HP Laptop" 
+// productoaggCarrito = [{"nombre": "HP Laptop", "precio": "5000.00 lps", "cantidad": 2}]
+```
+
 ---
 
 #### Modal del Carrito
@@ -280,7 +417,11 @@ $("#btn-carrito").on("click", function (e) {
   contenedor.empty();
   
   if (!Array.isArray(productoaggCarrito) || productoaggCarrito.length === 0) {
-    contenedor.append(`<tr><td colspan="6" class="text-center">No hay productos disponibles.</td></tr>`);
+    contenedor.append(`
+      <tr>
+        <td colspan="6" class="text-center">No hay productos disponibles.</td>
+      </tr>
+    `);
     $("#fila-total").hide();
   } else {
     let totalGeneral = 0;
@@ -298,7 +439,27 @@ $("#btn-carrito").on("click", function (e) {
       totalGeneral += subtotal;
       
       // Generación de fila de tabla
-      contenedor.append(`<tr>...</tr>`);
+      contenedor.append(`
+        <tr>
+          <td>
+            <img src="${imagenUrl}" alt="${producto.nombre}" style="width: 50px; height: 50px;">
+          </td>
+          <td>${producto.nombre}</td>
+          <td>${producto.precio}</td>
+          <td>
+            <input type="number" class="form-control cantidad-input" 
+                   value="${cantidad}" min="1" 
+                   data-precio="${precioNumerico}" 
+                   data-index="${index}">
+          </td>
+          <td>L ${subtotal.toFixed(2)}</td>
+          <td>
+            <button class="btn btn-danger btn-sm btn-eliminar" data-index="${index}">
+              <i class="fas fa-trash"></i>
+            </button>
+          </td>
+        </tr>
+      `);
     });
     
     $("#total-carrito").text("L " + totalGeneral.toFixed(2));
@@ -315,6 +476,41 @@ $("#btn-carrito").on("click", function (e) {
 - **Cálculos**: Precio, cantidad, subtotales y total general
 - **Generación**: Crea filas de tabla dinámicamente
 - **Controles**: Inputs para cantidad y botones de eliminación
+
+**Estructura del modal**:
+```html
+<!-- Modal Carrito -->
+<div class="modal fade" id="modalCarrito">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Carrito de Productos</h5>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Imagen</th>
+              <th>Producto</th>
+              <th>Precio</th>
+              <th>Cantidad</th>
+              <th>Subtotal</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody id="contenidoCarrito">
+            <!-- Contenido dinámico -->
+          </tbody>
+        </table>
+        <div id="fila-total" class="text-right">
+          <h4>Total: <span id="total-carrito">L 0.00</span></h4>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+```
 
 ---
 
@@ -347,7 +543,9 @@ function mostrarDetallesProducto(producto) {
   $("#detalle-codigo").text("Código: " + (producto.codigo || "N/A"));
   $("#detalle-categoria").text(producto.categoria || "Sin categoría");
   $("#detalle-precio").text(parseInt(producto.precio).toFixed(2) + " LPS");
-  $("#detalle-descripcion").text(producto.descripcion || "Sin descripción disponible");
+  $("#detalle-descripcion").text(
+    producto.descripcion || "Sin descripción disponible"
+  );
   
   $(".btn-agregar-desde-detalle").data("producto", producto);
   $("#modalDetalles").modal("show");
@@ -359,6 +557,38 @@ function mostrarDetallesProducto(producto) {
 2. **Población**: Llena elementos del modal con datos del producto
 3. **Datos**: Almacena información del producto en el botón
 4. **Visualización**: Muestra el modal
+
+**Estructura del modal de detalles**:
+```html
+<!-- Modal Detalles -->
+<div class="modal fade" id="modalDetalles">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Detalles del Producto</h5>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-6">
+            <img id="detalle-imagen" src="" alt="" class="img-responsive">
+          </div>
+          <div class="col-md-6">
+            <h3 id="detalle-nombre"></h3>
+            <p id="detalle-codigo"></p>
+            <p id="detalle-categoria"></p>
+            <h4 id="detalle-precio"></h4>
+            <p id="detalle-descripcion"></p>
+            <button class="btn btn-primary btn-agregar-desde-detalle">
+              <i class="fas fa-shopping-cart"></i> Agregar al Carrito
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+```
 
 ---
 
@@ -397,6 +627,17 @@ function filtrarPorVendidos(masvendidos) {
 - **Flexibilidad**: Filtra por cualquier categoría o estado
 - **Reutilización**: Usa `mostrarProductos()` para visualización
 
+**Ejemplo de uso**:
+```javascript
+// Filtrar por categoría
+filtrarPorCategoria("Computadora");
+// Resultado: Muestra solo productos con categoria: "Computadora"
+
+// Filtrar más vendidos
+filtrarPorVendidos("True");
+// Resultado: Muestra solo productos con masvendidos: "True"
+```
+
 ---
 
 ### 9️⃣ **NAVEGACIÓN POR CATEGORÍAS**
@@ -404,6 +645,7 @@ function filtrarPorVendidos(masvendidos) {
 Cada categoría tiene su propio event listener:
 
 ```javascript
+// Categoría: Audífonos
 $("#btn-Audifono").click(function (e) {
   e.preventDefault();
   filtrarPorCategoria("Audifonos");
@@ -411,10 +653,19 @@ $("#btn-Audifono").click(function (e) {
   actualizarNavegacionActiva($("#nav-categorias"));
 });
 
+// Categoría: Pantallas/Monitores
 $("#btn-Pantalla").click(function (e) {
   e.preventDefault();
   filtrarPorCategoria("Monitores");
   $(".productos-seccion h2").text("Pantallas");
+  actualizarNavegacionActiva($("#nav-categorias"));
+});
+
+// Categoría: Computadoras
+$("#btn-Computadoras").click(function (e) {
+  e.preventDefault();
+  filtrarPorCategoria("Computadora");
+  $(".productos-seccion h2").text("Computadoras");
   actualizarNavegacionActiva($("#nav-categorias"));
 });
 
@@ -426,6 +677,20 @@ $("#btn-Pantalla").click(function (e) {
 2. **Filtrado**: Llama a `filtrarPorCategoria()`
 3. **UI Update**: Actualiza título de la sección
 4. **Navegación**: Marca elemento como activo
+
+**Categorías disponibles**:
+- Audífonos (`"Audifonos"`)
+- Pantallas (`"Monitores"`)
+- Computadoras (`"Computadora"`)
+- Teclados (`"Teclados"`)
+- Mouse (`"Mouse"`)
+- Routers (`"Router"`)
+- Almacenamiento (`"Almacenamiento"`)
+- Cámaras (`"Camara"`)
+- Impresoras (`"Impresoras"`)
+- Teléfonos (`"Telefonos"`)
+- Proyectores (`"Proyector"`)
+- Componentes Internos (`"Componentes Internos"`)
 
 ---
 
@@ -469,21 +734,37 @@ function mostrarToast(mensaje, titulo = "¡Éxito!", tipo = "success") {
 - **Animaciones**: CSS transitions para suavidad
 - **Stacking**: Múltiples toasts se apilan verticalmente
 
+**Ejemplos de uso**:
+```javascript
+// Éxito
+mostrarToast("Producto agregado al carrito", "¡Éxito!", "success");
+
+// Error
+mostrarToast("Error al cargar productos", "¡Error!", "error");
+
+// Información
+mostrarToast("Cantidad actualizada", "¡Actualizado!", "info");
+
+// Advertencia
+mostrarToast("Carrito casi lleno", "¡Atención!", "warning");
+```
+
 ---
 
-## 📊 ARCHIVOS JSON
+## 📊 ARCHIVOS JSON - ANÁLISIS COMPLETO
 
 ### `diccionario.json` - Base de Datos de Productos
 
+**Estructura del archivo** (719 líneas):
 ```json
 {
   "productos": [
     {
       "codigo": "P001",
-      "nombre": "iPhone 15 Pro",
-      "descripcion": "El último iPhone con tecnología Pro",
-      "precio": "50000",
-      "categoria": "Telefonos",
+      "nombre": "HP Laptop",
+      "descripcion": "Computadora de Ultima generacion",
+      "precio": 5000,
+      "categoria": "Computadora",
       "masvendidos": "True",
       "oferta": "True"
     }
@@ -500,8 +781,31 @@ function mostrarToast(mensaje, titulo = "¡Éxito!", tipo = "success") {
 - `masvendidos`: "True"/"False" para etiqueta de más vendido
 - `oferta`: "True"/"False" para etiqueta de oferta
 
+**Ejemplos de productos**:
+```json
+{
+  "codigo": "P001",
+  "nombre": "HP Laptop",
+  "descripcion": "Computadora de Ultima generacion",
+  "precio": 5000,
+  "categoria": "Computadora",
+  "masvendidos": "True",
+  "oferta": "True"
+},
+{
+  "codigo": "P005",
+  "nombre": "Monitor Samsung",
+  "descripcion": "Monitor LED de 24 pulgadas Full HD",
+  "precio": 250,
+  "categoria": "Monitores",
+  "masvendidos": "True",
+  "oferta": "True"
+}
+```
+
 ### `configuracion_etiquetas.json` - Configuración de Etiquetas
 
+**Estructura del archivo** (63 líneas):
 ```json
 {
   "configuracion_etiquetas": {
@@ -544,6 +848,17 @@ if (producto.oferta && producto.oferta.toLowerCase() === 'true') {
 - **CSS Classes**: `.etiqueta-mas-vendido`, `.etiqueta-oferta`
 - **Posicionamiento**: Absolute positioning sobre la imagen
 - **Responsive**: Se adaptan a diferentes tamaños de pantalla
+
+**Ejemplo de etiquetas generadas**:
+```html
+<!-- Producto con ambas etiquetas -->
+<div class="etiqueta-especial etiqueta-mas-vendido">
+  <i class="fas fa-fire"></i> Más Vendido
+</div>
+<div class="etiqueta-especial etiqueta-oferta">
+  <i class="fas fa-tag"></i> Oferta
+</div>
+```
 
 ---
 
