@@ -63,7 +63,11 @@ $(document).ready(function () {
           return;
         }
         todosLosProductos = data.productos;
-        filtrarPorVendidos("True");
+        // Mostrar productos más vendidos al cargar
+        var productosVendidos = todosLosProductos.filter(function(producto) {
+          return producto.masvendidos && producto.masvendidos.toLowerCase() === "true";
+        });
+        mostrarProductos(productosVendidos);
         $(".productos-seccion h2").text("Mas Vendidos");
         actualizarContadorCarrito();
       })
